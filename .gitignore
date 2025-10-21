@@ -1,0 +1,97 @@
+OneDrive_1_17-10-2025.*
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pyre/
+.pytype/
+.mypy_cache/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+.jupyter/
+ipython_config.py
+
+# Environments
+.env
+.venv
+.venv311
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# VS Code (keep common project files if you use them)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Logs and HPC job outputs
+*.log
+logs/
+nohup.out
+slurm-*.out
+slurm-*.err
+*.o[0-9]*
+*.e[0-9]*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# Optional: large local data/artifacts (uncomment if desired)
+# data/
+# outputs/
+# models/
+# checkpoints/

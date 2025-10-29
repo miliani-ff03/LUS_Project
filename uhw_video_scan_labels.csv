@@ -1,0 +1,396 @@
+Hospital,File Path,Patient ID,Scan No,Total Frames,FPS,Scan Label
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0001.MP4,Case-6,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0013.MP4,Case-6,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0011.MP4,Case-6,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0007.MP4,Case-6,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0003.MP4,Case-6,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0012.MP4,Case-6,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0014.MP4,Case-6,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0005.MP4,Case-6,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0010.MP4,Case-6,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-3/MCCORMICK-LU-3_0006.MP4,Case-6,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0018.MP4,Case-6,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0011.MP4,Case-6,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0007.MP4,Case-6,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0002.MP4,Case-6,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0017.MP4,Case-6,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0008.MP4,Case-6,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0003.MP4,Case-6,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0001.MP4,Case-6,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0006.MP4,Case-6,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-4/MCCORMICL-LU-4_0010.MP4,Case-6,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0009.MP4,Case-6,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0004.MP4,Case-6,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0006.MP4,Case-6,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0008.MP4,Case-6,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0002.MP4,Case-6,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0010.MP4,Case-6,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0007.MP4,Case-6,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0001.MP4,Case-6,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0003.MP4,Case-6,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-1/MCCORMICK-SCAN-1_0005.MP4,Case-6,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0005.MP4,Case-6,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0007.MP4,Case-6,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0008.MP4,Case-6,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0001.MP4,Case-6,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0004.MP4,Case-6,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0010.MP4,Case-6,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0002.MP4,Case-6,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0006.MP4,Case-6,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0003.MP4,Case-6,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-6-McCormick/MCCORMICK-LU-2/MCCORMICK-SCAN-2_0009.MP4,Case-6,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0005.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0007.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0001.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0011.MP4,Case-5,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0006.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0010.MP4,Case-5,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0002.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0009.MP4,Case-5,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0008.MP4,Case-5,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0003.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-2/MCGLYNN-SCAN-2_0004.MP4,Case-5,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0001.MP4,Case-5,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0003.MP4,Case-5,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0015.MP4,Case-5,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0009.MP4,Case-5,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0002.MP4,Case-5,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0008.MP4,Case-5,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0017.MP4,Case-5,LUS_1,143,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0013.MP4,Case-5,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0012.MP4,Case-5,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0007.MP4,Case-5,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0018.MP4,Case-5,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0006.MP4,Case-5,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0005.MP4,Case-5,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0004.MP4,Case-5,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-1/MCGLYNN-SCAN-1_0010.MP4,Case-5,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0011.MP4,Case-5,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0003.MP4,Case-5,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0001.MP4,Case-5,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0010.MP4,Case-5,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0004.MP4,Case-5,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0002.MP4,Case-5,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0008.MP4,Case-5,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0007.MP4,Case-5,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0005.MP4,Case-5,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-3/MCGLYNN-SCAN-3_0006.MP4,Case-5,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0004.MP4,Case-5,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0009.MP4,Case-5,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0003.MP4,Case-5,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0005.MP4,Case-5,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0011.MP4,Case-5,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0006.MP4,Case-5,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0010.MP4,Case-5,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0012.MP4,Case-5,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0007.MP4,Case-5,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-5-MCGLYNN/MCGLYNN-SCAN-4/MCGLYNN-SCAN-4_0008.MP4,Case-5,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0017.MP4,Case-8,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0010.MP4,Case-8,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0002.MP4,Case-8,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0014.MP4,Case-8,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0021.MP4,Case-8,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0015.MP4,Case-8,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0006.MP4,Case-8,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0019.MP4,Case-8,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0005.MP4,Case-8,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-2/GARCIA-LU-2_0022.MP4,Case-8,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0003.MP4,Case-8,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0009.MP4,Case-8,LU_4,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0006.MP4,Case-8,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0001.MP4,Case-8,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0010.MP4,Case-8,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0004.MP4,Case-8,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0005.MP4,Case-8,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0007.MP4,Case-8,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0008.MP4,Case-8,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-4/GARCIA-LU-4_0002.MP4,Case-8,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0003.MP4,Case-8,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0006.MP4,Case-8,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0001.MP4,Case-8,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0002.MP4,Case-8,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0008.MP4,Case-8,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0009.MP4,Case-8,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0011.MP4,Case-8,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0012.MP4,Case-8,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0004.MP4,Case-8,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0014.MP4,Case-8,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-1/GARCIA-LU-1_0010.MP4,Case-8,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0002.MP4,Case-8,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0005.MP4,Case-8,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0006.MP4,Case-8,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0008.MP4,Case-8,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0011.MP4,Case-8,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0013.MP4,Case-8,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0009.MP4,Case-8,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0018.MP4,Case-8,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0004.MP4,Case-8,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0003.MP4,Case-8,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0007.MP4,Case-8,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0016.MP4,Case-8,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0021.MP4,Case-8,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0012.MP4,Case-8,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0001.MP4,Case-8,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0019.MP4,Case-8,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-8-Garcia/GARCIA-LU-3/GARCIA-LU-3_0020.MP4,Case-8,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0011.MP4,Case-11,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0013.MP4,Case-11,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0009.MP4,Case-11,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0008.MP4,Case-11,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0005.MP4,Case-11,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0002.MP4,Case-11,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0018.MP4,Case-11,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0007.MP4,Case-11,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0010.MP4,Case-11,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0015.MP4,Case-11,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0017.MP4,Case-11,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-1/SHERIDAN-LU-1_0003.MP4,Case-11,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0008.MP4,Case-11,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0003.MP4,Case-11,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0020.MP4,Case-11,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0006.MP4,Case-11,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0005.MP4,Case-11,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0001.MP4,Case-11,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0014.MP4,Case-11,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0018.MP4,Case-11,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0010.MP4,Case-11,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0013.MP4,Case-11,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0009.MP4,Case-11,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0015.MP4,Case-11,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0004.MP4,Case-11,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0002.MP4,Case-11,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0012.MP4,Case-11,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-4/SHERIDAN-LU-4_0017.MP4,Case-11,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0012.MP4,Case-11,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0006.MP4,Case-11,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0013.MP4,Case-11,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0010.MP4,Case-11,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0004.MP4,Case-11,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0002.MP4,Case-11,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0001.MP4,Case-11,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0018.MP4,Case-11,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0007.MP4,Case-11,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0011.MP4,Case-11,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-3/SHERIDAN-LU-3_0017.MP4,Case-11,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0019.MP4,Case-11,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0007.MP4,Case-11,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0002.MP4,Case-11,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0016.MP4,Case-11,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0013.MP4,Case-11,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0017.MP4,Case-11,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0015.MP4,Case-11,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0010.MP4,Case-11,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0014.MP4,Case-11,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0006.MP4,Case-11,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-11-Sheridan/SHERIDAN-LU-2/SHERIDAN-LU-2_0001.MP4,Case-11,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0009.MP4,Case-1,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0003.MP4,Case-1,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0001.MP4,Case-1,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0006.MP4,Case-1,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0004.MP4,Case-1,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0010.MP4,Case-1,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0005.MP4,Case-1,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0008.MP4,Case-1,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0007.MP4,Case-1,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-1/LEITCH-SCAN-1_0002.MP4,Case-1,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0002.MP4,Case-1,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0008.MP4,Case-1,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0006.MP4,Case-1,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0012.MP4,Case-1,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0011.MP4,Case-1,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0004.MP4,Case-1,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0005.MP4,Case-1,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0001.MP4,Case-1,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0009.MP4,Case-1,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0007.MP4,Case-1,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-4/LEITCH-LU 25-08_0010.MP4,Case-1,LU_4,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0003.MP4,Case-1,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0006.MP4,Case-1,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0010.MP4,Case-1,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0013.MP4,Case-1,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0007.MP4,Case-1,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0009.MP4,Case-1,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0012.MP4,Case-1,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0001.MP4,Case-1,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0004.MP4,Case-1,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-3/LEITCH-LU-3_0008.MP4,Case-1,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0009.MP4,Case-1,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0003.MP4,Case-1,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0004.MP4,Case-1,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0013.MP4,Case-1,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0002.MP4,Case-1,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0014.MP4,Case-1,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0012.MP4,Case-1,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0015.MP4,Case-1,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0011.MP4,Case-1,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-1- Leitch/LEITCH-LU-2/LEITCH-SCAN-2_0007.MP4,Case-1,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0004.MP4,Case-4,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0005.MP4,Case-4,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0006.MP4,Case-4,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0001.MP4,Case-4,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0012.MP4,Case-4,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0002.MP4,Case-4,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0009.MP4,Case-4,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0010.MP4,Case-4,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0008.MP4,Case-4,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0011.MP4,Case-4,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0003.MP4,Case-4,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-3/YOUNG-SCAN-3_0007.MP4,Case-4,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0007.MP4,Case-4,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0005.MP4,Case-4,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0008.MP4,Case-4,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0009.MP4,Case-4,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0001.MP4,Case-4,LUS_1,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0003.MP4,Case-4,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0004.MP4,Case-4,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0002.MP4,Case-4,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0006.MP4,Case-4,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-1/YOUNG-SCAN-1_0010.MP4,Case-4,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0008.MP4,Case-4,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0006.MP4,Case-4,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0003.MP4,Case-4,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0001.MP4,Case-4,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0007.MP4,Case-4,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0002.MP4,Case-4,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0010.MP4,Case-4,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0005.MP4,Case-4,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0004.MP4,Case-4,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-4/YOUNG-SCAN-4_0009.MP4,Case-4,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0014.MP4,Case-4,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0002.MP4,Case-4,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0018.MP4,Case-4,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0011.MP4,Case-4,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0016.MP4,Case-4,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0015.MP4,Case-4,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0004.MP4,Case-4,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0005.MP4,Case-4,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0012.MP4,Case-4,LUS_2,78,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0009.MP4,Case-4,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0003.MP4,Case-4,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0010.MP4,Case-4,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0001.MP4,Case-4,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0017.MP4,Case-4,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0013.MP4,Case-4,LUS_2,149,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0008.MP4,Case-4,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0006.MP4,Case-4,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-4-Young/YOUNG-SCAN-2/YOUNG-SCAN-2_0007.MP4,Case-4,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0004.MP4,Case-10,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0005.MP4,Case-10,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0007.MP4,Case-10,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0010.MP4,Case-10,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0011.MP4,Case-10,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0003.MP4,Case-10,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0009.MP4,Case-10,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0008.MP4,Case-10,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0002.MP4,Case-10,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0006.MP4,Case-10,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0001.MP4,Case-10,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-2/BRYSON-LU-2_0012.MP4,Case-10,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0011.MP4,Case-10,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0003.MP4,Case-10,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0009.MP4,Case-10,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0005.MP4,Case-10,LUS_1,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0006.MP4,Case-10,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0001.MP4,Case-10,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0004.MP4,Case-10,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0002.MP4,Case-10,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0007.MP4,Case-10,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0010.MP4,Case-10,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-1/DRYSON-LU-1_0008.MP4,Case-10,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0005.MP4,Case-10,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0001.MP4,Case-10,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0002.MP4,Case-10,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0009.MP4,Case-10,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0003.MP4,Case-10,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0004.MP4,Case-10,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0010.MP4,Case-10,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0008.MP4,Case-10,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0007.MP4,Case-10,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-3/BRYSON-LU-3_0006.MP4,Case-10,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0015.MP4,Case-10,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0007.MP4,Case-10,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0004.MP4,Case-10,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0018.MP4,Case-10,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0008.MP4,Case-10,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0010.MP4,Case-10,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0009.MP4,Case-10,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0013.MP4,Case-10,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0005.MP4,Case-10,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0002.MP4,Case-10,LU_4,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-10-Bryson/BRYSON-LU-4/BRYSON-LU-4_0017.MP4,Case-10,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0011.MP4,Case-2,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0002.MP4,Case-2,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0005.MP4,Case-2,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0009.MP4,Case-2,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0010.MP4,Case-2,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0012.MP4,Case-2,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0001.MP4,Case-2,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0006.MP4,Case-2,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0007.MP4,Case-2,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-3/RODGERS-LU-3_0008.MP4,Case-2,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0005.MP4,Case-2,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0009.MP4,Case-2,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0008.MP4,Case-2,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0011.MP4,Case-2,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0007.MP4,Case-2,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0006.MP4,Case-2,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0004.MP4,Case-2,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0002.MP4,Case-2,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0001.MP4,Case-2,LUS_2,180,30.0,Unknown
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-2/RODGERS-LU-2_0010.MP4,Case-2,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0007.MP4,Case-2,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0003.MP4,Case-2,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0008.MP4,Case-2,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0002.MP4,Case-2,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0006.MP4,Case-2,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0011.MP4,Case-2,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0001.MP4,Case-2,LU_4,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0010.MP4,Case-2,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0009.MP4,Case-2,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0004.MP4,Case-2,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-4/RODGERS-LU-4_0005.MP4,Case-2,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0001.MP4,Case-2,LUS_1,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0003.MP4,Case-2,LUS_1,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0004.MP4,Case-2,LUS_1,140,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0006.MP4,Case-2,LUS_1,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0002.MP4,Case-2,LUS_1,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0011.MP4,Case-2,LUS_1,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0005.MP4,Case-2,LUS_1,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0012.MP4,Case-2,LUS_1,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0010.MP4,Case-2,LUS_1,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-2- Rodger/RODGERS-LU-1/RODGERS-LU-1_0008.MP4,Case-2,LUS_1,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0011.MP4,Case-9,LUS_3,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0001.MP4,Case-9,LUS_3,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0004.MP4,Case-9,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0002.MP4,Case-9,LUS_3,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0003.MP4,Case-9,LUS_3,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0009.MP4,Case-9,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0007.MP4,Case-9,LUS_3,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0005.MP4,Case-9,LUS_3,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0008.MP4,Case-9,LUS_3,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0006.MP4,Case-9,LUS_3,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0012.MP4,Case-9,LUS_3,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-3/ONIBON-LU-3_0010.MP4,Case-9,LUS_3,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0010.MP4,Case-9,LUS_2,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0008.MP4,Case-9,LUS_2,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0003.MP4,Case-9,LUS_2,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0004.MP4,Case-9,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0002.MP4,Case-9,LUS_2,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0007.MP4,Case-9,LUS_2,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0011.MP4,Case-9,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0009.MP4,Case-9,LUS_2,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0005.MP4,Case-9,LUS_2,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0001.MP4,Case-9,LUS_2,180,30.0,R1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0012.MP4,Case-9,LUS_2,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU-2/ONIBON-LU-2_0006.MP4,Case-9,LUS_2,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0011.MP4,Case-9,LU_4,180,30.0,R2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0008.MP4,Case-9,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0009.MP4,Case-9,LU_4,180,30.0,L2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0006.MP4,Case-9,LU_4,180,30.0,L3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0003.MP4,Case-9,LU_4,180,30.0,LP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0001.MP4,Case-9,LU_4,180,30.0,RP1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0004.MP4,Case-9,LU_4,180,30.0,LP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0005.MP4,Case-9,LU_4,180,30.0,R3
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0007.MP4,Case-9,LU_4,180,30.0,L1
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0002.MP4,Case-9,LU_4,180,30.0,RP2
+UHW,/cosma7/data/dp004/rrtx34/ultrasound/UHW/Case-9-ONIBON/ONIBON-LU4/ONIBON-LU4_0010.MP4,Case-9,LU_4,180,30.0,R1

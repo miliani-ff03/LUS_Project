@@ -1,0 +1,17 @@
+Hospital,File Path,Patient ID,Scan No,Total Frames,FPS,Scan Label,Score,is_duplicate,preferred_duplicate,no_score,M-mode scan
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 026/Day 4/Image110.avi,26,LU_4,71,22.32002514932412,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 021/Day 3/Image255.avi,21,LUS_3,38,12.325656827765163,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 013/Day 3/Image61.avi,13,LUS_3,70,22.321428571428573,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 004/Day 3/Image88.avi,4,LUS_3,201,33.16831683168317,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 017/Day 2/Image20.avi,17,LUS_2,36,22.641509433962263,Unknown,,True,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 017/Day 2/Image19.avi,17,LUS_2,15,23.58490566037736,Unknown,,True,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 017/Day 2/Image22.avi,17,LUS_2,73,22.31051344743276,Unknown,,True,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 017/Day 2/Image18.avi,17,LUS_2,70,22.321428571428573,Unknown,,True,True,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 009/DAY 1/Image01.avi,9,LUS_1,201,33.16831683168317,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 009/DAY 4/Image37.avi,9,LU_4,72,22.31174465447784,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 003/scan 3/Image67.avi,3,LUS_3,201,33.16831683168317,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 001/Scan 4/Image218.avi,1,LU_4,70,22.321428571428573,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 001/Scan 2/Image191.avi,1,LUS_2,201,33.16831683168317,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 008/Day 2/Image213.avi,8,LUS_2,202,33.16912972085386,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 024/Day 1/Image03.avi,24,LUS_1,72,22.31174465447784,Unknown,,False,False,True,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 005/Day 2/Image245.avi,5,LUS_2,202,33.16912972085386,Unknown,,False,False,True,False

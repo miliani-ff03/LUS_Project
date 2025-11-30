@@ -13,6 +13,8 @@ from sklearn.manifold import TSNE
 import os
 import glob
 from PIL import Image
+from dotenv import load_dotenv
+import wandb
 
 # %%
 # ==========================================
@@ -27,7 +29,10 @@ LATENT_DIM = 32 # Size of the compressed feature vector
 BATCH_SIZE = 64
 LEARNING_RATE = 1e-3
 EPOCHS = 10
+BETA = 5
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 
 # ==========================================
 # 2. VAE MODEL ARCHITECTURE
@@ -145,7 +150,7 @@ class FlatImageDataset(Dataset):
             image = self.transform(image)
         return image, 0  # Return dummy label
 
-def get_dataloader(use_real_data=True, data_path= '/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae'):
+def get_dataloader(use_real_data=True, data_path= '/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae', batch_size=BATCH_SIZE):
     """
     Returns the dataloader.
     Toggle 'use_real_data' to True and provide 'data_path' for your medical images.
@@ -167,14 +172,11 @@ def get_dataloader(use_real_data=True, data_path= '/cosma5/data/durham/dc-fras4/
         except (FileNotFoundError, RuntimeError):
             print("ImageFolder failed - trying flat directory structure...")
             dataset = FlatImageDataset(root_dir=data_path, transform=transform)
-    else:
-        print("Loading FashionMNIST (Dummy Medical Data)...")
-        dataset = FashionMNIST(root='./data', train=True, transform=transform, download=True)
         
-    return DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True), dataset
+    return DataLoader(dataset, batch_size=batch_size, shuffle=True), dataset
 
-def train_vae(model, dataloader, epochs):
-    optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+def train_vae(model, dataloader, epochs, beta, learning_rate):
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     model.train()
     tracker = LossTracker()
     num_samples = len(dataloader.dataset)
@@ -189,7 +191,7 @@ def train_vae(model, dataloader, epochs):
             
             optimizer.zero_grad()
             recon_batch, mu, logvar = model(data)
-            loss, bce, kld = vae_loss_function(recon_batch, data, mu, logvar, beta=5)
+            loss, bce, kld = vae_loss_function(recon_batch, data, mu, logvar, beta=beta)
             loss.backward()
             optimizer.step()
 
@@ -226,22 +228,64 @@ def extract_latent_features(model, dataloader):
 # 5. MAIN EXECUTION
 # ==========================================
 if __name__ == "__main__":
+    # Initialize Weights & Biases
+    load_dotenv()
+    WANDB_API_KEY = os.getenv("WANDB_API_KEY")
+    if WANDB_API_KEY:
+        try:
+            wandb.login(key=WANDB_API_KEY)
+        except Exception as e:
+            print(f"W&B login failed: {e}")
+    else:
+        print("WANDB_API_KEY not found in environment. Proceeding without explicit login.")
+
     print(f"Running on device: {DEVICE}")
     
     # --- STEP 1: DATA ---
     # TO USE YOUR DATA: Set use_real_data=True and provide path
     # Folder structure must be: /path/to/data/images_subfolder/img1.png
-    dataloader, dataset = get_dataloader(use_real_data=True, data_path="/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae")
+    DATA_PATH = os.getenv("DATA_PATH", "/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae")
+    dataloader, dataset = get_dataloader(use_real_data=True, data_path=DATA_PATH)
     
     # --- STEP 2: TRAIN MODEL ---
 
-    latent_dims = [10, 15, 20,  30, 50 ]
+    latent_dims = [10, 15, 20, 30, 50]
     summary = []
 
     for ld in latent_dims:
         print(f"\nTraining VAE with LATENT_DIM={ld}...")
-        vae = ConvVAE(latent_dim=LATENT_DIM).to(DEVICE)
-        tracker =train_vae(vae, dataloader, epochs=EPOCHS)
+        
+        # RE-INIT WANDB FOR EACH LATENT DIM
+        run = wandb.init(
+            project="lus-medical-vae",
+            group="manual_latent_sweep",
+            config={
+                "image_size": IMAGE_SIZE,
+                "channels": CHANNELS,
+                "batch_size": BATCH_SIZE,
+                "learning_rate": LEARNING_RATE,
+                "epochs": EPOCHS,
+                "beta": BETA,
+                "latent_dim": ld,
+                "device": str(DEVICE),
+            },
+            reinit=True
+        )
+
+        vae = ConvVAE(latent_dim=ld).to(DEVICE)
+        # Use config values
+        current_beta = wandb.config.beta
+        current_lr = wandb.config.learning_rate
+        tracker = train_vae(vae, dataloader, epochs=EPOCHS, beta=current_beta, learning_rate=current_lr)
+        # Log per-epoch losses
+        for epoch_idx, (loss, recon, kl) in enumerate(zip(tracker.history["loss"], tracker.history["reconstruction_loss"], tracker.history["kl_loss"])):
+            wandb.log({
+                "epoch": epoch_idx + 1,
+                "loss/total": loss,
+                "loss/reconstruction": recon,
+                "loss/kl": kl,
+                "latent_dim": ld,
+            })
 
     # Save loss arrays for this latent dim
         out_dir = os.path.join("results", "loss_sweep")
@@ -275,8 +319,10 @@ if __name__ == "__main__":
         # Save clustering plot
         cluster_dir = os.path.join("results", "clustering_plots")
         os.makedirs(cluster_dir, exist_ok=True)
-        plt.savefig(os.path.join(cluster_dir, f"clustering_ld{ld}.png"))
+        out_cluster_path = os.path.join(cluster_dir, f"clustering_ld{ld}.png")
+        plt.savefig(out_cluster_path)
         plt.close()
+        wandb.log({"plots/clustering": wandb.Image(out_cluster_path), "latent_dim": ld})
 
         # plot reconstruction
         vae.eval()
@@ -295,8 +341,10 @@ if __name__ == "__main__":
             plt.axis('off')
             reconstruction_dir = os.path.join("results", "reconstruction_plots")
             os.makedirs(reconstruction_dir, exist_ok =True)
-            plt.savefig(os.path.join(reconstruction_dir, f"reconstruction_ld{ld}.png"))
+            out_recon_path = os.path.join(reconstruction_dir, f"reconstruction_ld{ld}.png")
+            plt.savefig(out_recon_path)
             plt.close()
+            wandb.log({"plots/reconstruction": wandb.Image(out_recon_path), "latent_dim": ld})
 
         # Keep last-epoch metrics for a compact summary
         summary.append({
@@ -333,8 +381,12 @@ if __name__ == "__main__":
         ax3.grid(True, alpha=0.3)
         
         plt.tight_layout()
-        plt.savefig(os.path.join(out_dir, f"loss_curves_ld{ld}.png"))
+        out_loss_path = os.path.join(out_dir, f"loss_curves_ld{ld}.png")
+        plt.savefig(out_loss_path)
         plt.close()
+        wandb.log({"plots/loss_curves": wandb.Image(out_loss_path), "latent_dim": ld})
+        
+        run.finish()
 
     # Summary plot across latent dims (final epoch)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 5))
@@ -367,96 +419,99 @@ if __name__ == "__main__":
     
     plt.tight_layout()
     os.makedirs("results", exist_ok=True)
-    plt.savefig("results/latent_dim_vs_loss.png")
+    final_summary_path = "results/latent_dim_vs_loss.png"
+    plt.savefig(final_summary_path)
     plt.close()
+    # wandb.log({"plots/latent_dim_vs_loss": wandb.Image(final_summary_path)})
+    # wandb_run.finish()
 
     # %%
     # --- STEP 3: UNSUPERVISED CLUSTERING ---
-    print("\nExtracting features for clustering...")
-    # We extract the 'mu' vector which represents the image content
-    X_latent, y_true = extract_latent_features(vae, dataloader)
+    # print("\nExtracting features for clustering...")
+    # # We extract the 'mu' vector which represents the image content
+    # X_latent, y_true = extract_latent_features(vae, dataloader)
     
-    print("Running K-Means Clustering...")
-    # We assume 10 clusters (classes) for FashionMNIST. 
-    # CHANGE THIS to 2 (e.g., Healthy vs Sick) for your medical data
-    N_CLUSTERS = 4 
-    kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
-    clusters = kmeans.fit_predict(X_latent)
+    # print("Running K-Means Clustering...")
+    # # We assume 10 clusters (classes) for FashionMNIST. 
+    # # CHANGE THIS to 2 (e.g., Healthy vs Sick) for your medical data
+    # N_CLUSTERS = 4 
+    # kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
+    # clusters = kmeans.fit_predict(X_latent)
 
-    cluster_centers = []
-    for k in range(N_CLUSTERS):
-    # Select all latent vectors belonging to cluster k
-        cluster_points = X_latent[clusters == k]
+    # cluster_centers = []
+    # for k in range(N_CLUSTERS):
+    # # Select all latent vectors belonging to cluster k
+    #     cluster_points = X_latent[clusters == k]
     
-        # Calculate the mean (centroid) of these vectors
-        centroid = np.mean(cluster_points, axis=0)
+    #     # Calculate the mean (centroid) of these vectors
+    #     centroid = np.mean(cluster_points, axis=0)
         
-        cluster_centers.append(centroid)
+    #     cluster_centers.append(centroid)
 
-    # Convert the list of centers back to a numpy array
-    cluster_centers = np.array(cluster_centers)
+    # # Convert the list of centers back to a numpy array
+    # cluster_centers = np.array(cluster_centers)
 
-    # put cluster centre latent vectors into decoder to visualise typical images
-    vae.eval()
-    with torch.no_grad():
-        cluster_centers_tensor = torch.tensor(cluster_centers, dtype=torch.float32).to(DEVICE)
-        z_input = vae.decoder_input(cluster_centers_tensor)
-        z_matrix = z_input.view(z_input.size(0), 256, 4, 4)
-        reconstructions = vae.decoder(z_matrix)
-# %%
+    # # put cluster centre latent vectors into decoder to visualise typical images
+    # vae.eval()
+    # with torch.no_grad():
+    #     cluster_centers_tensor = torch.tensor(cluster_centers, dtype=torch.float32).to(DEVICE)
+    #     z_input = vae.decoder_input(cluster_centers_tensor)
+    #     z_matrix = z_input.view(z_input.size(0), 256, 4, 4)
+    #     reconstructions = vae.decoder(z_matrix)
+
     # Plot the cluster center reconstructions
-    plt.figure(figsize=(12, 6))
-    for i in range(N_CLUSTERS):
-        plt.subplot(1, N_CLUSTERS, i + 1)
-        img = reconstructions[i].cpu().squeeze().numpy()
-        plt.imshow(img, cmap='gray')
-        plt.title(f"Cluster {i} Center")
-        plt.axis('off')
-    plt.suptitle("Cluster Center Reconstructions")
-    plt.show()
-    # save into results
-    os.makedirs("results/cluster_centers", exist_ok=True)
-    for i in range(N_CLUSTERS):
-        img = reconstructions[i].cpu().squeeze().numpy()
-        plt.imsave(f"results/cluster_centers/cluster_{i}_center.png", img, cmap='gray')
+    # plt.figure(figsize=(12, 6))
+    # for i in range(N_CLUSTERS):
+    #     plt.subplot(1, N_CLUSTERS, i + 1)
+    #     img = reconstructions[i].cpu().squeeze().numpy()
+    #     plt.imshow(img, cmap='gray')
+    #     plt.title(f"Cluster {i} Center")
+    #     plt.axis('off')
+    # plt.suptitle("Cluster Center Reconstructions")
+    # plt.show()
+    # # save into results
+    # os.makedirs("results/cluster_centers", exist_ok=True)
+    # for i in range(N_CLUSTERS):
+    #     img = reconstructions[i].cpu().squeeze().numpy()
+    #     plt.imsave(f"results/cluster_centers/cluster_{i}_center.png", img, cmap='gray')
         
     
 # %%
     
-    # --- STEP 4: VISUALIZATION ---
-    print("Visualizing Latent Space with t-SNE (this might take a moment)...")
-    # Reduce 32-dim latent space to 2-dim for plotting
-    tsne = TSNE(n_components=2, random_state=42)
-    X_embedded = tsne.fit_transform(X_latent[:1000]) # Only plot first 1000 for speed
-    clusters_plot = clusters[:1000]
+    # # --- STEP 4: VISUALIZATION ---
+    # print("Visualizing Latent Space with t-SNE (this might take a moment)...")
+    # # Reduce 32-dim latent space to 2-dim for plotting
+    # tsne = TSNE(n_components=2, random_state=42)
+    # X_embedded = tsne.fit_transform(X_latent[:1000]) # Only plot first 1000 for speed
+    # clusters_plot = clusters[:1000]
     
-    plt.figure(figsize=(10, 8))
-    scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
-    plt.colorbar(scatter, label='Cluster ID')
-    plt.title("Unsupervised Clustering of Medical Images (Latent Space)")
-    plt.xlabel("t-SNE Dim 1")
-    plt.ylabel("t-SNE Dim 2")
-    plt.show()
+    # plt.figure(figsize=(10, 8))
+    # scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
+    # plt.colorbar(scatter, label='Cluster ID')
+    # plt.title("Unsupervised Clustering of Medical Images (Latent Space)")
+    # plt.xlabel("t-SNE Dim 1")
+    # plt.ylabel("t-SNE Dim 2")
+    # plt.show()
 
-    # --- STEP 5: SHOW RECONSTRUCTION ---
-    # Verify the VAE actually learned shapes
-    vae.eval()
-    with torch.no_grad():
-        sample_data, _ = next(iter(dataloader))
-        sample_data = sample_data.to(DEVICE)[:8]
-        recon, _, _ = vae(sample_data)
+    # # --- STEP 5: SHOW RECONSTRUCTION ---
+    # # Verify the VAE actually learned shapes
+    # vae.eval()
+    # with torch.no_grad():
+    #     sample_data, _ = next(iter(dataloader))
+    #     sample_data = sample_data.to(DEVICE)[:8]
+    #     recon, _, _ = vae(sample_data)
         
-        # Create a grid: Top row original, Bottom row reconstruction
-        comparison = torch.cat([sample_data, recon])
-        grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
+    #     # Create a grid: Top row original, Bottom row reconstruction
+    #     comparison = torch.cat([sample_data, recon])
+    #     grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
         
-        plt.figure(figsize=(15, 5))
-        plt.imshow(grid.permute(1, 2, 0), cmap='gray')
-        plt.title("Top: Original | Bottom: Reconstructed")
-        plt.axis('off')
-        plt.show()
+    #     plt.figure(figsize=(15, 5))
+    #     plt.imshow(grid.permute(1, 2, 0), cmap='gray')
+    #     plt.title("Top: Original | Bottom: Reconstructed")
+    #     plt.axis('off')
+    #     plt.show()
 
-    print("Done! The variable 'clusters' now contains your unsupervised labels.")
+    # print("Done! The variable 'clusters' now contains your unsupervised labels.")
 
 
 # %%

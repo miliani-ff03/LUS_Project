@@ -1,2 +1,10 @@
 ipykernel>=6.29
 jupyter-client>=8.6
+torch
+torchvision
+numpy
+matplotlib
+scikit-learn
+pillow
+wandb
+python-dotenv

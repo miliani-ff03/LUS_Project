@@ -15,6 +15,11 @@ import glob
 from PIL import Image
 from dotenv import load_dotenv
 import wandb
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "5"
+os.environ["WANDB_MODE"] = "offline"
+
+# wandb sync wandb/offline-run-<timestamp> to sync runs when back online
 
 # %%
 # ==========================================
@@ -30,10 +35,11 @@ BATCH_SIZE = 64
 LEARNING_RATE = 1e-3
 EPOCHS = 10
 BETA = 5
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# cude, mps, cpu
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+DEVICE
 
-
-
+# %%
 # ==========================================
 # 2. VAE MODEL ARCHITECTURE
 # ==========================================
@@ -148,16 +154,29 @@ class FlatImageDataset(Dataset):
         image = Image.open(img_path).convert('RGB')
         if self.transform:
             image = self.transform(image)
-        return image, 0  # Return dummy label
+        return image, img_path  # Return dummy label
+    
+class ImageFolderWithPaths(ImageFolder):
+    """Custom dataset that includes image file paths. Extends torchvision.datasets.ImageFolder"""
+    def __getitem__(self, index):
+        # Original ImageFolder returns (image, class_index)
+        original_tuple = super(ImageFolderWithPaths, self).__getitem__(index)
+        image = original_tuple[0]
+        
+        # Retrieve the path from the internal list of samples
+        # self.samples contains tuples of (path, class_index)
+        image_path = self.samples[index][0]
+        
+        return image, image_path
 
-def get_dataloader(use_real_data=True, data_path= '/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae', batch_size=BATCH_SIZE):
+def get_dataloader(use_real_data=True, data_path='/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images', batch_size=BATCH_SIZE):
     """
     Returns the dataloader.
     Toggle 'use_real_data' to True and provide 'data_path' for your medical images.
     """
     transform = transforms.Compose([
         transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
-        transforms.Lambda(lambda img: transforms.functional.crop(img, top=int(img.size[1] * 0.25), left=0, height=int(img.size[1] * 0.75), width=img.size[0])),  # Remove top 25%
+        transforms.Lambda(lambda img: transforms.functional.crop(img, top=int(img.size[1] * 0.25), left=0, height=int(img.size[1] * 0.75), width=img.size[0])), 
         transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
         transforms.Grayscale(num_output_channels=CHANNELS),
         transforms.ToTensor(),
@@ -165,10 +184,9 @@ def get_dataloader(use_real_data=True, data_path= '/cosma5/data/durham/dc-fras4/
 
     if use_real_data and data_path:
         print(f"Loading real data from {data_path}...")
-        # Expected structure: data_path/class_name/image.png
-        # If you have no classes, put all images in data_path/all_images/
         try:
-            dataset = ImageFolder(root=data_path, transform=transform)
+            # CHANGED: Use the custom class that returns paths
+            dataset = ImageFolderWithPaths(root=data_path, transform=transform)
         except (FileNotFoundError, RuntimeError):
             print("ImageFolder failed - trying flat directory structure...")
             dataset = FlatImageDataset(root_dir=data_path, transform=transform)
@@ -213,16 +231,16 @@ def extract_latent_features(model, dataloader):
     """
     model.eval()
     latent_vectors = []
-    true_labels = [] # Kept just for verification, not used in clustering
+    image_paths = [] # Kept just for verification, not used in clustering
     
     with torch.no_grad():
-        for data, labels in dataloader:
+        for data, paths in dataloader:
             data = data.to(DEVICE)
             _, mu, _ = model(data)
             latent_vectors.append(mu.cpu().numpy())
-            true_labels.append(labels.numpy())
+            image_paths.extend(paths)
             
-    return np.concatenate(latent_vectors), np.concatenate(true_labels)
+    return np.concatenate(latent_vectors), image_paths
 
 # ==========================================
 # 5. MAIN EXECUTION
@@ -244,12 +262,12 @@ if __name__ == "__main__":
     # --- STEP 1: DATA ---
     # TO USE YOUR DATA: Set use_real_data=True and provide path
     # Folder structure must be: /path/to/data/images_subfolder/img1.png
-    DATA_PATH = os.getenv("DATA_PATH", "/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae")
+    DATA_PATH = os.getenv("DATA_PATH", "/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images")
     dataloader, dataset = get_dataloader(use_real_data=True, data_path=DATA_PATH)
     
     # --- STEP 2: TRAIN MODEL ---
 
-    latent_dims = [10, 15, 20, 30, 50]
+    latent_dims = [10, 20]
     summary = []
 
     for ld in latent_dims:
@@ -296,12 +314,13 @@ if __name__ == "__main__":
 
         # Extract latent features and cluster for this latent dim
         print(f"Extracting features and clustering for LATENT_DIM={ld}...")
-        X_latent, y_true = extract_latent_features(vae, dataloader)
+        X_latent, image_paths = extract_latent_features(vae, dataloader)
         
         N_CLUSTERS = 4
         kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
         clusters = kmeans.fit_predict(X_latent)
-        
+
+    
         # Visualize with t-SNE
         print(f"Creating t-SNE visualization for LATENT_DIM={ld}...")
         tsne = TSNE(n_components=2, random_state=42)
@@ -321,8 +340,17 @@ if __name__ == "__main__":
         os.makedirs(cluster_dir, exist_ok=True)
         out_cluster_path = os.path.join(cluster_dir, f"clustering_ld{ld}.png")
         plt.savefig(out_cluster_path)
+        np.save(os.path.join(cluster_dir, f"cluster_labels_ld{ld}.npy"), clusters)
+        np.save(os.path.join(cluster_dir, f"image_paths_ld{ld}.npy"), np.array(image_paths, dtype=object))
         plt.close()
         wandb.log({"plots/clustering": wandb.Image(out_cluster_path), "latent_dim": ld})
+        wandb.log({
+            "cluster_labels": wandb.Table(
+                data=list(zip(image_paths, clusters)), 
+                columns=["image_path", "cluster_label"]
+            ), 
+            "latent_dim": ld
+        })
 
         # plot reconstruction
         vae.eval()
@@ -342,9 +370,9 @@ if __name__ == "__main__":
             reconstruction_dir = os.path.join("results", "reconstruction_plots")
             os.makedirs(reconstruction_dir, exist_ok =True)
             out_recon_path = os.path.join(reconstruction_dir, f"reconstruction_ld{ld}.png")
+            wandb.log({"plots/reconstruction": wandb.Image(out_recon_path), "latent_dim": ld})
             plt.savefig(out_recon_path)
             plt.close()
-            wandb.log({"plots/reconstruction": wandb.Image(out_recon_path), "latent_dim": ld})
 
         # Keep last-epoch metrics for a compact summary
         summary.append({

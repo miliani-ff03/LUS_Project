@@ -1,0 +1,3 @@
+nohup: ignoring input
+wandb: Starting wandb agent 🕵️
+wandb: Network error (ConnectTimeout), entering retry loop.

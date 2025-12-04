@@ -1,7 +1,7 @@
-program: vae_wandb_sweep.py
+program: train_sweep.py
 method: bayes
 metric:
-  name: loss/total
+  name: loss
   goal: minimize
 parameters:
   latent_dim:

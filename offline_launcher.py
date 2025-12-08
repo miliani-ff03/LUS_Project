@@ -5,12 +5,12 @@ import sys
 
 # Configuration ranges from your sweep_config.yaml
 LATENT_DIMS = 64
-BETAS = [0.0001, 0.001, 0.01, 0.1,  1, 5, 10, 50, 100, 1000, 10000]
+BETAS = [ 0.001, 0.01, 0.1,  1,  10, 100, 1000]
 MIN_LR = 0.0001
 MAX_LR = 0.01
 
 # How many total runs do you want to perform?
-NUM_RUNS =11
+NUM_RUNS =7
 
 def get_random_lr():
     """Simulate log_uniform_values distribution"""

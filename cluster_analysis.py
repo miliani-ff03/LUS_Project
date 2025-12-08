@@ -8,7 +8,7 @@ from plotly.subplots import make_subplots
 # ================= CONFIGURATION =================
 # Path to your downloaded WandB table JSON
 # Update this to the specific JSON file you want to analyze
-CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20251203_172743-d85bnu5d/files/media/table/cluster_labels_10_f65bf656f57b62fb5312.table.json"
+CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_171705-09amjhjl/files/media/table/cluster_labels_10_f74b77ae2f779d3b17bd.table.json"
 
 # Path to your metadata CSV
 METADATA_PATH = "/cosma/home/durham/dc-fras4/code/data_preprocessing/data_tables/all_data.csv"

@@ -126,15 +126,23 @@ def vae_loss_function(recon_x, x, mu, logvar, beta=10):
     """
     Loss = Reconstruction Error + KL Divergence
     """
-    # 1. How well did we reconstruct the image? (Binary Cross Entropy is good for normalized images)
-    BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
+    # # 1. How well did we reconstruct the image? (Binary Cross Entropy is good for normalized images)
+    # BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
     
-    # 2. How far is our latent distribution from a standard normal distribution?
-    # This acts as a regularizer so the latent space doesn't "explode"
-    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    # # 2. How far is our latent distribution from a standard normal distribution?
+    # # This acts as a regularizer so the latent space doesn't "explode"
+    # KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+
+    
+    # possible kl fix normalisation
+    batch_size = x.size(0)
+    # BCE: sum over pixels per image, then mean over batch
+    BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum') / batch_size
+
+    # KLD: sum over latent dims per image, then mean over batch
+    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp()) / batch_size
 
     total_loss = BCE + beta*KLD
-
     return total_loss, BCE, KLD
 
 # ==========================================
@@ -242,6 +250,149 @@ def extract_latent_features(model, dataloader):
             
     return np.concatenate(latent_vectors), image_paths
 
+# log loss graphs of total, reconstruction, kl divergence
+def log_loss_graphs(tracker, latent_dim):
+    """
+    Logs loss curves to WandB.
+    """
+    epochs = range(1, len(tracker.history["loss"]) + 1)
+    
+    plt.figure(figsize=(12, 4))
+    
+    # Total Loss
+    plt.subplot(1, 3, 1)
+    plt.plot(epochs, tracker.history["loss"], label="Total Loss", color='blue')
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title(f"Total Loss (Latent Dim={latent_dim})")
+    plt.grid(True)
+    
+    # Reconstruction Loss
+    plt.subplot(1, 3, 2)
+    plt.plot(epochs, tracker.history["reconstruction_loss"], label="Reconstruction Loss", color='green')
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title(f"Reconstruction Loss (Latent Dim={latent_dim})")
+    plt.grid(True)
+    
+    # KL Divergence
+    plt.subplot(1, 3, 3)
+    plt.plot(epochs, tracker.history["kl_loss"], label="KL Divergence", color='red')
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title(f"KL Divergence (Latent Dim={latent_dim})")
+    plt.grid(True)
+    
+    plt.tight_layout()
+    
+    # Save and log to WandB
+    os.makedirs("results/loss_plots", exist_ok=True)
+    plot_path = f"results/loss_plots/loss_curves_ld{latent_dim}.png"
+    plt.savefig(plot_path)
+    plt.close()
+    
+    wandb.log({
+        "plots/loss_curves": wandb.Image(plot_path),
+        "latent_dim": latent_dim
+    })
+
+# clustering function
+
+def perform_clustering_and_log(model, dataloader, latent_dim):
+        """
+        Runs feature extraction, KMeans, t-SNE, and logs plots to WandB.
+        """
+        print(f"Generating plots for Latent Dim {latent_dim}...")
+        
+        # 1. Extract Features
+        X_latent, image_paths = extract_latent_features(model, dataloader)
+        
+        # 2. KMeans Clustering
+        N_CLUSTERS = 4
+        kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
+        clusters = kmeans.fit_predict(X_latent)
+
+        # 3. t-SNE Visualization
+        tsne = TSNE(n_components=2, random_state=42)
+        # Limit to 1000 points for speed, or remove slicing for full dataset
+        limit = min(len(X_latent), 1000) 
+        X_embedded = tsne.fit_transform(X_latent[:limit])
+        clusters_plot = clusters[:limit]
+        
+        plt.figure(figsize=(10, 8))
+        scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
+        plt.colorbar(scatter, label='Cluster ID')
+        plt.title(f"Clustering in Latent Space (LD={latent_dim})")
+        plt.xlabel("t-SNE Dim 1")
+        plt.ylabel("t-SNE Dim 2")
+        plt.tight_layout()
+        
+        # Save locally first
+        os.makedirs("results/plots", exist_ok=True)
+        plot_path = f"results/plots/cluster_ld{latent_dim}.png"
+        plt.savefig(plot_path)
+        plt.close()
+
+        table_data = list(zip(
+            image_paths[:limit], 
+            clusters[:limit], 
+            X_embedded[:, 0], 
+            X_embedded[:, 1]
+        ))
+
+
+        # 4. Log to WandB
+        # This works in offline mode too (it queues the image file for later sync)
+        wandb.log({
+            "plots/clustering": wandb.Image(plot_path),
+            "cluster_labels": wandb.Table(
+                    data=table_data, 
+                    columns=["image_path", "cluster_label", "tsne_x", "tsne_y"]
+                )
+        })
+        
+        print("Clustering plots logged.")
+
+def log_reconstruction(model, dataloader, latent_dim):
+   
+    print(f"Generating reconstruction plots for Latent Dim {latent_dim}...")
+    
+    model.eval()
+    with torch.no_grad():
+        # Get a single batch of data
+        sample_data, _ = next(iter(dataloader))
+        
+        # Take just the first 8 images
+        sample_data = sample_data.to(DEVICE)[:8]
+        
+        # Pass through VAE
+        recon, _, _ = model(sample_data)
+        
+        # Create a grid: Top row = Original, Bottom row = Reconstructed
+        comparison = torch.cat([sample_data, recon])
+        
+        # Make grid expects (B, C, H, W)
+        grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
+        
+        plt.figure(figsize=(15, 5))
+        # permute needed because matplotlib expects (H, W, C) but torch gives (C, H, W)
+        plt.imshow(grid.permute(1, 2, 0), cmap='gray')
+        plt.title(f"Top: Original | Bottom: Reconstructed (LD={latent_dim})")
+        plt.axis('off')
+        
+        # Save locally first (crucial for offline mode)
+        os.makedirs("results/reconstructions", exist_ok=True)
+        save_path = f"results/reconstructions/recon_ld{latent_dim}.png"
+        plt.savefig(save_path)
+        plt.close() # Close memory
+        
+        # Log to WandB
+        wandb.log({
+            "plots/reconstruction": wandb.Image(save_path),
+            "latent_dim": latent_dim
+        })
+        print("Reconstruction plots logged.")
+
 # ==========================================
 # 5. MAIN EXECUTION
 # ==========================================
@@ -267,7 +418,7 @@ if __name__ == "__main__":
     
     # --- STEP 2: TRAIN MODEL ---
 
-    latent_dims = [10, 20]
+    latent_dims = [64] 
     summary = []
 
     for ld in latent_dims:
@@ -312,67 +463,11 @@ if __name__ == "__main__":
         np.save(os.path.join(out_dir, f"loss_recon_ld{ld}.npy"), np.array(tracker.history["reconstruction_loss"]))
         np.save(os.path.join(out_dir, f"loss_kl_ld{ld}.npy"), np.array(tracker.history["kl_loss"]))
 
-        # Extract latent features and cluster for this latent dim
-        print(f"Extracting features and clustering for LATENT_DIM={ld}...")
-        X_latent, image_paths = extract_latent_features(vae, dataloader)
-        
-        N_CLUSTERS = 4
-        kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
-        clusters = kmeans.fit_predict(X_latent)
-
-    
-        # Visualize with t-SNE
-        print(f"Creating t-SNE visualization for LATENT_DIM={ld}...")
-        tsne = TSNE(n_components=2, random_state=42)
-        X_embedded = tsne.fit_transform(X_latent[:1000])
-        clusters_plot = clusters[:1000]
-        
-        plt.figure(figsize=(10, 8))
-        scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
-        plt.colorbar(scatter, label='Cluster ID')
-        plt.title(f"Clustering in Latent Space (LATENT_DIM={ld})")
-        plt.xlabel("t-SNE Dim 1")
-        plt.ylabel("t-SNE Dim 2")
-        plt.tight_layout()
-        
-        # Save clustering plot
-        cluster_dir = os.path.join("results", "clustering_plots")
-        os.makedirs(cluster_dir, exist_ok=True)
-        out_cluster_path = os.path.join(cluster_dir, f"clustering_ld{ld}.png")
-        plt.savefig(out_cluster_path)
-        np.save(os.path.join(cluster_dir, f"cluster_labels_ld{ld}.npy"), clusters)
-        np.save(os.path.join(cluster_dir, f"image_paths_ld{ld}.npy"), np.array(image_paths, dtype=object))
-        plt.close()
-        wandb.log({"plots/clustering": wandb.Image(out_cluster_path), "latent_dim": ld})
-        wandb.log({
-            "cluster_labels": wandb.Table(
-                data=list(zip(image_paths, clusters)), 
-                columns=["image_path", "cluster_label"]
-            ), 
-            "latent_dim": ld
-        })
-
-        # plot reconstruction
-        vae.eval()
-        with torch.no_grad():
-            sample_data, _ = next(iter(dataloader))
-            sample_data = sample_data.to(DEVICE)[:8]
-            recon, _, _ = vae(sample_data)
-            
-            # Create a grid: Top row original, Bottom row reconstruction
-            comparison = torch.cat([sample_data, recon])
-            grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
-            
-            plt.figure(figsize=(15, 5))
-            plt.imshow(grid.permute(1, 2, 0), cmap='gray')
-            plt.title("Top: Original | Bottom: Reconstructed")
-            plt.axis('off')
-            reconstruction_dir = os.path.join("results", "reconstruction_plots")
-            os.makedirs(reconstruction_dir, exist_ok =True)
-            out_recon_path = os.path.join(reconstruction_dir, f"reconstruction_ld{ld}.png")
-            wandb.log({"plots/reconstruction": wandb.Image(out_recon_path), "latent_dim": ld})
-            plt.savefig(out_recon_path)
-            plt.close()
+       
+    # cluster and log
+        perform_clustering_and_log(vae, dataloader, ld)
+        log_reconstruction(vae, dataloader, ld)
+        log_loss_graphs(tracker, ld)
 
         # Keep last-epoch metrics for a compact summary
         summary.append({
@@ -382,40 +477,7 @@ if __name__ == "__main__":
             "final_kl": tracker.history["kl_loss"][-1],
         })
 
-        # Optional: quick plot per run
-        fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 4))
         
-        # Left plot: Total and Reconstruction loss
-        ax1.plot(tracker.history["loss"], label="Total Loss", linewidth=2)
-        ax1.set_xlabel("Epoch")
-        ax1.set_ylabel("Loss")
-        ax1.set_title(f"Total Loss (LATENT_DIM={ld})")
-        ax1.legend()
-        ax1.grid(True, alpha=0.3)
-
-        ax2.plot(tracker.history["reconstruction_loss"], label="Reconstruction Loss", linewidth=2)
-        ax2.set_xlabel("Epoch")
-        ax2.set_ylabel("Loss")
-        ax2.set_title(f"Reconstruction Loss (LATENT_DIM={ld})")
-        ax2.legend()
-        ax2.grid(True, alpha=0.3)
-        
-        # Right plot: KL Divergence on separate scale
-        ax3.plot(tracker.history["kl_loss"], label="KL Divergence", color='red', linewidth=2)
-        ax3.set_xlabel("Epoch")
-        ax3.set_ylabel("KL Divergence")
-        ax3.set_title(f"KL Divergence (LATENT_DIM={ld})")
-        ax3.legend()
-        ax3.grid(True, alpha=0.3)
-        
-        plt.tight_layout()
-        out_loss_path = os.path.join(out_dir, f"loss_curves_ld{ld}.png")
-        plt.savefig(out_loss_path)
-        plt.close()
-        wandb.log({"plots/loss_curves": wandb.Image(out_loss_path), "latent_dim": ld})
-        
-        run.finish()
-
     # Summary plot across latent dims (final epoch)
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 5))
     

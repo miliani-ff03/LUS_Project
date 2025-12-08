@@ -4,13 +4,13 @@ import torch
 import torch.optim as optim
 import torchvision
 from Medical_VAE_Clustering import (
-    ConvVAE, get_dataloader, vae_loss_function, DEVICE
+    ConvVAE, get_dataloader, vae_loss_function, log_reconstruction, perform_clustering_and_log, log_loss_graphs, DEVICE, LossTracker
 )
 
 # 1. Setup Argument Parser
 parser = argparse.ArgumentParser()
 parser.add_argument("--latent_dim", type=int, default=32)
-parser.add_argument("--beta", type=int, default=5)
+parser.add_argument("--beta", type=float, default=5)
 parser.add_argument("--learning_rate", type=float, default=1e-3)
 parser.add_argument("--batch_size", type=int, default=64)
 parser.add_argument("--epochs", type=int, default=10)
@@ -33,11 +33,14 @@ def train():
     model = ConvVAE(latent_dim=config.latent_dim).to(DEVICE)
     optimizer = optim.Adam(model.parameters(), lr=config.learning_rate)
     num_batches = len(dataloader)
+    tracker = LossTracker()
 
     # --- TRAINING LOOP ---
     for epoch in range(config.epochs):
         model.train()
         total_loss = 0
+        total_bce = 0
+        total_kld = 0
         
         for data, _ in dataloader:
             data = data.to(DEVICE)
@@ -47,16 +50,32 @@ def train():
             loss.backward()
             optimizer.step()
             total_loss += loss.item()
+            total_bce += bce.item()
+            total_kld += kld.item()
 
         # Correct averaging: divide by number of batches
         avg_loss = total_loss / num_batches
+        avg_bce = total_bce / num_batches
+        avg_kld = total_kld / num_batches
+        tracker.add(avg_loss, avg_bce, avg_kld)
         
         wandb.log({
             "epoch": epoch + 1,
             "loss": avg_loss,
+            "recon_loss": avg_bce,
+            "kl_loss": avg_kld,
             "latent_dim": config.latent_dim
         })
         print(f"Epoch {epoch+1} | Loss: {avg_loss:.4f}")
+
+    # 1. Log Clusters
+    perform_clustering_and_log(model, dataloader, config.latent_dim)
+    
+    # 2. Log Reconstructions (NEW)
+    log_reconstruction(model, dataloader, config.latent_dim)
+
+    # 3. Log Loss Curves
+    log_loss_graphs(tracker, config.latent_dim)
 
     run.finish()
 

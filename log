@@ -1,645 +1,378 @@
 nohup: ignoring input
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_144655-jeo4swwp
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_165350-p8gcrelo
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 77437.61188
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_144655-jeo4swwp
-wandb: Find logs at: ./wandb/offline-run-20251202_144655-jeo4swwp/logs
-Running: Latent=32, Beta=10, LR=0.0012273711085052327
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 80859.1029
-Epoch 2 | Loss: 77823.1131
-Epoch 3 | Loss: 77636.1616
-Epoch 4 | Loss: 77562.2648
-Epoch 5 | Loss: 77536.0393
-Epoch 6 | Loss: 77514.4111
-Epoch 7 | Loss: 77496.1232
-Epoch 8 | Loss: 77474.5509
-Epoch 9 | Loss: 77443.8480
-Epoch 10 | Loss: 77437.6119
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_151255-pdlh3tum
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 76381.35812
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_151255-pdlh3tum
-wandb: Find logs at: ./wandb/offline-run-20251202_151255-pdlh3tum/logs
-Running: Latent=32, Beta=5, LR=0.008133708185879166
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 84174.0640
-Epoch 2 | Loss: 76533.7718
-Epoch 3 | Loss: 76448.8079
-Epoch 4 | Loss: 76434.8722
-Epoch 5 | Loss: 76389.0134
-Epoch 6 | Loss: 76379.8009
-Epoch 7 | Loss: 76382.4029
-Epoch 8 | Loss: 76385.7518
-Epoch 9 | Loss: 76348.2841
-Epoch 10 | Loss: 76381.3581
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_153516-73356nfv
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▂▂▂▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
-wandb: latent_dim 16
-wandb:       loss 74630.46513
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_153516-73356nfv
-wandb: Find logs at: ./wandb/offline-run-20251202_153516-73356nfv/logs
-Running: Latent=16, Beta=2, LR=0.0006324941014766831
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 79015.6892
-Epoch 2 | Loss: 75282.3936
-Epoch 3 | Loss: 75080.2357
-Epoch 4 | Loss: 74947.2618
-Epoch 5 | Loss: 74839.8823
-Epoch 6 | Loss: 74782.3376
-Epoch 7 | Loss: 74733.9045
-Epoch 8 | Loss: 74694.5894
-Epoch 9 | Loss: 74665.6934
-Epoch 10 | Loss: 74630.4651
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_155740-lp7vj1a3
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 77455.17557
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_155740-lp7vj1a3
-wandb: Find logs at: ./wandb/offline-run-20251202_155740-lp7vj1a3/logs
-Running: Latent=32, Beta=10, LR=0.002073118083061511
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 82055.3509
-Epoch 2 | Loss: 77916.2750
-Epoch 3 | Loss: 77704.4242
-Epoch 4 | Loss: 77634.5592
-Epoch 5 | Loss: 77565.3569
-Epoch 6 | Loss: 77524.8346
-Epoch 7 | Loss: 77531.5191
-Epoch 8 | Loss: 77488.6664
-Epoch 9 | Loss: 77499.9689
-Epoch 10 | Loss: 77455.1756
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_162006-lu6xzwbj
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
 wandb: latent_dim 64
-wandb:       loss 77531.09934
+wandb:       loss 1119.58891
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_162006-lu6xzwbj
-wandb: Find logs at: ./wandb/offline-run-20251202_162006-lu6xzwbj/logs
-Running: Latent=64, Beta=10, LR=0.00019774180446786028
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_165350-p8gcrelo
+wandb: Find logs at: ./wandb/offline-run-20251204_165350-p8gcrelo/logs
+Running: Latent=64, Beta=0.0001, LR=0.00012531224602876814
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 86215.6028
-Epoch 2 | Loss: 78141.1813
-Epoch 3 | Loss: 77882.7657
-Epoch 4 | Loss: 77787.5922
-Epoch 5 | Loss: 77686.4472
-Epoch 6 | Loss: 77638.8181
-Epoch 7 | Loss: 77602.3923
-Epoch 8 | Loss: 77562.6640
-Epoch 9 | Loss: 77535.8766
-Epoch 10 | Loss: 77531.0993
+Epoch 1 | Loss: 1299.3005
+Epoch 2 | Loss: 1156.0705
+Epoch 3 | Loss: 1141.6014
+Epoch 4 | Loss: 1133.6042
+Epoch 5 | Loss: 1129.3526
+Epoch 6 | Loss: 1125.6452
+Epoch 7 | Loss: 1123.5614
+Epoch 8 | Loss: 1121.8299
+Epoch 9 | Loss: 1120.4472
+Epoch 10 | Loss: 1119.5889
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_164224-lx55tos8
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_171705-09amjhjl
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▂▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 73848.71188
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_164224-lx55tos8
-wandb: Find logs at: ./wandb/offline-run-20251202_164224-lx55tos8/logs
-Running: Latent=32, Beta=1, LR=0.007810595571641684
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 78230.1805
-Epoch 2 | Loss: 74487.0035
-Epoch 3 | Loss: 74204.4291
-Epoch 4 | Loss: 74107.4047
-Epoch 5 | Loss: 74038.5590
-Epoch 6 | Loss: 73989.6191
-Epoch 7 | Loss: 73961.0118
-Epoch 8 | Loss: 73905.5131
-Epoch 9 | Loss: 73871.2262
-Epoch 10 | Loss: 73848.7119
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_170458-gpp9bd6r
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 16
-wandb:       loss 76227.47095
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_170458-gpp9bd6r
-wandb: Find logs at: ./wandb/offline-run-20251202_170458-gpp9bd6r/logs
-Running: Latent=16, Beta=5, LR=0.00016094857136918965
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 84303.3003
-Epoch 2 | Loss: 76607.9780
-Epoch 3 | Loss: 76396.0471
-Epoch 4 | Loss: 76362.6351
-Epoch 5 | Loss: 76315.5816
-Epoch 6 | Loss: 76294.7945
-Epoch 7 | Loss: 76269.5812
-Epoch 8 | Loss: 76249.5033
-Epoch 9 | Loss: 76235.6492
-Epoch 10 | Loss: 76227.4710
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_172734-71tv0w35
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▂▂▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
 wandb: latent_dim 64
-wandb:       loss 76283.10216
+wandb:       loss 1116.34997
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_172734-71tv0w35
-wandb: Find logs at: ./wandb/offline-run-20251202_172734-71tv0w35/logs
-Running: Latent=64, Beta=5, LR=0.0027344236918325185
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_171705-09amjhjl
+wandb: Find logs at: ./wandb/offline-run-20251204_171705-09amjhjl/logs
+Running: Latent=64, Beta=0.001, LR=0.0037528372442962523
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 79277.7418
-Epoch 2 | Loss: 76681.4602
-Epoch 3 | Loss: 76504.6830
-Epoch 4 | Loss: 76415.2937
-Epoch 5 | Loss: 76357.5263
-Epoch 6 | Loss: 76341.1372
-Epoch 7 | Loss: 76331.1862
-Epoch 8 | Loss: 76326.9028
-Epoch 9 | Loss: 76306.4741
-Epoch 10 | Loss: 76283.1022
+Epoch 1 | Loss: 1293.9561
+Epoch 2 | Loss: 1146.1807
+Epoch 3 | Loss: 1130.6773
+Epoch 4 | Loss: 1124.9722
+Epoch 5 | Loss: 1121.8056
+Epoch 6 | Loss: 1119.9637
+Epoch 7 | Loss: 1118.7388
+Epoch 8 | Loss: 1117.6828
+Epoch 9 | Loss: 1116.9997
+Epoch 10 | Loss: 1116.3500
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_175008-4jm1gm9b
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_173934-53l4yemw
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
+wandb:       loss █▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:      epoch 10
+wandb: latent_dim 64
+wandb:       loss 1118.20251
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_173934-53l4yemw
+wandb: Find logs at: ./wandb/offline-run-20251204_173934-53l4yemw/logs
+Running: Latent=64, Beta=0.01, LR=0.002053591006233274
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
+Epoch 1 | Loss: 32325.5399
+Epoch 2 | Loss: 1142.0587
+Epoch 3 | Loss: 1131.7801
+Epoch 4 | Loss: 1128.3051
+Epoch 5 | Loss: 1124.3123
+Epoch 6 | Loss: 1121.6137
+Epoch 7 | Loss: 1120.3975
+Epoch 8 | Loss: 1119.4919
+Epoch 9 | Loss: 1118.7842
+Epoch 10 | Loss: 1118.2025
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_180206-3licc4pt
+wandb: 
+wandb: Run history:
+wandb:      epoch ▁▂▃▃▄▅▆▆▇█
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
+wandb:       loss █▂▂▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:      epoch 10
+wandb: latent_dim 64
+wandb:       loss 1127.93441
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_180206-3licc4pt
+wandb: Find logs at: ./wandb/offline-run-20251204_180206-3licc4pt/logs
+Running: Latent=64, Beta=0.1, LR=0.0002814452397241774
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
+Epoch 1 | Loss: 1287.6420
+Epoch 2 | Loss: 1155.9089
+Epoch 3 | Loss: 1143.4331
+Epoch 4 | Loss: 1138.1708
+Epoch 5 | Loss: 1134.5242
+Epoch 6 | Loss: 1132.0542
+Epoch 7 | Loss: 1130.6031
+Epoch 8 | Loss: 1129.6545
+Epoch 9 | Loss: 1128.6276
+Epoch 10 | Loss: 1127.9344
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_182445-1rhh87ej
+wandb: 
+wandb: Run history:
+wandb:      epoch ▁▂▃▃▄▅▆▆▇█
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
+wandb:       loss █▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:      epoch 10
+wandb: latent_dim 64
+wandb:       loss 1157.61766
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_182445-1rhh87ej
+wandb: Find logs at: ./wandb/offline-run-20251204_182445-1rhh87ej/logs
+Running: Latent=64, Beta=1, LR=0.008176471035247702
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
+Epoch 1 | Loss: 809298.2145
+Epoch 2 | Loss: 1172.9953
+Epoch 3 | Loss: 1165.0630
+Epoch 4 | Loss: 1161.8395
+Epoch 5 | Loss: 1160.3114
+Epoch 6 | Loss: 1159.5632
+Epoch 7 | Loss: 1158.4706
+Epoch 8 | Loss: 1157.3990
+Epoch 9 | Loss: 1157.9783
+Epoch 10 | Loss: 1157.6177
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_184720-rw9t3wks
+wandb: 
+wandb: Run history:
+wandb:      epoch ▁▂▃▃▄▅▆▆▇█
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▂▁▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
 wandb: latent_dim 64
-wandb:       loss 76261.5345
+wandb:       loss 1192.96249
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_175008-4jm1gm9b
-wandb: Find logs at: ./wandb/offline-run-20251202_175008-4jm1gm9b/logs
-Running: Latent=64, Beta=5, LR=0.0009045601720769364
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_184720-rw9t3wks
+wandb: Find logs at: ./wandb/offline-run-20251204_184720-rw9t3wks/logs
+Running: Latent=64, Beta=5, LR=0.0005817543011095305
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 79784.0103
-Epoch 2 | Loss: 76633.3148
-Epoch 3 | Loss: 76491.3702
-Epoch 4 | Loss: 76431.8971
-Epoch 5 | Loss: 76380.9272
-Epoch 6 | Loss: 76326.2986
-Epoch 7 | Loss: 76306.4822
-Epoch 8 | Loss: 76290.0457
-Epoch 9 | Loss: 76272.0391
-Epoch 10 | Loss: 76261.5345
+Epoch 1 | Loss: 1259.2678
+Epoch 2 | Loss: 1199.6885
+Epoch 3 | Loss: 1196.6865
+Epoch 4 | Loss: 1195.3201
+Epoch 5 | Loss: 1194.6036
+Epoch 6 | Loss: 1193.9969
+Epoch 7 | Loss: 1193.8051
+Epoch 8 | Loss: 1193.3591
+Epoch 9 | Loss: 1193.0722
+Epoch 10 | Loss: 1192.9625
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_181245-yv8u9skw
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_190957-qjv7ns0h
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 24
-wandb:       loss 77453.73064
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_181245-yv8u9skw
-wandb: Find logs at: ./wandb/offline-run-20251202_181245-yv8u9skw/logs
-Running: Latent=24, Beta=10, LR=0.000516938324301457
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 82445.9017
-Epoch 2 | Loss: 77736.9424
-Epoch 3 | Loss: 77589.5026
-Epoch 4 | Loss: 77536.4342
-Epoch 5 | Loss: 77518.8256
-Epoch 6 | Loss: 77513.5540
-Epoch 7 | Loss: 77487.7088
-Epoch 8 | Loss: 77475.9452
-Epoch 9 | Loss: 77471.5547
-Epoch 10 | Loss: 77453.7306
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_183507-6uufftj6
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▂▁▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
-wandb: latent_dim 48
-wandb:       loss 76264.04776
+wandb: latent_dim 64
+wandb:       loss 1212.15546
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_183507-6uufftj6
-wandb: Find logs at: ./wandb/offline-run-20251202_183507-6uufftj6/logs
-Running: Latent=48, Beta=5, LR=0.0024016936024206055
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_190957-qjv7ns0h
+wandb: Find logs at: ./wandb/offline-run-20251204_190957-qjv7ns0h/logs
+Running: Latent=64, Beta=10, LR=0.004860444603255275
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 80548.0041
-Epoch 2 | Loss: 76638.3978
-Epoch 3 | Loss: 76472.3927
-Epoch 4 | Loss: 76424.4000
-Epoch 5 | Loss: 76342.2000
-Epoch 6 | Loss: 76315.9612
-Epoch 7 | Loss: 76306.6388
-Epoch 8 | Loss: 76279.7405
-Epoch 9 | Loss: 76270.4074
-Epoch 10 | Loss: 76264.0478
+Epoch 1 | Loss: 1285.4633
+Epoch 2 | Loss: 1221.4052
+Epoch 3 | Loss: 1216.5481
+Epoch 4 | Loss: 1214.2132
+Epoch 5 | Loss: 1213.1336
+Epoch 6 | Loss: 1212.9423
+Epoch 7 | Loss: 1212.4061
+Epoch 8 | Loss: 1212.3349
+Epoch 9 | Loss: 1212.2092
+Epoch 10 | Loss: 1212.1555
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_185743-ytovu6r3
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_193234-1mfqep0i
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▂▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 24
-wandb:       loss 73727.82023
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_185743-ytovu6r3
-wandb: Find logs at: ./wandb/offline-run-20251202_185743-ytovu6r3/logs
-Running: Latent=24, Beta=1, LR=0.0003706097337431373
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 80558.2992
-Epoch 2 | Loss: 74689.7016
-Epoch 3 | Loss: 74243.8659
-Epoch 4 | Loss: 74078.9774
-Epoch 5 | Loss: 73946.4055
-Epoch 6 | Loss: 73878.5662
-Epoch 7 | Loss: 73827.9157
-Epoch 8 | Loss: 73789.9389
-Epoch 9 | Loss: 73759.4673
-Epoch 10 | Loss: 73727.8202
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_192024-byqgbndg
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▁▁▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
-wandb: latent_dim 24
-wandb:       loss 73800.24553
+wandb: latent_dim 64
+wandb:       loss 1274.23932
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_192024-byqgbndg
-wandb: Find logs at: ./wandb/offline-run-20251202_192024-byqgbndg/logs
-Running: Latent=24, Beta=1, LR=0.0046811884217859345
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_193234-1mfqep0i
+wandb: Find logs at: ./wandb/offline-run-20251204_193234-1mfqep0i/logs
+Running: Latent=64, Beta=50, LR=0.005312954054638587
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 2570062519546545.0000
-Epoch 2 | Loss: 74391.8725
-Epoch 3 | Loss: 74125.8591
-Epoch 4 | Loss: 74026.9751
-Epoch 5 | Loss: 73960.5214
-Epoch 6 | Loss: 73897.4496
-Epoch 7 | Loss: 73869.8746
-Epoch 8 | Loss: 73842.3074
-Epoch 9 | Loss: 73803.4964
-Epoch 10 | Loss: 73800.2455
+Epoch 1 | Loss: 1332.0091
+Epoch 2 | Loss: 1275.7092
+Epoch 3 | Loss: 1274.6421
+Epoch 4 | Loss: 1274.2338
+Epoch 5 | Loss: 1274.1622
+Epoch 6 | Loss: 1273.9209
+Epoch 7 | Loss: 1274.1883
+Epoch 8 | Loss: 1273.9913
+Epoch 9 | Loss: 1274.3195
+Epoch 10 | Loss: 1274.2393
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_194302-kviu20se
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_195510-18ollus0
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 76247.44702
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_194302-kviu20se
-wandb: Find logs at: ./wandb/offline-run-20251202_194302-kviu20se/logs
-Running: Latent=32, Beta=5, LR=0.0020990155091859023
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 79981.1808
-Epoch 2 | Loss: 76664.4902
-Epoch 3 | Loss: 76488.2051
-Epoch 4 | Loss: 76405.7176
-Epoch 5 | Loss: 76345.3106
-Epoch 6 | Loss: 76301.0179
-Epoch 7 | Loss: 76294.7997
-Epoch 8 | Loss: 76272.3350
-Epoch 9 | Loss: 76248.0985
-Epoch 10 | Loss: 76247.4470
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_200534-8snm0dma
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▁▁▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
-wandb: latent_dim 24
-wandb:       loss 77448.56107
+wandb: latent_dim 64
+wandb:       loss 1273.61548
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_200534-8snm0dma
-wandb: Find logs at: ./wandb/offline-run-20251202_200534-8snm0dma/logs
-Running: Latent=24, Beta=10, LR=0.0004808897311402272
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_195510-18ollus0
+wandb: Find logs at: ./wandb/offline-run-20251204_195510-18ollus0/logs
+Running: Latent=64, Beta=100, LR=0.00018954598604802665
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 81906.5488
-Epoch 2 | Loss: 77662.7288
-Epoch 3 | Loss: 77584.8294
-Epoch 4 | Loss: 77557.1896
-Epoch 5 | Loss: 77539.6090
-Epoch 6 | Loss: 77498.7137
-Epoch 7 | Loss: 77491.3809
-Epoch 8 | Loss: 77480.0253
-Epoch 9 | Loss: 77465.7771
-Epoch 10 | Loss: 77448.5611
+Epoch 1 | Loss: 1434.0107
+Epoch 2 | Loss: 1276.1017
+Epoch 3 | Loss: 1274.7686
+Epoch 4 | Loss: 1274.6449
+Epoch 5 | Loss: 1274.6252
+Epoch 6 | Loss: 1274.2615
+Epoch 7 | Loss: 1274.2646
+Epoch 8 | Loss: 1274.4079
+Epoch 9 | Loss: 1273.5421
+Epoch 10 | Loss: 1273.6155
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_202754-aphja3iv
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_201747-a46pvkyc
 wandb: 
 wandb: Run history:
 wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
+wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁▁
 wandb:       loss █▁▁▁▁▁▁▁▁▁
 wandb: 
 wandb: Run summary:
 wandb:      epoch 10
-wandb: latent_dim 16
-wandb:       loss 74747.68106
+wandb: latent_dim 64
+wandb:       loss 1275.53849
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_202754-aphja3iv
-wandb: Find logs at: ./wandb/offline-run-20251202_202754-aphja3iv/logs
-Running: Latent=16, Beta=2, LR=0.0037733637287415633
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_201747-a46pvkyc
+wandb: Find logs at: ./wandb/offline-run-20251204_201747-a46pvkyc/logs
+Running: Latent=64, Beta=1000, LR=0.00016872548337944684
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 81267179.7172
-Epoch 2 | Loss: 75420.2040
-Epoch 3 | Loss: 75269.6137
-Epoch 4 | Loss: 75133.8069
-Epoch 5 | Loss: 75006.3791
-Epoch 6 | Loss: 74887.4273
-Epoch 7 | Loss: 74829.3435
-Epoch 8 | Loss: 74800.5524
-Epoch 9 | Loss: 74753.3270
-Epoch 10 | Loss: 74747.6811
+Epoch 1 | Loss: 1369.4159
+Epoch 2 | Loss: 1279.6065
+Epoch 3 | Loss: 1278.0239
+Epoch 4 | Loss: 1277.7633
+Epoch 5 | Loss: 1277.0745
+Epoch 6 | Loss: 1276.7414
+Epoch 7 | Loss: 1276.2795
+Epoch 8 | Loss: 1276.0722
+Epoch 9 | Loss: 1276.0696
+Epoch 10 | Loss: 1275.5385
+Generating plots for Latent Dim 64...
+Clustering plots logged.
+Generating reconstruction plots for Latent Dim 64...
+Reconstruction plots logged.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_205012-64yz3fb5
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 77469.49347
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_205012-64yz3fb5
-wandb: Find logs at: ./wandb/offline-run-20251202_205012-64yz3fb5/logs
-Running: Latent=32, Beta=10, LR=0.0008085845325314705
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 82396.3170
-Epoch 2 | Loss: 77797.5828
-Epoch 3 | Loss: 77651.5022
-Epoch 4 | Loss: 77594.7928
-Epoch 5 | Loss: 77555.9946
-Epoch 6 | Loss: 77541.8102
-Epoch 7 | Loss: 77520.2662
-Epoch 8 | Loss: 77507.8003
-Epoch 9 | Loss: 77495.8828
-Epoch 10 | Loss: 77469.4935
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_211223-af5x27cu
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▂▂▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 74683.87104
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_211223-af5x27cu
-wandb: Find logs at: ./wandb/offline-run-20251202_211223-af5x27cu/logs
-Running: Latent=32, Beta=2, LR=0.0017494111691117782
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 78942.8073
-Epoch 2 | Loss: 75426.1177
-Epoch 3 | Loss: 75159.9331
-Epoch 4 | Loss: 74993.4570
-Epoch 5 | Loss: 74917.3848
-Epoch 6 | Loss: 74830.1153
-Epoch 7 | Loss: 74786.3314
-Epoch 8 | Loss: 74755.7840
-Epoch 9 | Loss: 74705.2182
-Epoch 10 | Loss: 74683.8710
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_213438-a2eudftd
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▁▁▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 24
-wandb:       loss 77479.07223
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_213438-a2eudftd
-wandb: Find logs at: ./wandb/offline-run-20251202_213438-a2eudftd/logs
-Running: Latent=24, Beta=10, LR=0.0003605487930700019
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 82802.8857
-Epoch 2 | Loss: 77681.1397
-Epoch 3 | Loss: 77572.9294
-Epoch 4 | Loss: 77534.3048
-Epoch 5 | Loss: 77525.0486
-Epoch 6 | Loss: 77502.9798
-Epoch 7 | Loss: 77494.2848
-Epoch 8 | Loss: 77488.5913
-Epoch 9 | Loss: 77477.2118
-Epoch 10 | Loss: 77479.0722
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_215656-x5cbtsxw
-wandb: 
-wandb: Run history:
-wandb:      epoch ▁▂▃▃▄▅▆▆▇█
-wandb: latent_dim ▁▁▁▁▁▁▁▁▁▁
-wandb:       loss █▂▂▁▁▁▁▁▁▁
-wandb: 
-wandb: Run summary:
-wandb:      epoch 10
-wandb: latent_dim 32
-wandb:       loss 74657.65416
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251202_215656-x5cbtsxw
-wandb: Find logs at: ./wandb/offline-run-20251202_215656-x5cbtsxw/logs
-Running: Latent=32, Beta=2, LR=0.000768956430692913
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch 1 | Loss: 79321.5001
-Epoch 2 | Loss: 75241.1412
-Epoch 3 | Loss: 75031.0768
-Epoch 4 | Loss: 74907.8383
-Epoch 5 | Loss: 74835.2830
-Epoch 6 | Loss: 74774.9621
-Epoch 7 | Loss: 74732.0027
-Epoch 8 | Loss: 74699.6840
-Epoch 9 | Loss: 74676.9918
-Epoch 10 | Loss: 74657.6542
-Starting Offline Sweep for 20 runs...
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_204024-6thr3idp
+/cosma/home/durham/dc-fras4/.conda/envs/LUS/lib/python3.12/site-packages/sklearn/base.py:1365: ConvergenceWarning: Number of distinct clusters (3) found smaller than n_clusters (4). Possibly due to duplicate points in X.
+  return fit_method(estimator, *args, **kwargs)
+/cosma/home/durham/dc-fras4/.conda/envs/LUS/lib/python3.12/site-packages/sklearn/decomposition/_pca.py:787: RuntimeWarning: invalid value encountered in divide
+  self.explained_variance_ratio_ = self.explained_variance_ / total_var
+/cosma/home/durham/dc-fras4/.conda/envs/LUS/lib/python3.12/site-packages/sklearn/manifold/_t_sne.py:1020: RuntimeWarning: invalid value encountered in divide
+  X_embedded = X_embedded / np.std(X_embedded[:, 0]) * 1e-4
+Starting Offline Sweep for 11 runs...
 
---- Run 1/20 ---
-Params: Latent=32, Beta=10, LR=0.001227
+--- Run 1/11 ---
+Params: Beta=0.0001, LR=0.000125
 
---- Run 2/20 ---
-Params: Latent=32, Beta=5, LR=0.008134
+--- Run 2/11 ---
+Params: Beta=0.001, LR=0.003753
 
---- Run 3/20 ---
-Params: Latent=16, Beta=2, LR=0.000632
+--- Run 3/11 ---
+Params: Beta=0.01, LR=0.002054
 
---- Run 4/20 ---
-Params: Latent=32, Beta=10, LR=0.002073
+--- Run 4/11 ---
+Params: Beta=0.1, LR=0.000281
 
---- Run 5/20 ---
-Params: Latent=64, Beta=10, LR=0.000198
+--- Run 5/11 ---
+Params: Beta=1, LR=0.008176
 
---- Run 6/20 ---
-Params: Latent=32, Beta=1, LR=0.007811
+--- Run 6/11 ---
+Params: Beta=5, LR=0.000582
 
---- Run 7/20 ---
-Params: Latent=16, Beta=5, LR=0.000161
+--- Run 7/11 ---
+Params: Beta=10, LR=0.004860
 
---- Run 8/20 ---
-Params: Latent=64, Beta=5, LR=0.002734
+--- Run 8/11 ---
+Params: Beta=50, LR=0.005313
 
---- Run 9/20 ---
-Params: Latent=64, Beta=5, LR=0.000905
+--- Run 9/11 ---
+Params: Beta=100, LR=0.000190
 
---- Run 10/20 ---
-Params: Latent=24, Beta=10, LR=0.000517
+--- Run 10/11 ---
+Params: Beta=1000, LR=0.000169
 
---- Run 11/20 ---
-Params: Latent=48, Beta=5, LR=0.002402
-
---- Run 12/20 ---
-Params: Latent=24, Beta=1, LR=0.000371
-
---- Run 13/20 ---
-Params: Latent=24, Beta=1, LR=0.004681
-
---- Run 14/20 ---
-Params: Latent=32, Beta=5, LR=0.002099
-
---- Run 15/20 ---
-Params: Latent=24, Beta=10, LR=0.000481
-
---- Run 16/20 ---
-Params: Latent=16, Beta=2, LR=0.003773
-
---- Run 17/20 ---
-Params: Latent=32, Beta=10, LR=0.000809
-
---- Run 18/20 ---
-Params: Latent=32, Beta=2, LR=0.001749
-
---- Run 19/20 ---
-Params: Latent=24, Beta=10, LR=0.000361
-
---- Run 20/20 ---
-Params: Latent=32, Beta=2, LR=0.000769
+--- Run 11/11 ---
+Params: Beta=10000, LR=0.008141
+Run 11 failed with error: Command '['/cosma/home/durham/dc-fras4/.conda/envs/LUS/bin/python', 'train_sweep.py', '--latent_dim', '64', '--beta', '10000', '--learning_rate', '0.008141112921935985', '--batch_size', '64', '--epochs', '10']' died with <Signals.SIGKILL: 9>.
 
 All offline runs completed.
 To upload results, run: wandb sync --include-offline wandb/offline-run-*

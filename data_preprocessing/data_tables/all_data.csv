@@ -638,12 +638,12 @@ MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image128.avi,19,LUS_2,141,23.167926388432463,RPB,1.0,False,False,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image126.avi,19,LUS_2,87,23.26825354372827,RPA,1.0,True,False,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image121.avi,19,LUS_2,134,22.16708023159636,RAA,2.0,True,True,False,False
-MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image130.avi,19,LUS_2,49,13.271939328277355,LAA,2.0,True,True,False,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image130.avi,19,LUS_2,49,13.271939328277355,LAA,2.0,True,False,False,True
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image137.avi,19,LUS_2,104,17.167381974248926,LPB,1.0,True,False,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image139.avi,19,LUS_2,79,13.166666666666666,LPB,1.0,True,False,False,True
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image120.avi,19,LUS_2,177,29.169413315754777,RAA,2.0,True,False,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image127.avi,19,LUS_2,71,17.2455671605538,RPA,1.0,True,True,False,False
-MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image129.avi,19,LUS_2,55,17.317380352644836,LAA,2.0,True,False,False,False
+MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image129.avi,19,LUS_2,55,17.317380352644836,LAA,2.0,True,True,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image138.avi,19,LUS_2,105,17.165277096615988,LPB,1.0,True,False,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image136.avi,19,LUS_2,103,17.166666666666668,LPA,1.0,True,True,False,False
 MFT,/cosma5/data/durham/dc-fras4/ultrasound/SLURP/MFT_videos/MFT 019/Day 2/Image131.avi,19,LUS_2,104,17.167381974248926,LAB,2.0,True,False,False,False
@@ -2453,11 +2453,11 @@ JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_18481
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0008.AVI,15,LUS_2,68,22.698,RPB,2.0,False,False,False,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0009.AVI,15,LUS_2,68,22.698,RAA,2.0,False,False,False,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0010.AVI,15,LUS_2,68,22.698,RAB,1.0,False,False,False,False
-JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0006.AVI,15,LUS_2,68,22.698,LAB,ni,False,False,False,False
+JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0006.AVI,15,LUS_2,68,22.698,LAB,ni,False,False,True,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_2/20231017_184818_0007.AVI,15,LUS_2,68,22.698,RPA,2,False,False,False,False
-JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0007.AVI,15,LUS_3,68,22.698,RPA,ni,False,False,False,False
+JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0007.AVI,15,LUS_3,68,22.698,RPA,ni,False,False,True,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0009.AVI,15,LUS_3,68,22.698,LPA,2,False,False,False,False
-JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0002.AVI,15,LUS_3,68,22.698,RAB,ni,False,False,False,False
+JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0002.AVI,15,LUS_3,68,22.698,RAB,ni,False,False,True,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0006.AVI,15,LUS_3,68,22.698,LAX,2,False,False,False,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0005.AVI,15,LUS_3,68,22.698,LAB,2,False,False,False,False
 JCUH,/cosma7/data/dp004/rrtx34/ultrasound/JCUH/015/JCUH_015_LUS_3/20231018_094208_0008.AVI,15,LUS_3,68,22.698,RPB,2,False,False,False,False

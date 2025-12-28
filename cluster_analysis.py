@@ -8,13 +8,13 @@ from plotly.subplots import make_subplots
 # ================= CONFIGURATION =================
 # Path to your downloaded WandB table JSON
 # Update this to the specific JSON file you want to analyze
-CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20251204_171705-09amjhjl/files/media/table/cluster_labels_10_f74b77ae2f779d3b17bd.table.json"
+CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2025-12-09T13_13_42.449+00_00.csv"
 
 # Path to your metadata CSV
 METADATA_PATH = "/cosma/home/durham/dc-fras4/code/data_preprocessing/data_tables/all_data.csv"
 
 # Output filename for the interactive plot
-OUTPUT_HTML = "results/interactive_tsne.html"
+OUTPUT_HTML = "results/interactive_tsne_with_annealing_beta2.html"
 # =================================================
 
 def load_data():
@@ -23,13 +23,21 @@ def load_data():
     df_metadata = pd.read_csv(METADATA_PATH)
     
 
-    # 2. Load WandB Cluster Table
-    with open(CLUSTER_TABLE_PATH, 'r') as f:
-        data = json.load(f)
+    # 2. Load WandB Cluster Table (JSON or CSV)
+    file_ext = os.path.splitext(CLUSTER_TABLE_PATH)[1].lower()
     
-    # Reconstruct DataFrame from WandB JSON format
-    cluster_df = pd.DataFrame(data['data'], columns=data['columns'])
+    if file_ext == '.json':
+        print(f"Loading cluster data from JSON: {CLUSTER_TABLE_PATH}")
+        with open(CLUSTER_TABLE_PATH, 'r') as f:
+            data = json.load(f)
+        cluster_df = pd.DataFrame(data['data'], columns=data['columns'])
+    elif file_ext == '.csv':
+        print(f"Loading cluster data from CSV: {CLUSTER_TABLE_PATH}")
+        cluster_df = pd.read_csv(CLUSTER_TABLE_PATH)
+    else:
+        raise ValueError(f"Unsupported file format: {file_ext}. Expected .json or .csv")
     
+
     # Ensure numerical columns are actually numbers
     cluster_df['tsne_x'] = pd.to_numeric(cluster_df['tsne_x'])
     cluster_df['tsne_y'] = pd.to_numeric(cluster_df['tsne_y'])
@@ -176,3 +184,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

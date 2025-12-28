@@ -16,6 +16,7 @@ from PIL import Image
 from dotenv import load_dotenv
 import wandb
 import os
+import scipy.stats as stats
 os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 os.environ["WANDB_MODE"] = "offline"
 
@@ -295,6 +296,66 @@ def log_loss_graphs(tracker, latent_dim):
         "plots/loss_curves": wandb.Image(plot_path),
         "latent_dim": latent_dim
     })
+
+
+
+def plot_latent_distributions(latent_vectors, latent_dim, epoch=None):
+    """
+    Plots the distribution of each latent feature dimension.
+    latent_vectors: shape (N_samples, latent_dim)
+    """
+    # Calculate grid size (approx square)
+    n_cols = 6  
+    n_rows = (latent_dim + n_cols - 1) // n_cols
+    
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(20, 3 * n_rows))
+    axes = axes.flatten()
+    
+    for i in range(latent_dim):
+        ax = axes[i]
+        feature_data = latent_vectors[:, i]
+        
+        # Calculate stats
+        mu = np.mean(feature_data)
+        std = np.std(feature_data)
+        
+        # Plot Histogram
+        # 'density=True' normalizes it so we can overlay the Gaussian
+        count, bins, ignored = ax.hist(feature_data, bins=30, density=True, 
+                                     alpha=0.6, color='gray', edgecolor='none')
+        
+        # Overlay Gaussian Curve
+        xmin, xmax = ax.get_xlim()
+        x = np.linspace(xmin, xmax, 100)
+        p = stats.norm.pdf(x, mu, std)
+        ax.plot(x, p, 'k', linewidth=1)
+        
+        # Formatting
+        ax.set_title(f"Feat {i+1}\n({mu:.3f}, {std:.3f})", fontsize=8)
+        ax.tick_params(axis='both', which='major', labelsize=7)
+        
+        # Optional: Check for collapse (if std is very close to 1 and mean close to 0)
+        if 0.9 < std < 1.1 and -0.1 < mu < 0.1:
+            ax.set_facecolor('#eaffea') # Light green for "standard normal" (potentially unused)
+    
+    # Hide unused subplots
+    for j in range(latent_dim, len(axes)):
+        axes[j].axis('off')
+        
+    plt.tight_layout()
+    
+    # Save and Log
+    os.makedirs("results/latent_dist", exist_ok=True)
+    filename = f"results/latent_dist/dist_ld{latent_dim}.png"
+    plt.savefig(filename)
+    plt.close()
+    
+    print(f"Latent distribution plot saved to {filename}")
+    
+    # If using wandb
+    if wandb.run is not None:
+        wandb.log({f"plots/latent_distributions_ld{latent_dim}": wandb.Image(filename)})
+
 
 # clustering function
 

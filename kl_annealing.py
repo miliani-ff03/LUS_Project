@@ -11,7 +11,7 @@ from Medical_VAE_Clustering import (
 class KLAnnealer:
     def __init__(self, total_epochs, start_beta=0.0, end_beta=1.0):
         self.total_epochs = total_epochs
-        self.warmup_epochs = total_epochs // 5  
+        self.warmup_epochs = total_epochs // 4  
         self.start_beta = start_beta
         self.end_beta = end_beta
     
@@ -30,6 +30,7 @@ latent_dim = 32
 learning_rate = 1e-3
 batch_size = 64
 epochs = 50
+
 
 def train(end_beta):
     # 2. Init WandB in Offline Mode with 'args'
@@ -57,6 +58,9 @@ def train(end_beta):
     tracker = LossTracker()
     kl_annealer = KLAnnealer(total_epochs=config.epochs, start_beta=0.0, end_beta=config.end_beta)
 
+    best_loss = float('inf')
+    best_epoch = 0
+    best_model_path = f"best_vae_latent{config.latent_dim}_beta{config.end_beta}.pth"
     # --- TRAINING LOOP ---
     for epoch in range(config.epochs):
         model.train()
@@ -85,9 +89,16 @@ def train(end_beta):
 
         print(f"Epoch [{epoch+1}/{config.epochs}] - Loss: {avg_loss:.4f}, BCE: {avg_bce:.4f}, KLD: {avg_kld:.4f}, Beta: {current_beta:.4f}")
 
+        if avg_loss < best_loss:
+            best_loss = avg_loss
+            best_epoch = epoch + 1
+            torch.save(model.state_dict(), best_model_path)
+            print(f"  --> New best model saved with loss {best_loss:.4f}")
+
         # Log reconstructions every 10 epochs
-        if (epoch + 1) % 10 == 0 or epoch == 0:
-            log_reconstruction(model, dataloader, epoch + 1)
+        # if (epoch + 1) % 10 == 0 or epoch == 0:
+        #     log_reconstruction(model, dataloader, epoch + 1)
+       
         wandb.log({
             "epoch": epoch + 1,
             "loss": avg_loss,
@@ -97,20 +108,27 @@ def train(end_beta):
             "latent_dim": config.latent_dim
         })          
 
+    print(f"Training completed. Best model saved at {best_model_path} (Loss: {best_loss:.4f})")
+    # Load best model for evaluation
+    model.load_state_dict(torch.load(best_model_path))  
+    model.eval()
+
+    log_reconstruction(model, dataloader, config.latent_dim, config.end_beta)
     # 1. Log Clusters
-    perform_clustering_and_log(model, dataloader, config.latent_dim)
+    perform_clustering_and_log(model, dataloader, config.latent_dim, config.end_beta)
     # 2. Log Loss Curves
     log_loss_graphs(tracker, config.latent_dim)
     # 3. Plot Latent Distributions
     print("Extracting features for distribution plot...")
     X_latent, _ = extract_latent_features(model, dataloader)
-    plot_latent_distributions(X_latent, config.latent_dim, epoch=epochs)
+    plot_latent_distributions(X_latent, config.latent_dim, epoch=config.epochs)
 
     run.finish()
 
 if __name__ == "__main__":
-    end_beta_values = [1.0, 2.0, 5.0]
+    end_beta_values = [0.01, 0.1, 1.0, 2.0, 5.0, 10]
     for end_beta in end_beta_values:
         train(end_beta)
 
 
+#  run using nohup python kl_annealing.py &> log &

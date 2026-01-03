@@ -2,10 +2,10 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, random_split
 import torchvision
 import torchvision.transforms as transforms
-from torchvision.datasets import ImageFolder, FashionMNIST
+from torchvision.datasets import ImageFolder
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -17,6 +17,8 @@ from dotenv import load_dotenv
 import wandb
 import os
 import scipy.stats as stats
+import argparse
+import sys
 os.environ["CUDA_VISIBLE_DEVICES"] = "5"
 os.environ["WANDB_MODE"] = "offline"
 
@@ -26,16 +28,31 @@ os.environ["WANDB_MODE"] = "offline"
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
+parser = argparse.ArgumentParser(description="VAE Training with Crop Sweep")
+
+parser.add_argument("--crop_percent", type=float, default=0.25, help="Percentage to crop from top (0.0 to 1.0)")
+parser.add_argument("--beta", type=float, default=5.0, help="Beta parameter for KL Divergence")
+parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs")
+parser.add_argument("--latent_dim", type=int, default=64, help="Latent dimension size")
+
+if 'ipykernel' in sys.modules or hasattr(sys, 'ps1'):
+    # Use default values in notebook
+    args = parser.parse_args([])
+else:
+    # Parse command line args normally
+    args = parser.parse_args()
+
 # Image settings
 IMAGE_SIZE = 64
 CHANNELS = 1  # Use 1 for grayscale (X-ray/MRI), 3 for RGB
-LATENT_DIM = 32 # Size of the compressed feature vector
+LATENT_DIM = args.latent_dim # Size of the compressed feature vector
 
 # Training settings
 BATCH_SIZE = 64
 LEARNING_RATE = 1e-3
-EPOCHS = 10
-BETA = 5
+EPOCHS = args.epochs
+BETA = args.beta
+CROP_PERCENT = args.crop_percent  # e.g., 0.25 means crop top 25% of image
 # cude, mps, cpu
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 DEVICE
@@ -113,17 +130,74 @@ class ConvVAE(nn.Module):
 # ==========================================
 # 3. LOSS FUNCTION
 # ==========================================
+class KLAnnealer:
+    """Linearly anneals beta from start_beta to end_beta over warmup_epochs."""
+    def __init__(self, total_epochs, start_beta=0.0, end_beta=1.0):
+        self.total_epochs = total_epochs
+        self.warmup_epochs = max(1, total_epochs // 10) 
+        self.start_beta = start_beta
+        self.end_beta = end_beta
+    
+    def get_beta(self, epoch):
+        if epoch < self.warmup_epochs:
+            return self.start_beta + (self.end_beta - self.start_beta) * (epoch / self.warmup_epochs)
+        else:
+            return self.end_beta
+        
+class EarlyStopping:
+    """
+    Early stops the training if validation loss doesn't improve after a given patience.
+    """
+    def __init__(self, patience=10, verbose=False, delta=0.01, path='best_model.pth'):
+        """
+        Args:
+            patience (int): How long to wait after last time validation loss improved.
+            verbose (bool): If True, prints a message for each validation loss improvement.
+            delta (float): Minimum change in the monitored quantity to qualify as an improvement.
+            path (str): Path for the checkpoint to be saved to.
+        """
+        self.patience = patience
+        self.verbose = verbose
+        self.counter = 0
+        self.best_score = None
+        self.early_stop = False
+        self.val_loss_min = float('inf')
+        self.delta = delta
+        self.path = path
+
+    def __call__(self, val_loss, model):
+        
+        if self.best_score is None or val_loss< self.best_score - self.delta:
+            self.best_score = val_loss
+            self.counter = 0
+            self.save_checkpoint(val_loss, model)
+        
+        else:
+            self.counter += 1
+            if self.verbose:
+                print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
+            if self.counter >= self.patience:
+                self.early_stop = True
+
+
+    def save_checkpoint(self, val_loss, model):
+        '''Saves model when validation loss decreases.'''
+        if self.verbose:
+            print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
+        torch.save(model.state_dict(), self.path)
+        self.val_loss_min = val_loss
 
 class LossTracker:
     def __init__(self):
-        self.history = {"loss": [], "reconstruction_loss": [], "kl_loss": []}
+        self.history = {"loss": [], "reconstruction_loss": [], "kl_loss": [], "validation_loss": []}
 
-    def add(self, total, recon, kl):
+    def add(self, total, recon, kl, val):
         self.history["loss"].append(total)
         self.history["reconstruction_loss"].append(recon)
         self.history["kl_loss"].append(kl)
+        self.history["validation_loss"].append(val)
 
-def vae_loss_function(recon_x, x, mu, logvar, beta=10):
+def vae_loss_function(recon_x, x, mu, logvar, beta=1.0):
     """
     Loss = Reconstruction Error + KL Divergence
     """
@@ -178,47 +252,69 @@ class ImageFolderWithPaths(ImageFolder):
         
         return image, image_path
 
-def get_dataloader(use_real_data=True, data_path='/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images', batch_size=BATCH_SIZE):
+def get_dataloader(use_real_data=True, data_path='/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images', batch_size=BATCH_SIZE, crop_percent=0.25, val_split=0.2):
     """
     Returns the dataloader.
     Toggle 'use_real_data' to True and provide 'data_path' for your medical images.
     """
-    transform = transforms.Compose([
-        transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
-        transforms.Lambda(lambda img: transforms.functional.crop(img, top=int(img.size[1] * 0.25), left=0, height=int(img.size[1] * 0.75), width=img.size[0])), 
-        transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
-        transforms.Grayscale(num_output_channels=CHANNELS),
-        transforms.ToTensor(),
-    ])
+    transform_ops = [ transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)) ]
+
+    if crop_percent > 0:
+        transform_ops.append(
+            transforms.Lambda(lambda img: transforms.functional.crop(
+                img, 
+                top=int(img.size[1] * crop_percent), 
+                left=0, 
+                height=int(img.size[1] * (1 - crop_percent)), 
+                width=img.size[0]
+            ))
+        )
+    transform_ops.extend([transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)), transforms.Grayscale(num_output_channels=CHANNELS), transforms.ToTensor()])
+    
+    transform = transforms.Compose(
+        transform_ops)
 
     if use_real_data and data_path:
-        print(f"Loading real data from {data_path}...")
+        print(f"Loading real data from {data_path} with crop_percent={crop_percent}")
         try:
             # CHANGED: Use the custom class that returns paths
-            dataset = ImageFolderWithPaths(root=data_path, transform=transform)
+            full_dataset = ImageFolderWithPaths(root=data_path, transform=transform)
         except (FileNotFoundError, RuntimeError):
             print("ImageFolder failed - trying flat directory structure...")
-            dataset = FlatImageDataset(root_dir=data_path, transform=transform)
+            full_dataset = FlatImageDataset(root_dir=data_path, transform=transform)
         
-    return DataLoader(dataset, batch_size=batch_size, shuffle=True), dataset
+    val_size = int(len(full_dataset) * val_split)
+    train_size = len(full_dataset) - val_size
+    train_dataset, val_dataset = random_split(full_dataset, [train_size, val_size])
 
-def train_vae(model, dataloader, epochs, beta, learning_rate):
+    print(f"Data Split: {train_size} training samples, {val_size} validation samples.")
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
+        
+    return train_loader, val_loader
+
+def train_vae(model, train_loader, val_loader, epochs, end_beta, learning_rate, save_path="Best_VAE.pth", patience=10):
+
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    model.train()
     tracker = LossTracker()
-    num_samples = len(dataloader.dataset)
-    
+    kl_annealer = KLAnnealer(total_epochs=epochs, start_beta=0.0, end_beta=end_beta)
+    early_stopping = EarlyStopping(patience=patience, verbose=True, path=save_path)
+
     for epoch in range(epochs):
+        model.train()
         total_loss = 0
         total_bce = 0
         total_kld = 0
 
-        for batch_idx, (data, _) in enumerate(dataloader):
+        current_beta = kl_annealer.get_beta(epoch)
+
+        for batch_idx, (data, _) in enumerate(train_loader):
             data = data.to(DEVICE)
             
             optimizer.zero_grad()
             recon_batch, mu, logvar = model(data)
-            loss, bce, kld = vae_loss_function(recon_batch, data, mu, logvar, beta=beta)
+            loss, bce, kld = vae_loss_function(recon_batch, data, mu, logvar, beta=current_beta)
             loss.backward()
             optimizer.step()
 
@@ -226,12 +322,40 @@ def train_vae(model, dataloader, epochs, beta, learning_rate):
             total_bce += bce.item()
             total_kld += kld.item()
 
-        avg_loss = total_loss / num_samples
-        avg_bce = total_bce / num_samples
-        avg_kld = total_kld / num_samples
-        tracker.add(avg_loss, avg_bce, avg_kld)
-        print(f"Epoch {epoch+1}/{epochs} | Avg Loss: {avg_loss:.2f} | Recon Loss: {avg_bce:.2f} | KL Loss: {avg_kld:.2f}")
-            
+        # Validation Phase
+        model.eval()
+        val_loss = 0
+        with torch.no_grad():
+            for val_data, _ in val_loader:
+                val_data = val_data.to(DEVICE)
+                recon_val, mu_val, logvar_val = model(val_data)
+                v_loss, _, _ = vae_loss_function(recon_val, val_data, mu_val, logvar_val, beta=current_beta)
+                val_loss += v_loss.item()
+
+        avg_train_loss = total_loss / len(train_loader.dataset)
+        avg_bce = total_bce / len(train_loader.dataset)
+        avg_kld = total_kld / len(train_loader.dataset)
+        avg_val_loss = val_loss / len(val_loader.dataset)
+
+        tracker.add(avg_train_loss, avg_bce, avg_kld, avg_val_loss)
+        print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.2f} | Val Loss: {avg_val_loss:.2f} | Beta: {current_beta:.4f}")
+        
+        # --- EARLY STOPPING CHECK ---
+        if epoch >= kl_annealer.warmup_epochs:
+            early_stopping(avg_val_loss, model)
+        
+            if early_stopping.early_stop:
+                print("Early stopping triggered")
+                break
+
+        else:
+            if avg_val_loss < early_stopping.val_loss_min - early_stopping.delta:
+                early_stopping.save_checkpoint(avg_val_loss, model)
+
+    # Load the best model (saved by EarlyStopping)
+    print(f"Loading best model from {save_path}")
+    model.load_state_dict(torch.load(save_path))
+
     return tracker
 
 def extract_latent_features(model, dataloader):
@@ -252,20 +376,20 @@ def extract_latent_features(model, dataloader):
     return np.concatenate(latent_vectors), image_paths
 
 # log loss graphs of total, reconstruction, kl divergence
-def log_loss_graphs(tracker, latent_dim):
+def log_loss_graphs(tracker, latent_dim, beta, crop_suffix=""):
     """
     Logs loss curves to WandB.
     """
     epochs = range(1, len(tracker.history["loss"]) + 1)
     
-    plt.figure(figsize=(12, 4))
+    fig = plt.figure(figsize=(12, 4))
     
     # Total Loss
     plt.subplot(1, 3, 1)
     plt.plot(epochs, tracker.history["loss"], label="Total Loss", color='blue')
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
-    plt.title(f"Total Loss (Latent Dim={latent_dim})")
+    plt.title(f"Total Loss (ld={latent_dim}, beta={beta}, crop={crop_suffix})")
     plt.grid(True)
     
     # Reconstruction Loss
@@ -273,7 +397,7 @@ def log_loss_graphs(tracker, latent_dim):
     plt.plot(epochs, tracker.history["reconstruction_loss"], label="Reconstruction Loss", color='green')
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
-    plt.title(f"Reconstruction Loss (Latent Dim={latent_dim})")
+    plt.title(f"Reconstruction Loss (ld={latent_dim}, beta={beta}, crop={crop_suffix})")
     plt.grid(True)
     
     # KL Divergence
@@ -281,21 +405,23 @@ def log_loss_graphs(tracker, latent_dim):
     plt.plot(epochs, tracker.history["kl_loss"], label="KL Divergence", color='red')
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
-    plt.title(f"KL Divergence (Latent Dim={latent_dim})")
+    plt.title(f"KL Divergence (ld={latent_dim}, beta={beta}, crop={crop_suffix})")
     plt.grid(True)
     
     plt.tight_layout()
     
     # Save and log to WandB
-    os.makedirs("results/loss_plots", exist_ok=True)
-    plot_path = f"results/loss_plots/loss_curves_ld{latent_dim}.png"
-    plt.savefig(plot_path)
-    plt.close()
-    
-    wandb.log({
-        "plots/loss_curves": wandb.Image(plot_path),
-        "latent_dim": latent_dim
-    })
+    # os.makedirs("results/loss_plots", exist_ok=True)
+    # plot_path = f"results/loss_plots/loss_curves_ld{latent_dim}.png"
+    # plt.savefig(plot_path)
+    # plt.close()
+    if wandb.run is not None:
+        wandb.log({
+            "plots/loss_curves": wandb.Image(fig),
+            "latent_dim": latent_dim,
+            "beta": beta,
+            "crop_percent": crop_suffix
+        })
 
 
 
@@ -345,21 +471,22 @@ def plot_latent_distributions(latent_vectors, latent_dim, epoch=None):
     plt.tight_layout()
     
     # Save and Log
-    os.makedirs("results/latent_dist", exist_ok=True)
-    filename = f"results/latent_dist/dist_ld{latent_dim}.png"
-    plt.savefig(filename)
-    plt.close()
+    # os.makedirs("results/latent_dist", exist_ok=True)
+    # filename = f"results/latent_dist/dist_ld{latent_dim}.png"
+    # plt.savefig(filename)
+    # plt.close()
     
-    print(f"Latent distribution plot saved to {filename}")
+    # print(f"Latent distribution plot saved to {filename}")
     
     # If using wandb
     if wandb.run is not None:
-        wandb.log({f"plots/latent_distributions_ld{latent_dim}": wandb.Image(filename)})
+        wandb.log({f"plots/latent_distributions_ld{latent_dim}": wandb.Image(fig)})
 
+    plt.close(fig)
 
 # clustering function
 
-def perform_clustering_and_log(model, dataloader, latent_dim):
+def perform_clustering_and_log(model, dataloader, latent_dim, beta, crop_suffix=""):
         """
         Runs feature extraction, KMeans, t-SNE, and logs plots to WandB.
         """
@@ -369,52 +496,53 @@ def perform_clustering_and_log(model, dataloader, latent_dim):
         X_latent, image_paths = extract_latent_features(model, dataloader)
         
         # 2. KMeans Clustering
-        N_CLUSTERS = 4
-        kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
-        clusters = kmeans.fit_predict(X_latent)
+       
+        for N_CLUSTERS in [2,3,4]:
+            kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
+            clusters = kmeans.fit_predict(X_latent)
 
-        # 3. t-SNE Visualization
-        tsne = TSNE(n_components=2, random_state=42)
-        # Limit to 1000 points for speed, or remove slicing for full dataset
-        limit = min(len(X_latent), 1000) 
-        X_embedded = tsne.fit_transform(X_latent[:limit])
-        clusters_plot = clusters[:limit]
-        
-        plt.figure(figsize=(10, 8))
-        scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
-        plt.colorbar(scatter, label='Cluster ID')
-        plt.title(f"Clustering in Latent Space (LD={latent_dim})")
-        plt.xlabel("t-SNE Dim 1")
-        plt.ylabel("t-SNE Dim 2")
-        plt.tight_layout()
-        
-        # Save locally first
-        os.makedirs("results/plots", exist_ok=True)
-        plot_path = f"results/plots/cluster_ld{latent_dim}.png"
-        plt.savefig(plot_path)
-        plt.close()
+            # 3. t-SNE Visualization
+            tsne = TSNE(n_components=2, random_state=42)
+            # Limit to 1000 points for speed, or remove slicing for full dataset
+            limit = min(len(X_latent), 1000) 
+            X_embedded = tsne.fit_transform(X_latent[:limit])
+            clusters_plot = clusters[:limit]
+            
+            fig = plt.figure(figsize=(10, 8))
+            scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
+            plt.colorbar(scatter, label='Cluster ID')
+            plt.title(f"Clustering LD={latent_dim}, Beta={beta}, Crop={crop_suffix}, K={N_CLUSTERS}")
+            plt.xlabel("t-SNE Dim 1")
+            plt.ylabel("t-SNE Dim 2")
+            plt.tight_layout()
+            
+            # Save locally first
+            # os.makedirs("results/plots", exist_ok=True)
+            # plot_path = f"results/plots/ld{latent_dim}_crop{crop_suffix}_beta{beta}_k{N_CLUSTERS}.png"
+            # plt.savefig(plot_path)
+            # plt.close()
 
-        table_data = list(zip(
-            image_paths[:limit], 
-            clusters[:limit], 
-            X_embedded[:, 0], 
-            X_embedded[:, 1]
-        ))
+            table_data = list(zip(
+                image_paths[:limit], 
+                clusters[:limit], 
+                X_embedded[:, 0], 
+                X_embedded[:, 1]
+            ))
 
 
-        # 4. Log to WandB
-        # This works in offline mode too (it queues the image file for later sync)
-        wandb.log({
-            "plots/clustering": wandb.Image(plot_path),
-            "cluster_labels": wandb.Table(
-                    data=table_data, 
-                    columns=["image_path", "cluster_label", "tsne_x", "tsne_y"]
-                )
-        })
-        
-        print("Clustering plots logged.")
+            # 4. Log to WandB
+            # This works in offline mode too (it queues the image file for later sync)
+            wandb.log({
+                f"plots/clustering_k{N_CLUSTERS}": wandb.Image(fig),
+                f"cluster_labels_k{N_CLUSTERS}": wandb.Table(
+                        data=table_data, 
+                        columns=["image_path", "cluster_label", "tsne_x", "tsne_y"]
+                    )
+            })
+            
+        plt.close(fig)
 
-def log_reconstruction(model, dataloader, latent_dim):
+def log_reconstruction(model, dataloader, latent_dim, beta, crop_suffix=""):
    
     print(f"Generating reconstruction plots for Latent Dim {latent_dim}...")
     
@@ -435,22 +563,24 @@ def log_reconstruction(model, dataloader, latent_dim):
         # Make grid expects (B, C, H, W)
         grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
         
-        plt.figure(figsize=(15, 5))
+        fig = plt.figure(figsize=(15, 5))
         # permute needed because matplotlib expects (H, W, C) but torch gives (C, H, W)
         plt.imshow(grid.permute(1, 2, 0), cmap='gray')
-        plt.title(f"Top: Original | Bottom: Reconstructed (LD={latent_dim})")
+        plt.title(f"Top: Original | Bottom: Reconstructed (LD={latent_dim}, Beta={beta}, Crop={crop_suffix})")
         plt.axis('off')
         
         # Save locally first (crucial for offline mode)
-        os.makedirs("results/reconstructions", exist_ok=True)
-        save_path = f"results/reconstructions/recon_ld{latent_dim}.png"
-        plt.savefig(save_path)
-        plt.close() # Close memory
+        # os.makedirs("results/reconstructions", exist_ok=True)
+        # save_path = f"results/reconstructions/recon_ld{latent_dim}_crop{crop_suffix}_beta{beta}.png"
+        # plt.savefig(save_path)
+        # plt.close() # Close memory
         
         # Log to WandB
         wandb.log({
-            "plots/reconstruction": wandb.Image(save_path),
-            "latent_dim": latent_dim
+            "plots/reconstruction": wandb.Image(fig),
+            "latent_dim": latent_dim,
+            "beta": beta,
+            "crop_suffix": crop_suffix
         })
         print("Reconstruction plots logged.")
 
@@ -470,200 +600,40 @@ if __name__ == "__main__":
         print("WANDB_API_KEY not found in environment. Proceeding without explicit login.")
 
     print(f"Running on device: {DEVICE}")
-    
+    print(f"Using crop_percent={CROP_PERCENT}, beta={BETA}, epochs={EPOCHS}, latent_dim={LATENT_DIM}")
     # --- STEP 1: DATA ---
     # TO USE YOUR DATA: Set use_real_data=True and provide path
     # Folder structure must be: /path/to/data/images_subfolder/img1.png
     DATA_PATH = os.getenv("DATA_PATH", "/cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images")
-    dataloader, dataset = get_dataloader(use_real_data=True, data_path=DATA_PATH)
+    train_loader, val_loader = get_dataloader(use_real_data=True, data_path=DATA_PATH, crop_percent=CROP_PERCENT, val_split=0.2)
     
     # --- STEP 2: TRAIN MODEL ---
+    run = wandb.init(
+        project="lus-medical-vae",
+        group="crop_sweep_offline",
+        config={"crop_percent": CROP_PERCENT,
+            "end_beta": BETA,
+            "epochs": EPOCHS,
+            "latent_dim": LATENT_DIM          
+        },
+        reinit=True
+    )
 
-    latent_dims = [64] 
-    summary = []
+    vae = ConvVAE(latent_dim=LATENT_DIM).to(DEVICE)
+    suffix = f"crop{int(CROP_PERCENT*100)}"
 
-    for ld in latent_dims:
-        print(f"\nTraining VAE with LATENT_DIM={ld}...")
-        
-        # RE-INIT WANDB FOR EACH LATENT DIM
-        run = wandb.init(
-            project="lus-medical-vae",
-            group="manual_latent_sweep",
-            config={
-                "image_size": IMAGE_SIZE,
-                "channels": CHANNELS,
-                "batch_size": BATCH_SIZE,
-                "learning_rate": LEARNING_RATE,
-                "epochs": EPOCHS,
-                "beta": BETA,
-                "latent_dim": ld,
-                "device": str(DEVICE),
-            },
-            reinit=True
-        )
+    model_save_name = f"Best_VAE_{suffix}.pth"
 
-        vae = ConvVAE(latent_dim=ld).to(DEVICE)
-        # Use config values
-        current_beta = wandb.config.beta
-        current_lr = wandb.config.learning_rate
-        tracker = train_vae(vae, dataloader, epochs=EPOCHS, beta=current_beta, learning_rate=current_lr)
-        # Log per-epoch losses
-        for epoch_idx, (loss, recon, kl) in enumerate(zip(tracker.history["loss"], tracker.history["reconstruction_loss"], tracker.history["kl_loss"])):
-            wandb.log({
-                "epoch": epoch_idx + 1,
-                "loss/total": loss,
-                "loss/reconstruction": recon,
-                "loss/kl": kl,
-                "latent_dim": ld,
-            })
-
-    # Save loss arrays for this latent dim
-        out_dir = os.path.join("results", "loss_sweep")
-        os.makedirs(out_dir, exist_ok=True)
-        np.save(os.path.join(out_dir, f"loss_total_ld{ld}.npy"), np.array(tracker.history["loss"]))
-        np.save(os.path.join(out_dir, f"loss_recon_ld{ld}.npy"), np.array(tracker.history["reconstruction_loss"]))
-        np.save(os.path.join(out_dir, f"loss_kl_ld{ld}.npy"), np.array(tracker.history["kl_loss"]))
-
-       
-    # cluster and log
-        perform_clustering_and_log(vae, dataloader, ld)
-        log_reconstruction(vae, dataloader, ld)
-        log_loss_graphs(tracker, ld)
-
-        # Keep last-epoch metrics for a compact summary
-        summary.append({
-            "latent_dim": ld,
-            "final_loss": tracker.history["loss"][-1],
-            "final_recon": tracker.history["reconstruction_loss"][-1],
-            "final_kl": tracker.history["kl_loss"][-1],
-        })
-
-        
-    # Summary plot across latent dims (final epoch)
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(14, 5))
+    tracker = train_vae(vae, train_loader, val_loader, epochs=EPOCHS, end_beta=BETA, learning_rate=LEARNING_RATE)
     
-    xs = [s["latent_dim"] for s in summary]
+    # Save and log
+    perform_clustering_and_log(vae, train_loader, LATENT_DIM, BETA, crop_suffix=suffix)
+    log_reconstruction(vae, val_loader, LATENT_DIM, BETA, crop_suffix=suffix)
+    log_loss_graphs(tracker, LATENT_DIM, BETA, crop_suffix=suffix)
+    print("Extracting features for distribution plot...")
+    X_latent, _ = extract_latent_features(vae, train_loader)
+    plot_latent_distributions(X_latent, LATENT_DIM, epoch=EPOCHS)
+
+    wandb.finish()
     
-    # Left plot: Total and Reconstruction loss
-    ax1.plot(xs, [s["final_loss"] for s in summary], "o-", label="Total Loss", linewidth=2, markersize=8)
-    ax1.set_xlabel("LATENT_DIM")
-    ax1.set_ylabel("Final Epoch Loss")
-    ax1.set_title("Total Loss vs Latent Dimension")
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
-
-    ax2.plot(xs, [s["final_recon"] for s in summary], "s-", label="Reconstruction Loss", linewidth=2, markersize=8)
-    ax2.set_xlabel("LATENT_DIM")
-    ax2.set_ylabel("Final Epoch Loss")
-    ax2.set_title("Reconstruction Loss vs Latent Dimension")
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
-    
-    
-    # Right plot: KL Divergence on separate scale
-    ax3.plot(xs, [s["final_kl"] for s in summary], "^-", color='red', label="KL Divergence", linewidth=2, markersize=8)
-    ax3.set_xlabel("LATENT_DIM")
-    ax3.set_ylabel("KL Divergence")
-    ax3.set_title("KL Divergence vs Latent Dimension")
-    ax3.legend()
-    ax3.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    os.makedirs("results", exist_ok=True)
-    final_summary_path = "results/latent_dim_vs_loss.png"
-    plt.savefig(final_summary_path)
-    plt.close()
-    # wandb.log({"plots/latent_dim_vs_loss": wandb.Image(final_summary_path)})
-    # wandb_run.finish()
-
-    # %%
-    # --- STEP 3: UNSUPERVISED CLUSTERING ---
-    # print("\nExtracting features for clustering...")
-    # # We extract the 'mu' vector which represents the image content
-    # X_latent, y_true = extract_latent_features(vae, dataloader)
-    
-    # print("Running K-Means Clustering...")
-    # # We assume 10 clusters (classes) for FashionMNIST. 
-    # # CHANGE THIS to 2 (e.g., Healthy vs Sick) for your medical data
-    # N_CLUSTERS = 4 
-    # kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
-    # clusters = kmeans.fit_predict(X_latent)
-
-    # cluster_centers = []
-    # for k in range(N_CLUSTERS):
-    # # Select all latent vectors belonging to cluster k
-    #     cluster_points = X_latent[clusters == k]
-    
-    #     # Calculate the mean (centroid) of these vectors
-    #     centroid = np.mean(cluster_points, axis=0)
-        
-    #     cluster_centers.append(centroid)
-
-    # # Convert the list of centers back to a numpy array
-    # cluster_centers = np.array(cluster_centers)
-
-    # # put cluster centre latent vectors into decoder to visualise typical images
-    # vae.eval()
-    # with torch.no_grad():
-    #     cluster_centers_tensor = torch.tensor(cluster_centers, dtype=torch.float32).to(DEVICE)
-    #     z_input = vae.decoder_input(cluster_centers_tensor)
-    #     z_matrix = z_input.view(z_input.size(0), 256, 4, 4)
-    #     reconstructions = vae.decoder(z_matrix)
-
-    # Plot the cluster center reconstructions
-    # plt.figure(figsize=(12, 6))
-    # for i in range(N_CLUSTERS):
-    #     plt.subplot(1, N_CLUSTERS, i + 1)
-    #     img = reconstructions[i].cpu().squeeze().numpy()
-    #     plt.imshow(img, cmap='gray')
-    #     plt.title(f"Cluster {i} Center")
-    #     plt.axis('off')
-    # plt.suptitle("Cluster Center Reconstructions")
-    # plt.show()
-    # # save into results
-    # os.makedirs("results/cluster_centers", exist_ok=True)
-    # for i in range(N_CLUSTERS):
-    #     img = reconstructions[i].cpu().squeeze().numpy()
-    #     plt.imsave(f"results/cluster_centers/cluster_{i}_center.png", img, cmap='gray')
-        
-    
-# %%
-    
-    # # --- STEP 4: VISUALIZATION ---
-    # print("Visualizing Latent Space with t-SNE (this might take a moment)...")
-    # # Reduce 32-dim latent space to 2-dim for plotting
-    # tsne = TSNE(n_components=2, random_state=42)
-    # X_embedded = tsne.fit_transform(X_latent[:1000]) # Only plot first 1000 for speed
-    # clusters_plot = clusters[:1000]
-    
-    # plt.figure(figsize=(10, 8))
-    # scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
-    # plt.colorbar(scatter, label='Cluster ID')
-    # plt.title("Unsupervised Clustering of Medical Images (Latent Space)")
-    # plt.xlabel("t-SNE Dim 1")
-    # plt.ylabel("t-SNE Dim 2")
-    # plt.show()
-
-    # # --- STEP 5: SHOW RECONSTRUCTION ---
-    # # Verify the VAE actually learned shapes
-    # vae.eval()
-    # with torch.no_grad():
-    #     sample_data, _ = next(iter(dataloader))
-    #     sample_data = sample_data.to(DEVICE)[:8]
-    #     recon, _, _ = vae(sample_data)
-        
-    #     # Create a grid: Top row original, Bottom row reconstruction
-    #     comparison = torch.cat([sample_data, recon])
-    #     grid = torchvision.utils.make_grid(comparison.cpu(), nrow=8)
-        
-    #     plt.figure(figsize=(15, 5))
-    #     plt.imshow(grid.permute(1, 2, 0), cmap='gray')
-    #     plt.title("Top: Original | Bottom: Reconstructed")
-    #     plt.axis('off')
-    #     plt.show()
-
-    # print("Done! The variable 'clusters' now contains your unsupervised labels.")
-
-
-# %%
 

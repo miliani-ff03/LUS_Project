@@ -21,3 +21,5 @@ else
     echo "Sync failed. Offline files not deleted."
     exit 1
 fi
+
+# to run chmod +x sync_and_delete.sh and then ./sync_and_delete.sh

@@ -1,274 +1,201 @@
 nohup: ignoring input
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251208_230346-lltpt3hu
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_174435-b0d2rlqn
 wandb: 
 wandb: Run history:
-wandb:       beta ▁▂▂▃▅▆▇▇████████████████████████████████
-wandb:      epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▇▇▇▇▇▇███
-wandb:    kl_loss █▃▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb: latent_dim ▁▅▅▅▅▅▂▅▅▅▅▅▅▅▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▇▅▅▅▅▅▅▅█▅
-wandb:       loss █▁▁▁▁▂▂▂▃▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
-wandb: recon_loss █▂▁▁▁▁▁▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
 wandb: 
 wandb: Run summary:
-wandb:       beta 1
-wandb:      epoch 50
-wandb:    kl_loss 18.02409
-wandb: latent_dim 32
-wandb:       loss 1147.51798
-wandb: recon_loss 1129.4939
+wandb:         beta 1
+wandb: crop_percent crop0
+wandb:  crop_suffix crop0
+wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251208_230346-lltpt3hu
-wandb: Find logs at: ./wandb/offline-run-20251208_230346-lltpt3hu/logs
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_174435-b0d2rlqn
+wandb: Find logs at: ./wandb/offline-run-20260102_174435-b0d2rlqn/logs
+Running on device: cuda
+Using crop_percent=0.0, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.0
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 22.52 | Val Loss: 21.55 | Beta: 0.0000
+Validation loss decreased (inf --> 21.546612).  Saving model ...
+Epoch 2/100 | Train Loss: 21.45 | Val Loss: 21.26 | Beta: 0.1000
+Validation loss decreased (21.546612 --> 21.263845).  Saving model ...
+Epoch 3/100 | Train Loss: 21.26 | Val Loss: 21.17 | Beta: 0.2000
+Validation loss decreased (21.263845 --> 21.165434).  Saving model ...
+Epoch 4/100 | Train Loss: 21.24 | Val Loss: 21.17 | Beta: 0.3000
+EarlyStopping counter: 1 out of 5
+Epoch 5/100 | Train Loss: 21.26 | Val Loss: 21.18 | Beta: 0.4000
+EarlyStopping counter: 2 out of 5
+Epoch 6/100 | Train Loss: 21.29 | Val Loss: 21.20 | Beta: 0.5000
+EarlyStopping counter: 3 out of 5
+Epoch 7/100 | Train Loss: 21.31 | Val Loss: 21.23 | Beta: 0.6000
+EarlyStopping counter: 4 out of 5
+Epoch 8/100 | Train Loss: 21.35 | Val Loss: 21.24 | Beta: 0.7000
+EarlyStopping counter: 5 out of 5
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251209_010217-jabf87t7
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_180542-54fl372a
 wandb: 
 wandb: Run history:
-wandb:       beta ▁▂▂▃▄▆▇▇████████████████████████████████
-wandb:      epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇▇███
-wandb:    kl_loss █▃▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb: latent_dim ▁▅▅▅▅▅▅▂▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▇▅▅▅▅▅▅▅█▅
-wandb:       loss █▁▁▂▂▃▃▃▄▄▄▄▄▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃
-wandb: recon_loss █▁▁▁▁▁▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
 wandb: 
 wandb: Run summary:
-wandb:       beta 2
-wandb:      epoch 50
-wandb:    kl_loss 11.79966
-wandb: latent_dim 32
-wandb:       loss 1162.24245
-wandb: recon_loss 1138.64314
+wandb:         beta 1
+wandb: crop_percent crop10
+wandb:  crop_suffix crop10
+wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251209_010217-jabf87t7
-wandb: Find logs at: ./wandb/offline-run-20251209_010217-jabf87t7/logs
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_180542-54fl372a
+wandb: Find logs at: ./wandb/offline-run-20260102_180542-54fl372a/logs
+Running on device: cuda
+Using crop_percent=0.1, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.1
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 21.38 | Val Loss: 20.17 | Beta: 0.0000
+Validation loss decreased (inf --> 20.167711).  Saving model ...
+Epoch 2/100 | Train Loss: 20.18 | Val Loss: 19.95 | Beta: 0.1000
+Validation loss decreased (20.167711 --> 19.954181).  Saving model ...
+Epoch 3/100 | Train Loss: 20.07 | Val Loss: 19.93 | Beta: 0.2000
+Validation loss decreased (19.954181 --> 19.927952).  Saving model ...
+Epoch 4/100 | Train Loss: 20.07 | Val Loss: 19.92 | Beta: 0.3000
+EarlyStopping counter: 1 out of 5
+Epoch 5/100 | Train Loss: 20.09 | Val Loss: 19.95 | Beta: 0.4000
+EarlyStopping counter: 2 out of 5
+Epoch 6/100 | Train Loss: 20.13 | Val Loss: 19.97 | Beta: 0.5000
+EarlyStopping counter: 3 out of 5
+Epoch 7/100 | Train Loss: 20.16 | Val Loss: 20.00 | Beta: 0.6000
+EarlyStopping counter: 4 out of 5
+Epoch 8/100 | Train Loss: 20.19 | Val Loss: 20.04 | Beta: 0.7000
+EarlyStopping counter: 5 out of 5
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251209_030036-ao8rqwbh
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_182748-v3xd33xi
 wandb: 
 wandb: Run history:
-wandb:       beta ▁▂▂▃▄▅▆▇▇███████████████████████████████
-wandb:      epoch ▁▁▁▁▂▂▂▂▂▂▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▇▇▇▇▇███
-wandb:    kl_loss █▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb: latent_dim ▁▅▅▅▅▅▅▅▅▅▅▅▅▅▅▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▇▅▅▅▅▅▅█▅
-wandb:       loss ▅▁▁▂▃▅▆▇▇█████████████▇██▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
-wandb: recon_loss █▁▁▁▂▃▄▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▄▄▄▄▄▄▄▄▄
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
 wandb: 
 wandb: Run summary:
-wandb:       beta 5
-wandb:      epoch 50
-wandb:    kl_loss 5.7201
-wandb: latent_dim 32
-wandb:       loss 1187.85112
-wandb: recon_loss 1159.25061
+wandb:         beta 1
+wandb: crop_percent crop20
+wandb:  crop_suffix crop20
+wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20251209_030036-ao8rqwbh
-wandb: Find logs at: ./wandb/offline-run-20251209_030036-ao8rqwbh/logs
-Running: Latent=32, LR=0.001
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch [1/50] - Loss: 1190.2718, BCE: 1190.2718, KLD: 235.8533, Beta: 0.0000
-Generating reconstruction plots for Latent Dim 1...
-Reconstruction plots logged.
-Epoch [2/50] - Loss: 1142.6759, BCE: 1135.7801, KLD: 68.9573, Beta: 0.1000
-Epoch [3/50] - Loss: 1139.1282, BCE: 1129.3583, KLD: 48.8492, Beta: 0.2000
-Epoch [4/50] - Loss: 1140.1206, BCE: 1128.3949, KLD: 39.0857, Beta: 0.3000
-Epoch [5/50] - Loss: 1142.4231, BCE: 1129.0952, KLD: 33.3199, Beta: 0.4000
-Epoch [6/50] - Loss: 1144.2778, BCE: 1129.7549, KLD: 29.0458, Beta: 0.5000
-Epoch [7/50] - Loss: 1146.1239, BCE: 1130.5430, KLD: 25.9682, Beta: 0.6000
-Epoch [8/50] - Loss: 1148.0908, BCE: 1131.6148, KLD: 23.5372, Beta: 0.7000
-Epoch [9/50] - Loss: 1149.6734, BCE: 1132.3551, KLD: 21.6479, Beta: 0.8000
-Epoch [10/50] - Loss: 1151.3125, BCE: 1133.2335, KLD: 20.0878, Beta: 0.9000
-Generating reconstruction plots for Latent Dim 10...
-Reconstruction plots logged.
-Epoch [11/50] - Loss: 1152.9726, BCE: 1134.1964, KLD: 18.7762, Beta: 1.0000
-Epoch [12/50] - Loss: 1152.4490, BCE: 1133.8359, KLD: 18.6131, Beta: 1.0000
-Epoch [13/50] - Loss: 1151.8710, BCE: 1133.3825, KLD: 18.4885, Beta: 1.0000
-Epoch [14/50] - Loss: 1151.7504, BCE: 1133.3232, KLD: 18.4272, Beta: 1.0000
-Epoch [15/50] - Loss: 1151.4766, BCE: 1133.1008, KLD: 18.3757, Beta: 1.0000
-Epoch [16/50] - Loss: 1151.1052, BCE: 1132.7838, KLD: 18.3214, Beta: 1.0000
-Epoch [17/50] - Loss: 1150.8715, BCE: 1132.5916, KLD: 18.2800, Beta: 1.0000
-Epoch [18/50] - Loss: 1150.7304, BCE: 1132.4248, KLD: 18.3056, Beta: 1.0000
-Epoch [19/50] - Loss: 1150.5295, BCE: 1132.2896, KLD: 18.2399, Beta: 1.0000
-Epoch [20/50] - Loss: 1150.3271, BCE: 1132.0959, KLD: 18.2312, Beta: 1.0000
-Generating reconstruction plots for Latent Dim 20...
-Reconstruction plots logged.
-Epoch [21/50] - Loss: 1150.2148, BCE: 1132.0558, KLD: 18.1590, Beta: 1.0000
-Epoch [22/50] - Loss: 1149.8518, BCE: 1131.6540, KLD: 18.1978, Beta: 1.0000
-Epoch [23/50] - Loss: 1149.8477, BCE: 1131.7075, KLD: 18.1402, Beta: 1.0000
-Epoch [24/50] - Loss: 1149.6493, BCE: 1131.4958, KLD: 18.1534, Beta: 1.0000
-Epoch [25/50] - Loss: 1149.6082, BCE: 1131.4391, KLD: 18.1691, Beta: 1.0000
-Epoch [26/50] - Loss: 1149.4367, BCE: 1131.3068, KLD: 18.1299, Beta: 1.0000
-Epoch [27/50] - Loss: 1149.2646, BCE: 1131.1227, KLD: 18.1419, Beta: 1.0000
-Epoch [28/50] - Loss: 1149.1810, BCE: 1131.0450, KLD: 18.1360, Beta: 1.0000
-Epoch [29/50] - Loss: 1148.9722, BCE: 1130.8548, KLD: 18.1174, Beta: 1.0000
-Epoch [30/50] - Loss: 1148.9473, BCE: 1130.8897, KLD: 18.0577, Beta: 1.0000
-Generating reconstruction plots for Latent Dim 30...
-Reconstruction plots logged.
-Epoch [31/50] - Loss: 1148.8912, BCE: 1130.8070, KLD: 18.0842, Beta: 1.0000
-Epoch [32/50] - Loss: 1148.7279, BCE: 1130.6372, KLD: 18.0907, Beta: 1.0000
-Epoch [33/50] - Loss: 1148.6205, BCE: 1130.5415, KLD: 18.0790, Beta: 1.0000
-Epoch [34/50] - Loss: 1148.4792, BCE: 1130.4148, KLD: 18.0644, Beta: 1.0000
-Epoch [35/50] - Loss: 1148.3723, BCE: 1130.3241, KLD: 18.0482, Beta: 1.0000
-Epoch [36/50] - Loss: 1148.2566, BCE: 1130.2245, KLD: 18.0321, Beta: 1.0000
-Epoch [37/50] - Loss: 1148.2837, BCE: 1130.2359, KLD: 18.0478, Beta: 1.0000
-Epoch [38/50] - Loss: 1148.1815, BCE: 1130.1225, KLD: 18.0590, Beta: 1.0000
-Epoch [39/50] - Loss: 1148.1566, BCE: 1130.1001, KLD: 18.0565, Beta: 1.0000
-Epoch [40/50] - Loss: 1147.9792, BCE: 1129.9290, KLD: 18.0502, Beta: 1.0000
-Generating reconstruction plots for Latent Dim 40...
-Reconstruction plots logged.
-Epoch [41/50] - Loss: 1147.9694, BCE: 1129.9446, KLD: 18.0248, Beta: 1.0000
-Epoch [42/50] - Loss: 1147.8221, BCE: 1129.7591, KLD: 18.0631, Beta: 1.0000
-Epoch [43/50] - Loss: 1147.8050, BCE: 1129.7694, KLD: 18.0356, Beta: 1.0000
-Epoch [44/50] - Loss: 1147.7767, BCE: 1129.7223, KLD: 18.0544, Beta: 1.0000
-Epoch [45/50] - Loss: 1147.6750, BCE: 1129.6597, KLD: 18.0153, Beta: 1.0000
-Epoch [46/50] - Loss: 1147.6549, BCE: 1129.6447, KLD: 18.0101, Beta: 1.0000
-Epoch [47/50] - Loss: 1147.6436, BCE: 1129.6471, KLD: 17.9965, Beta: 1.0000
-Epoch [48/50] - Loss: 1147.5014, BCE: 1129.4497, KLD: 18.0517, Beta: 1.0000
-Epoch [49/50] - Loss: 1147.5249, BCE: 1129.5168, KLD: 18.0081, Beta: 1.0000
-Epoch [50/50] - Loss: 1147.5180, BCE: 1129.4939, KLD: 18.0241, Beta: 1.0000
-Generating reconstruction plots for Latent Dim 50...
-Reconstruction plots logged.
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_182748-v3xd33xi
+wandb: Find logs at: ./wandb/offline-run-20260102_182748-v3xd33xi/logs
+Running on device: cuda
+Using crop_percent=0.2, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.2
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 21.64 | Val Loss: 19.07 | Beta: 0.0000
+Validation loss decreased (inf --> 19.068849).  Saving model ...
+Epoch 2/100 | Train Loss: 19.10 | Val Loss: 18.88 | Beta: 0.1000
+Validation loss decreased (19.068849 --> 18.875278).  Saving model ...
+Epoch 3/100 | Train Loss: 18.99 | Val Loss: 18.83 | Beta: 0.2000
+Validation loss decreased (18.875278 --> 18.832360).  Saving model ...
+Epoch 4/100 | Train Loss: 18.97 | Val Loss: 18.81 | Beta: 0.3000
+Validation loss decreased (18.832360 --> 18.808183).  Saving model ...
+Epoch 5/100 | Train Loss: 18.98 | Val Loss: 18.82 | Beta: 0.4000
+EarlyStopping counter: 1 out of 5
+Epoch 6/100 | Train Loss: 19.00 | Val Loss: 18.85 | Beta: 0.5000
+EarlyStopping counter: 2 out of 5
+Epoch 7/100 | Train Loss: 19.03 | Val Loss: 18.84 | Beta: 0.6000
+EarlyStopping counter: 3 out of 5
+Epoch 8/100 | Train Loss: 19.06 | Val Loss: 18.88 | Beta: 0.7000
+EarlyStopping counter: 4 out of 5
+Epoch 9/100 | Train Loss: 19.08 | Val Loss: 18.87 | Beta: 0.8000
+EarlyStopping counter: 5 out of 5
+Early stopping triggered
+Loading best model from Best_VAE.pth
 Generating plots for Latent Dim 32...
-Clustering plots logged.
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
 Extracting features for distribution plot...
-Latent distribution plot saved to results/latent_dist/dist_ld32.png
-Running: Latent=32, LR=0.001
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch [1/50] - Loss: 1200.6630, BCE: 1200.6630, KLD: 159.7342, Beta: 0.0000
-Generating reconstruction plots for Latent Dim 1...
-Reconstruction plots logged.
-Epoch [2/50] - Loss: 1147.0865, BCE: 1137.2612, KLD: 49.1269, Beta: 0.2000
-Epoch [3/50] - Loss: 1146.4702, BCE: 1133.4745, KLD: 32.4893, Beta: 0.4000
-Epoch [4/50] - Loss: 1149.4871, BCE: 1133.9108, KLD: 25.9606, Beta: 0.6000
-Epoch [5/50] - Loss: 1152.6921, BCE: 1135.3665, KLD: 21.6570, Beta: 0.8000
-Epoch [6/50] - Loss: 1155.1914, BCE: 1136.4714, KLD: 18.7200, Beta: 1.0000
-Epoch [7/50] - Loss: 1158.2073, BCE: 1138.1815, KLD: 16.6882, Beta: 1.2000
-Epoch [8/50] - Loss: 1160.6940, BCE: 1139.4762, KLD: 15.1555, Beta: 1.4000
-Epoch [9/50] - Loss: 1163.0948, BCE: 1140.9154, KLD: 13.8621, Beta: 1.6000
-Epoch [10/50] - Loss: 1165.2659, BCE: 1142.2945, KLD: 12.7619, Beta: 1.8000
-Generating reconstruction plots for Latent Dim 10...
-Reconstruction plots logged.
-Epoch [11/50] - Loss: 1167.6674, BCE: 1143.8348, KLD: 11.9163, Beta: 2.0000
-Epoch [12/50] - Loss: 1167.1575, BCE: 1143.5609, KLD: 11.7983, Beta: 2.0000
-Epoch [13/50] - Loss: 1166.7922, BCE: 1143.3538, KLD: 11.7192, Beta: 2.0000
-Epoch [14/50] - Loss: 1166.4548, BCE: 1143.0114, KLD: 11.7217, Beta: 2.0000
-Epoch [15/50] - Loss: 1166.2514, BCE: 1142.8143, KLD: 11.7185, Beta: 2.0000
-Epoch [16/50] - Loss: 1166.1151, BCE: 1142.6880, KLD: 11.7135, Beta: 2.0000
-Epoch [17/50] - Loss: 1165.8612, BCE: 1142.4528, KLD: 11.7042, Beta: 2.0000
-Epoch [18/50] - Loss: 1165.7080, BCE: 1142.3103, KLD: 11.6989, Beta: 2.0000
-Epoch [19/50] - Loss: 1165.4212, BCE: 1142.0881, KLD: 11.6666, Beta: 2.0000
-Epoch [20/50] - Loss: 1165.1466, BCE: 1141.7989, KLD: 11.6739, Beta: 2.0000
-Generating reconstruction plots for Latent Dim 20...
-Reconstruction plots logged.
-Epoch [21/50] - Loss: 1165.1360, BCE: 1141.8014, KLD: 11.6673, Beta: 2.0000
-Epoch [22/50] - Loss: 1164.9730, BCE: 1141.5719, KLD: 11.7006, Beta: 2.0000
-Epoch [23/50] - Loss: 1164.8009, BCE: 1141.4254, KLD: 11.6878, Beta: 2.0000
-Epoch [24/50] - Loss: 1164.6216, BCE: 1141.2584, KLD: 11.6816, Beta: 2.0000
-Epoch [25/50] - Loss: 1164.5900, BCE: 1141.1859, KLD: 11.7020, Beta: 2.0000
-Epoch [26/50] - Loss: 1164.4687, BCE: 1141.0535, KLD: 11.7076, Beta: 2.0000
-Epoch [27/50] - Loss: 1164.2553, BCE: 1140.8694, KLD: 11.6929, Beta: 2.0000
-Epoch [28/50] - Loss: 1164.1922, BCE: 1140.7455, KLD: 11.7233, Beta: 2.0000
-Epoch [29/50] - Loss: 1163.9979, BCE: 1140.5762, KLD: 11.7109, Beta: 2.0000
-Epoch [30/50] - Loss: 1163.8850, BCE: 1140.4671, KLD: 11.7089, Beta: 2.0000
-Generating reconstruction plots for Latent Dim 30...
-Reconstruction plots logged.
-Epoch [31/50] - Loss: 1163.6849, BCE: 1140.2913, KLD: 11.6968, Beta: 2.0000
-Epoch [32/50] - Loss: 1163.6605, BCE: 1140.2135, KLD: 11.7235, Beta: 2.0000
-Epoch [33/50] - Loss: 1163.5638, BCE: 1140.1349, KLD: 11.7145, Beta: 2.0000
-Epoch [34/50] - Loss: 1163.5098, BCE: 1140.0329, KLD: 11.7384, Beta: 2.0000
-Epoch [35/50] - Loss: 1163.2192, BCE: 1139.7732, KLD: 11.7230, Beta: 2.0000
-Epoch [36/50] - Loss: 1163.2419, BCE: 1139.7588, KLD: 11.7416, Beta: 2.0000
-Epoch [37/50] - Loss: 1163.2539, BCE: 1139.7646, KLD: 11.7446, Beta: 2.0000
-Epoch [38/50] - Loss: 1163.0713, BCE: 1139.5526, KLD: 11.7594, Beta: 2.0000
-Epoch [39/50] - Loss: 1163.0029, BCE: 1139.4800, KLD: 11.7614, Beta: 2.0000
-Epoch [40/50] - Loss: 1163.0681, BCE: 1139.5043, KLD: 11.7819, Beta: 2.0000
-Generating reconstruction plots for Latent Dim 40...
-Reconstruction plots logged.
-Epoch [41/50] - Loss: 1162.8377, BCE: 1139.3323, KLD: 11.7527, Beta: 2.0000
-Epoch [42/50] - Loss: 1162.7032, BCE: 1139.1737, KLD: 11.7647, Beta: 2.0000
-Epoch [43/50] - Loss: 1162.6819, BCE: 1139.1558, KLD: 11.7630, Beta: 2.0000
-Epoch [44/50] - Loss: 1162.7134, BCE: 1139.1898, KLD: 11.7618, Beta: 2.0000
-Epoch [45/50] - Loss: 1162.5910, BCE: 1139.0494, KLD: 11.7708, Beta: 2.0000
-Epoch [46/50] - Loss: 1162.4595, BCE: 1138.8919, KLD: 11.7838, Beta: 2.0000
-Epoch [47/50] - Loss: 1162.4369, BCE: 1138.9311, KLD: 11.7529, Beta: 2.0000
-Epoch [48/50] - Loss: 1162.4371, BCE: 1138.8153, KLD: 11.8109, Beta: 2.0000
-Epoch [49/50] - Loss: 1162.2593, BCE: 1138.6761, KLD: 11.7916, Beta: 2.0000
-Epoch [50/50] - Loss: 1162.2425, BCE: 1138.6431, KLD: 11.7997, Beta: 2.0000
-Generating reconstruction plots for Latent Dim 50...
-Reconstruction plots logged.
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_185211-6w4flo81
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 1
+wandb: crop_percent crop30
+wandb:  crop_suffix crop30
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_185211-6w4flo81
+wandb: Find logs at: ./wandb/offline-run-20260102_185211-6w4flo81/logs
+Running on device: cuda
+Using crop_percent=0.3, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.3
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 18.36 | Val Loss: 17.43 | Beta: 0.0000
+Validation loss decreased (inf --> 17.433132).  Saving model ...
+Epoch 2/100 | Train Loss: 17.36 | Val Loss: 17.34 | Beta: 0.1000
+Validation loss decreased (17.433132 --> 17.336420).  Saving model ...
+Epoch 3/100 | Train Loss: 17.29 | Val Loss: 17.31 | Beta: 0.2000
+Validation loss decreased (17.336420 --> 17.305472).  Saving model ...
+Epoch 4/100 | Train Loss: 17.28 | Val Loss: 17.30 | Beta: 0.3000
+Validation loss decreased (17.305472 --> 17.295069).  Saving model ...
+Epoch 5/100 | Train Loss: 17.29 | Val Loss: 17.30 | Beta: 0.4000
+EarlyStopping counter: 1 out of 5
+Epoch 6/100 | Train Loss: 17.32 | Val Loss: 17.33 | Beta: 0.5000
+EarlyStopping counter: 2 out of 5
+Epoch 7/100 | Train Loss: 17.35 | Val Loss: 17.35 | Beta: 0.6000
+EarlyStopping counter: 3 out of 5
+Epoch 8/100 | Train Loss: 17.37 | Val Loss: 17.37 | Beta: 0.7000
+EarlyStopping counter: 4 out of 5
+Epoch 9/100 | Train Loss: 17.39 | Val Loss: 17.37 | Beta: 0.8000
+EarlyStopping counter: 5 out of 5
+Early stopping triggered
+Loading best model from Best_VAE.pth
 Generating plots for Latent Dim 32...
-Clustering plots logged.
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
 Extracting features for distribution plot...
-Latent distribution plot saved to results/latent_dist/dist_ld32.png
-Running: Latent=32, LR=0.001
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae...
-Epoch [1/50] - Loss: 1178.7597, BCE: 1178.7597, KLD: 230.6440, Beta: 0.0000
-Generating reconstruction plots for Latent Dim 1...
-Reconstruction plots logged.
-Epoch [2/50] - Loss: 1158.6782, BCE: 1142.9709, KLD: 31.4147, Beta: 0.5000
-Epoch [3/50] - Loss: 1159.8407, BCE: 1141.4656, KLD: 18.3752, Beta: 1.0000
-Epoch [4/50] - Loss: 1164.9737, BCE: 1143.8687, KLD: 14.0700, Beta: 1.5000
-Epoch [5/50] - Loss: 1169.7719, BCE: 1146.5480, KLD: 11.6119, Beta: 2.0000
-Epoch [6/50] - Loss: 1174.6189, BCE: 1149.8349, KLD: 9.9136, Beta: 2.5000
-Epoch [7/50] - Loss: 1178.9399, BCE: 1153.0064, KLD: 8.6445, Beta: 3.0000
-Epoch [8/50] - Loss: 1182.2734, BCE: 1155.5646, KLD: 7.6311, Beta: 3.5000
-Epoch [9/50] - Loss: 1185.5300, BCE: 1158.2617, KLD: 6.8171, Beta: 4.0000
-Epoch [10/50] - Loss: 1188.6029, BCE: 1160.8282, KLD: 6.1722, Beta: 4.5000
-Generating reconstruction plots for Latent Dim 10...
-Reconstruction plots logged.
-Epoch [11/50] - Loss: 1191.4834, BCE: 1163.5911, KLD: 5.5785, Beta: 5.0000
-Epoch [12/50] - Loss: 1191.1787, BCE: 1163.6472, KLD: 5.5063, Beta: 5.0000
-Epoch [13/50] - Loss: 1190.7334, BCE: 1163.2022, KLD: 5.5062, Beta: 5.0000
-Epoch [14/50] - Loss: 1190.5992, BCE: 1163.1858, KLD: 5.4827, Beta: 5.0000
-Epoch [15/50] - Loss: 1190.5028, BCE: 1163.0703, KLD: 5.4865, Beta: 5.0000
-Epoch [16/50] - Loss: 1190.3024, BCE: 1162.9232, KLD: 5.4758, Beta: 5.0000
-Epoch [17/50] - Loss: 1190.2655, BCE: 1162.9433, KLD: 5.4644, Beta: 5.0000
-Epoch [18/50] - Loss: 1190.1629, BCE: 1162.6381, KLD: 5.5050, Beta: 5.0000
-Epoch [19/50] - Loss: 1189.9111, BCE: 1162.4081, KLD: 5.5006, Beta: 5.0000
-Epoch [20/50] - Loss: 1189.8958, BCE: 1162.4040, KLD: 5.4984, Beta: 5.0000
-Generating reconstruction plots for Latent Dim 20...
-Reconstruction plots logged.
-Epoch [21/50] - Loss: 1189.8964, BCE: 1162.3804, KLD: 5.5032, Beta: 5.0000
-Epoch [22/50] - Loss: 1189.6345, BCE: 1162.0347, KLD: 5.5200, Beta: 5.0000
-Epoch [23/50] - Loss: 1189.6381, BCE: 1161.9985, KLD: 5.5279, Beta: 5.0000
-Epoch [24/50] - Loss: 1189.5386, BCE: 1161.7840, KLD: 5.5509, Beta: 5.0000
-Epoch [25/50] - Loss: 1189.2714, BCE: 1161.4998, KLD: 5.5543, Beta: 5.0000
-Epoch [26/50] - Loss: 1189.3250, BCE: 1161.4365, KLD: 5.5777, Beta: 5.0000
-Epoch [27/50] - Loss: 1189.0749, BCE: 1161.1969, KLD: 5.5756, Beta: 5.0000
-Epoch [28/50] - Loss: 1189.2004, BCE: 1161.2975, KLD: 5.5806, Beta: 5.0000
-Epoch [29/50] - Loss: 1189.1808, BCE: 1161.2217, KLD: 5.5918, Beta: 5.0000
-Epoch [30/50] - Loss: 1188.8843, BCE: 1160.9220, KLD: 5.5925, Beta: 5.0000
-Generating reconstruction plots for Latent Dim 30...
-Reconstruction plots logged.
-Epoch [31/50] - Loss: 1188.8730, BCE: 1160.9612, KLD: 5.5824, Beta: 5.0000
-Epoch [32/50] - Loss: 1188.8373, BCE: 1160.8231, KLD: 5.6028, Beta: 5.0000
-Epoch [33/50] - Loss: 1188.7865, BCE: 1160.7313, KLD: 5.6111, Beta: 5.0000
-Epoch [34/50] - Loss: 1188.7935, BCE: 1160.5676, KLD: 5.6452, Beta: 5.0000
-Epoch [35/50] - Loss: 1188.6871, BCE: 1160.4966, KLD: 5.6381, Beta: 5.0000
-Epoch [36/50] - Loss: 1188.6096, BCE: 1160.4291, KLD: 5.6361, Beta: 5.0000
-Epoch [37/50] - Loss: 1188.6294, BCE: 1160.3467, KLD: 5.6565, Beta: 5.0000
-Epoch [38/50] - Loss: 1188.3264, BCE: 1160.0989, KLD: 5.6455, Beta: 5.0000
-Epoch [39/50] - Loss: 1188.3419, BCE: 1160.1362, KLD: 5.6411, Beta: 5.0000
-Epoch [40/50] - Loss: 1188.3278, BCE: 1159.9823, KLD: 5.6691, Beta: 5.0000
-Generating reconstruction plots for Latent Dim 40...
-Reconstruction plots logged.
-Epoch [41/50] - Loss: 1188.2936, BCE: 1159.9194, KLD: 5.6749, Beta: 5.0000
-Epoch [42/50] - Loss: 1188.2011, BCE: 1159.8596, KLD: 5.6683, Beta: 5.0000
-Epoch [43/50] - Loss: 1188.1890, BCE: 1159.7961, KLD: 5.6786, Beta: 5.0000
-Epoch [44/50] - Loss: 1188.0417, BCE: 1159.6242, KLD: 5.6835, Beta: 5.0000
-Epoch [45/50] - Loss: 1188.1162, BCE: 1159.6779, KLD: 5.6876, Beta: 5.0000
-Epoch [46/50] - Loss: 1188.2318, BCE: 1159.7953, KLD: 5.6873, Beta: 5.0000
-Epoch [47/50] - Loss: 1187.8795, BCE: 1159.3816, KLD: 5.6996, Beta: 5.0000
-Epoch [48/50] - Loss: 1187.9799, BCE: 1159.4648, KLD: 5.7030, Beta: 5.0000
-Epoch [49/50] - Loss: 1187.7361, BCE: 1159.2040, KLD: 5.7064, Beta: 5.0000
-Epoch [50/50] - Loss: 1187.8511, BCE: 1159.2506, KLD: 5.7201, Beta: 5.0000
-Generating reconstruction plots for Latent Dim 50...
-Reconstruction plots logged.
-Generating plots for Latent Dim 32...
-Clustering plots logged.
-Extracting features for distribution plot...
-Latent distribution plot saved to results/latent_dist/dist_ld32.png
+Starting Offline Sweep for 4 crop settings...
+
+--- Run 1/4 ---
+Setting: Crop Top=0.0%
+
+--- Run 2/4 ---
+Setting: Crop Top=10.0%
+
+--- Run 3/4 ---
+Setting: Crop Top=20.0%
+
+--- Run 4/4 ---
+Setting: Crop Top=30.0%
+
+All offline runs completed.
+To upload results, run: wandb sync --include-offline wandb/offline-run-*

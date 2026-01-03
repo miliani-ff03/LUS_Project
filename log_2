@@ -1,0 +1,241 @@
+nohup: ignoring input
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_223947-0d8yr512
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 1
+wandb: crop_percent crop0
+wandb:  crop_suffix crop0
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_223947-0d8yr512
+wandb: Find logs at: ./wandb/offline-run-20260102_223947-0d8yr512/logs
+Running on device: cuda
+Using crop_percent=0.0, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.0
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 22.40 | Val Loss: 21.33 | Beta: 0.0000
+Validation loss decreased (inf --> 21.333219).  Saving model ...
+Epoch 2/100 | Train Loss: 21.39 | Val Loss: 21.08 | Beta: 0.1000
+Validation loss decreased (21.333219 --> 21.080783).  Saving model ...
+Epoch 3/100 | Train Loss: 21.27 | Val Loss: 21.03 | Beta: 0.2000
+Validation loss decreased (21.080783 --> 21.033893).  Saving model ...
+Epoch 4/100 | Train Loss: 21.26 | Val Loss: 21.04 | Beta: 0.3000
+EarlyStopping counter: 1 out of 10
+Epoch 5/100 | Train Loss: 21.29 | Val Loss: 21.05 | Beta: 0.4000
+EarlyStopping counter: 2 out of 10
+Epoch 6/100 | Train Loss: 21.32 | Val Loss: 21.08 | Beta: 0.5000
+EarlyStopping counter: 3 out of 10
+Epoch 7/100 | Train Loss: 21.35 | Val Loss: 21.09 | Beta: 0.6000
+EarlyStopping counter: 4 out of 10
+Epoch 8/100 | Train Loss: 21.38 | Val Loss: 21.11 | Beta: 0.7000
+EarlyStopping counter: 5 out of 10
+Epoch 9/100 | Train Loss: 21.41 | Val Loss: 21.15 | Beta: 0.8000
+EarlyStopping counter: 6 out of 10
+Epoch 10/100 | Train Loss: 21.44 | Val Loss: 21.17 | Beta: 0.9000
+EarlyStopping counter: 7 out of 10
+Epoch 11/100 | Train Loss: 21.47 | Val Loss: 21.19 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 12/100 | Train Loss: 21.46 | Val Loss: 21.17 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 13/100 | Train Loss: 21.45 | Val Loss: 21.17 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_232205-ulzso0e7
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 1
+wandb: crop_percent crop10
+wandb:  crop_suffix crop10
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_232205-ulzso0e7
+wandb: Find logs at: ./wandb/offline-run-20260102_232205-ulzso0e7/logs
+Running on device: cuda
+Using crop_percent=0.1, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.1
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 20.93 | Val Loss: 20.06 | Beta: 0.0000
+Validation loss decreased (inf --> 20.060082).  Saving model ...
+Epoch 2/100 | Train Loss: 20.07 | Val Loss: 19.91 | Beta: 0.1000
+Validation loss decreased (20.060082 --> 19.912628).  Saving model ...
+Epoch 3/100 | Train Loss: 20.01 | Val Loss: 19.91 | Beta: 0.2000
+Validation loss decreased (19.912628 --> 19.911528).  Saving model ...
+Epoch 4/100 | Train Loss: 20.03 | Val Loss: 19.94 | Beta: 0.3000
+EarlyStopping counter: 1 out of 10
+Epoch 5/100 | Train Loss: 20.07 | Val Loss: 19.96 | Beta: 0.4000
+EarlyStopping counter: 2 out of 10
+Epoch 6/100 | Train Loss: 20.11 | Val Loss: 20.02 | Beta: 0.5000
+EarlyStopping counter: 3 out of 10
+Epoch 7/100 | Train Loss: 20.14 | Val Loss: 19.99 | Beta: 0.6000
+EarlyStopping counter: 4 out of 10
+Epoch 8/100 | Train Loss: 20.18 | Val Loss: 20.02 | Beta: 0.7000
+EarlyStopping counter: 5 out of 10
+Epoch 9/100 | Train Loss: 20.21 | Val Loss: 20.04 | Beta: 0.8000
+EarlyStopping counter: 6 out of 10
+Epoch 10/100 | Train Loss: 20.24 | Val Loss: 20.06 | Beta: 0.9000
+EarlyStopping counter: 7 out of 10
+Epoch 11/100 | Train Loss: 20.26 | Val Loss: 20.10 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 12/100 | Train Loss: 20.25 | Val Loss: 20.08 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 13/100 | Train Loss: 20.25 | Val Loss: 20.09 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_235538-bhxouim9
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 1
+wandb: crop_percent crop20
+wandb:  crop_suffix crop20
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_235538-bhxouim9
+wandb: Find logs at: ./wandb/offline-run-20260102_235538-bhxouim9/logs
+Running on device: cuda
+Using crop_percent=0.2, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.2
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 20.42 | Val Loss: 19.10 | Beta: 0.0000
+Validation loss decreased (inf --> 19.099976).  Saving model ...
+Epoch 2/100 | Train Loss: 19.01 | Val Loss: 18.96 | Beta: 0.1000
+Validation loss decreased (19.099976 --> 18.960303).  Saving model ...
+Epoch 3/100 | Train Loss: 18.92 | Val Loss: 18.90 | Beta: 0.2000
+Validation loss decreased (18.960303 --> 18.900202).  Saving model ...
+Epoch 4/100 | Train Loss: 18.90 | Val Loss: 18.88 | Beta: 0.3000
+Validation loss decreased (18.900202 --> 18.880141).  Saving model ...
+Epoch 5/100 | Train Loss: 18.93 | Val Loss: 18.90 | Beta: 0.4000
+EarlyStopping counter: 1 out of 10
+Epoch 6/100 | Train Loss: 18.96 | Val Loss: 18.92 | Beta: 0.5000
+EarlyStopping counter: 2 out of 10
+Epoch 7/100 | Train Loss: 18.99 | Val Loss: 18.95 | Beta: 0.6000
+EarlyStopping counter: 3 out of 10
+Epoch 8/100 | Train Loss: 19.02 | Val Loss: 18.96 | Beta: 0.7000
+EarlyStopping counter: 4 out of 10
+Epoch 9/100 | Train Loss: 19.05 | Val Loss: 18.99 | Beta: 0.8000
+EarlyStopping counter: 5 out of 10
+Epoch 10/100 | Train Loss: 19.07 | Val Loss: 19.01 | Beta: 0.9000
+EarlyStopping counter: 6 out of 10
+Epoch 11/100 | Train Loss: 19.10 | Val Loss: 19.02 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 12/100 | Train Loss: 19.09 | Val Loss: 19.06 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 13/100 | Train Loss: 19.08 | Val Loss: 19.05 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 14/100 | Train Loss: 19.08 | Val Loss: 19.01 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260103_003112-7xx3a0kh
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 1
+wandb: crop_percent crop30
+wandb:  crop_suffix crop30
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260103_003112-7xx3a0kh
+wandb: Find logs at: ./wandb/offline-run-20260103_003112-7xx3a0kh/logs
+Running on device: cuda
+Using crop_percent=0.3, beta=1.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.3
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 18.55 | Val Loss: 17.51 | Beta: 0.0000
+Validation loss decreased (inf --> 17.510916).  Saving model ...
+Epoch 2/100 | Train Loss: 17.37 | Val Loss: 17.36 | Beta: 0.1000
+Validation loss decreased (17.510916 --> 17.358582).  Saving model ...
+Epoch 3/100 | Train Loss: 17.28 | Val Loss: 17.33 | Beta: 0.2000
+Validation loss decreased (17.358582 --> 17.331029).  Saving model ...
+Epoch 4/100 | Train Loss: 17.27 | Val Loss: 17.32 | Beta: 0.3000
+Validation loss decreased (17.331029 --> 17.322311).  Saving model ...
+Epoch 5/100 | Train Loss: 17.28 | Val Loss: 17.34 | Beta: 0.4000
+EarlyStopping counter: 1 out of 10
+Epoch 6/100 | Train Loss: 17.30 | Val Loss: 17.35 | Beta: 0.5000
+EarlyStopping counter: 2 out of 10
+Epoch 7/100 | Train Loss: 17.33 | Val Loss: 17.37 | Beta: 0.6000
+EarlyStopping counter: 3 out of 10
+Epoch 8/100 | Train Loss: 17.35 | Val Loss: 17.40 | Beta: 0.7000
+EarlyStopping counter: 4 out of 10
+Epoch 9/100 | Train Loss: 17.38 | Val Loss: 17.41 | Beta: 0.8000
+EarlyStopping counter: 5 out of 10
+Epoch 10/100 | Train Loss: 17.40 | Val Loss: 17.49 | Beta: 0.9000
+EarlyStopping counter: 6 out of 10
+Epoch 11/100 | Train Loss: 17.42 | Val Loss: 17.47 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 12/100 | Train Loss: 17.42 | Val Loss: 17.45 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 13/100 | Train Loss: 17.41 | Val Loss: 17.45 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 14/100 | Train Loss: 17.41 | Val Loss: 17.45 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+Starting Offline Sweep for 4 crop settings...
+
+--- Run 1/4 ---
+Setting: Crop Top=0.0%
+
+--- Run 2/4 ---
+Setting: Crop Top=10.0%
+
+--- Run 3/4 ---
+Setting: Crop Top=20.0%
+
+--- Run 4/4 ---
+Setting: Crop Top=30.0%
+
+All offline runs completed.
+To upload results, run: wandb sync --include-offline wandb/offline-run-*

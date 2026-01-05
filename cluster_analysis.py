@@ -8,13 +8,13 @@ from plotly.subplots import make_subplots
 # ================= CONFIGURATION =================
 # Path to your downloaded WandB table JSON
 # Update this to the specific JSON file you want to analyze
-CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2025-12-09T13_13_42.449+00_00.csv"
+CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-04T17_10_36.558+00_00.csv"
 
 # Path to your metadata CSV
 METADATA_PATH = "/cosma/home/durham/dc-fras4/code/data_preprocessing/data_tables/all_data.csv"
 
 # Output filename for the interactive plot
-OUTPUT_HTML = "results/interactive_tsne_with_annealing_beta2.html"
+OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_1_crop_0_k_3.html"
 # =================================================
 
 def load_data():
@@ -170,7 +170,7 @@ def main():
     fig.update_layout(
         height=600,
         width=1400,
-        title_text="Cluster Analysis Dashboard",
+        title_text=f"Cluster Analysis Dashboard ({os.path.splitext(os.path.basename(OUTPUT_HTML))[0].split('_', 1)[-1].replace('_', ' ')})",
         template="plotly_dark",
         barmode='group'
     )

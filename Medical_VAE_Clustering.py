@@ -33,7 +33,7 @@ parser = argparse.ArgumentParser(description="VAE Training with Crop Sweep")
 parser.add_argument("--crop_percent", type=float, default=0.25, help="Percentage to crop from top (0.0 to 1.0)")
 parser.add_argument("--beta", type=float, default=5.0, help="Beta parameter for KL Divergence")
 parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs")
-parser.add_argument("--latent_dim", type=int, default=64, help="Latent dimension size")
+parser.add_argument("--latent_dim", type=int, default=32, help="Latent dimension size")
 
 if 'ipykernel' in sys.modules or hasattr(sys, 'ps1'):
     # Use default values in notebook
@@ -621,6 +621,7 @@ if __name__ == "__main__":
 
     vae = ConvVAE(latent_dim=LATENT_DIM).to(DEVICE)
     suffix = f"crop{int(CROP_PERCENT*100)}"
+    full_suffix = f"ld{LATENT_DIM}_crop{int(CROP_PERCENT*100)}_beta{BETA}"
 
     model_save_name = f"Best_VAE_{suffix}.pth"
 
@@ -631,9 +632,23 @@ if __name__ == "__main__":
     log_reconstruction(vae, val_loader, LATENT_DIM, BETA, crop_suffix=suffix)
     log_loss_graphs(tracker, LATENT_DIM, BETA, crop_suffix=suffix)
     print("Extracting features for distribution plot...")
-    X_latent, _ = extract_latent_features(vae, train_loader)
+    X_latent, image_paths = extract_latent_features(vae, train_loader)
     plot_latent_distributions(X_latent, LATENT_DIM, epoch=EPOCHS)
 
+    os.makedirs("results/latent_features", exist_ok=True)
+    np.save(f"results/latent_features/latent_vectors_{full_suffix}.npy", X_latent)
+    np.save(f"results/latent_features/image_paths_{full_suffix}.npy", np.array(image_paths))
+    print(f"Saved {X_latent.shape[0]} latent vectors of dimension {X_latent.shape[1]}")
+
+    artifact = wandb.Artifact(
+    name=f"latent_vectors_{full_suffix}",
+    type="latent_features",
+    description=f"Latent vectors for ld={LATENT_DIM}, crop={CROP_PERCENT}, beta={BETA}"
+    )
+    artifact.add_file(f"results/latent_features/latent_vectors_{full_suffix}.npy")
+    artifact.add_file(f"results/latent_features/image_paths_{full_suffix}.npy")
+    wandb.log_artifact(artifact)
+    
     wandb.finish()
     
 

@@ -49,4 +49,4 @@ for i, (crop, beta) in enumerate(combinations):
 print("\nAll offline runs completed.")
 print("To upload results, run: wandb sync --include-offline wandb/offline-run-*")
 
-# to run use nohup python offline_launcher_for_crop_sweep.py &> log &
+# to run use nohup python offline_launcher_for_crop_and_beta.py &> log &

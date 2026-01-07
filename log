@@ -3,7 +3,141 @@ wandb: WARNING Unable to verify login in offline mode.
 wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_174435-b0d2rlqn
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_103012-lbbtbkvh
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 0.1
+wandb: crop_percent crop0
+wandb:  crop_suffix crop0
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_103012-lbbtbkvh
+wandb: Find logs at: ./wandb/offline-run-20260105_103012-lbbtbkvh/logs
+Running on device: cuda
+Using crop_percent=0.0, beta=0.1, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.0
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 22.28 | Val Loss: 21.41 | Beta: 0.0000
+Validation loss decreased (inf --> 21.408671).  Saving model ...
+Epoch 2/100 | Train Loss: 21.24 | Val Loss: 21.06 | Beta: 0.0100
+Validation loss decreased (21.408671 --> 21.059998).  Saving model ...
+Epoch 3/100 | Train Loss: 21.04 | Val Loss: 20.98 | Beta: 0.0200
+Validation loss decreased (21.059998 --> 20.975198).  Saving model ...
+Epoch 4/100 | Train Loss: 20.97 | Val Loss: 20.93 | Beta: 0.0300
+Validation loss decreased (20.975198 --> 20.926804).  Saving model ...
+Epoch 5/100 | Train Loss: 20.94 | Val Loss: 20.90 | Beta: 0.0400
+Validation loss decreased (20.926804 --> 20.903098).  Saving model ...
+Epoch 6/100 | Train Loss: 20.93 | Val Loss: 20.90 | Beta: 0.0500
+Epoch 7/100 | Train Loss: 20.92 | Val Loss: 20.89 | Beta: 0.0600
+Validation loss decreased (20.903098 --> 20.889930).  Saving model ...
+Epoch 8/100 | Train Loss: 20.92 | Val Loss: 20.89 | Beta: 0.0700
+Epoch 9/100 | Train Loss: 20.91 | Val Loss: 20.88 | Beta: 0.0800
+Epoch 10/100 | Train Loss: 20.91 | Val Loss: 20.88 | Beta: 0.0900
+Epoch 11/100 | Train Loss: 20.91 | Val Loss: 20.89 | Beta: 0.1000
+Validation loss decreased (20.889930 --> 20.891052).  Saving model ...
+Epoch 12/100 | Train Loss: 20.91 | Val Loss: 20.88 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 13/100 | Train Loss: 20.90 | Val Loss: 20.87 | Beta: 0.1000
+Validation loss decreased (20.891052 --> 20.872586).  Saving model ...
+Epoch 14/100 | Train Loss: 20.89 | Val Loss: 20.88 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 15/100 | Train Loss: 20.89 | Val Loss: 20.86 | Beta: 0.1000
+Validation loss decreased (20.872586 --> 20.861006).  Saving model ...
+Epoch 16/100 | Train Loss: 20.88 | Val Loss: 20.86 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 17/100 | Train Loss: 20.87 | Val Loss: 20.85 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 18/100 | Train Loss: 20.87 | Val Loss: 20.85 | Beta: 0.1000
+Validation loss decreased (20.861006 --> 20.848959).  Saving model ...
+Epoch 19/100 | Train Loss: 20.86 | Val Loss: 20.85 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 20/100 | Train Loss: 20.86 | Val Loss: 20.84 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 21/100 | Train Loss: 20.86 | Val Loss: 20.84 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 22/100 | Train Loss: 20.85 | Val Loss: 20.84 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 23/100 | Train Loss: 20.85 | Val Loss: 20.85 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 24/100 | Train Loss: 20.85 | Val Loss: 20.84 | Beta: 0.1000
+Validation loss decreased (20.848959 --> 20.837176).  Saving model ...
+Epoch 25/100 | Train Loss: 20.84 | Val Loss: 20.87 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 26/100 | Train Loss: 20.84 | Val Loss: 20.83 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 27/100 | Train Loss: 20.84 | Val Loss: 20.83 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 28/100 | Train Loss: 20.83 | Val Loss: 20.83 | Beta: 0.1000
+Validation loss decreased (20.837176 --> 20.825521).  Saving model ...
+Epoch 29/100 | Train Loss: 20.83 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 30/100 | Train Loss: 20.83 | Val Loss: 20.83 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 31/100 | Train Loss: 20.83 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 32/100 | Train Loss: 20.83 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 33/100 | Train Loss: 20.82 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 34/100 | Train Loss: 20.82 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 6 out of 10
+Epoch 35/100 | Train Loss: 20.82 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 7 out of 10
+Epoch 36/100 | Train Loss: 20.82 | Val Loss: 20.82 | Beta: 0.1000
+Validation loss decreased (20.825521 --> 20.815052).  Saving model ...
+Epoch 37/100 | Train Loss: 20.82 | Val Loss: 20.82 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 38/100 | Train Loss: 20.82 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 39/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 40/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 41/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 42/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 6 out of 10
+Epoch 43/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 7 out of 10
+Epoch 44/100 | Train Loss: 20.81 | Val Loss: 20.80 | Beta: 0.1000
+Validation loss decreased (20.815052 --> 20.804981).  Saving model ...
+Epoch 45/100 | Train Loss: 20.81 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 46/100 | Train Loss: 20.81 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 47/100 | Train Loss: 20.81 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 48/100 | Train Loss: 20.81 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 49/100 | Train Loss: 20.80 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 50/100 | Train Loss: 20.80 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 6 out of 10
+Epoch 51/100 | Train Loss: 20.80 | Val Loss: 20.81 | Beta: 0.1000
+EarlyStopping counter: 7 out of 10
+Epoch 52/100 | Train Loss: 20.80 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 8 out of 10
+Epoch 53/100 | Train Loss: 20.80 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 9 out of 10
+Epoch 54/100 | Train Loss: 20.80 | Val Loss: 20.80 | Beta: 0.1000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+Saved 24046 latent vectors of dimension 32
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_124617-xo7jw05z
 wandb: 
 wandb: Run history:
 wandb:       beta ▁▁
@@ -16,39 +150,306 @@ wandb:  crop_suffix crop0
 wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_174435-b0d2rlqn
-wandb: Find logs at: ./wandb/offline-run-20260102_174435-b0d2rlqn/logs
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_124617-xo7jw05z
+wandb: Find logs at: ./wandb/offline-run-20260105_124617-xo7jw05z/logs
 Running on device: cuda
 Using crop_percent=0.0, beta=1.0, epochs=100, latent_dim=32
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.0
 Data Split: 24046 training samples, 6011 validation samples.
-Epoch 1/100 | Train Loss: 22.52 | Val Loss: 21.55 | Beta: 0.0000
-Validation loss decreased (inf --> 21.546612).  Saving model ...
-Epoch 2/100 | Train Loss: 21.45 | Val Loss: 21.26 | Beta: 0.1000
-Validation loss decreased (21.546612 --> 21.263845).  Saving model ...
-Epoch 3/100 | Train Loss: 21.26 | Val Loss: 21.17 | Beta: 0.2000
-Validation loss decreased (21.263845 --> 21.165434).  Saving model ...
-Epoch 4/100 | Train Loss: 21.24 | Val Loss: 21.17 | Beta: 0.3000
-EarlyStopping counter: 1 out of 5
-Epoch 5/100 | Train Loss: 21.26 | Val Loss: 21.18 | Beta: 0.4000
-EarlyStopping counter: 2 out of 5
-Epoch 6/100 | Train Loss: 21.29 | Val Loss: 21.20 | Beta: 0.5000
-EarlyStopping counter: 3 out of 5
-Epoch 7/100 | Train Loss: 21.31 | Val Loss: 21.23 | Beta: 0.6000
-EarlyStopping counter: 4 out of 5
-Epoch 8/100 | Train Loss: 21.35 | Val Loss: 21.24 | Beta: 0.7000
-EarlyStopping counter: 5 out of 5
+Epoch 1/100 | Train Loss: 22.47 | Val Loss: 21.52 | Beta: 0.0000
+Validation loss decreased (inf --> 21.520284).  Saving model ...
+Epoch 2/100 | Train Loss: 21.36 | Val Loss: 21.24 | Beta: 0.1000
+Validation loss decreased (21.520284 --> 21.236469).  Saving model ...
+Epoch 3/100 | Train Loss: 21.24 | Val Loss: 21.20 | Beta: 0.2000
+Validation loss decreased (21.236469 --> 21.200108).  Saving model ...
+Epoch 4/100 | Train Loss: 21.23 | Val Loss: 21.24 | Beta: 0.3000
+Epoch 5/100 | Train Loss: 21.25 | Val Loss: 21.23 | Beta: 0.4000
+Epoch 6/100 | Train Loss: 21.28 | Val Loss: 21.24 | Beta: 0.5000
+Epoch 7/100 | Train Loss: 21.31 | Val Loss: 21.26 | Beta: 0.6000
+Epoch 8/100 | Train Loss: 21.34 | Val Loss: 21.29 | Beta: 0.7000
+Epoch 9/100 | Train Loss: 21.37 | Val Loss: 21.29 | Beta: 0.8000
+Epoch 10/100 | Train Loss: 21.40 | Val Loss: 21.33 | Beta: 0.9000
+Epoch 11/100 | Train Loss: 21.43 | Val Loss: 21.36 | Beta: 1.0000
+Validation loss decreased (21.200108 --> 21.364369).  Saving model ...
+Epoch 12/100 | Train Loss: 21.42 | Val Loss: 21.36 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 13/100 | Train Loss: 21.41 | Val Loss: 21.32 | Beta: 1.0000
+Validation loss decreased (21.364369 --> 21.323153).  Saving model ...
+Epoch 14/100 | Train Loss: 21.40 | Val Loss: 21.34 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 15/100 | Train Loss: 21.40 | Val Loss: 21.32 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 16/100 | Train Loss: 21.39 | Val Loss: 21.32 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 17/100 | Train Loss: 21.38 | Val Loss: 21.35 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 18/100 | Train Loss: 21.38 | Val Loss: 21.34 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 19/100 | Train Loss: 21.37 | Val Loss: 21.30 | Beta: 1.0000
+Validation loss decreased (21.323153 --> 21.297747).  Saving model ...
+Epoch 20/100 | Train Loss: 21.37 | Val Loss: 21.31 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 21/100 | Train Loss: 21.37 | Val Loss: 21.31 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 22/100 | Train Loss: 21.36 | Val Loss: 21.32 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 23/100 | Train Loss: 21.36 | Val Loss: 21.29 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 24/100 | Train Loss: 21.35 | Val Loss: 21.30 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 25/100 | Train Loss: 21.35 | Val Loss: 21.29 | Beta: 1.0000
+EarlyStopping counter: 6 out of 10
+Epoch 26/100 | Train Loss: 21.35 | Val Loss: 21.30 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 27/100 | Train Loss: 21.35 | Val Loss: 21.30 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 28/100 | Train Loss: 21.34 | Val Loss: 21.28 | Beta: 1.0000
+Validation loss decreased (21.297747 --> 21.279763).  Saving model ...
+Epoch 29/100 | Train Loss: 21.34 | Val Loss: 21.31 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 30/100 | Train Loss: 21.34 | Val Loss: 21.29 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 31/100 | Train Loss: 21.33 | Val Loss: 21.29 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 32/100 | Train Loss: 21.33 | Val Loss: 21.28 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 33/100 | Train Loss: 21.33 | Val Loss: 21.27 | Beta: 1.0000
+Validation loss decreased (21.279763 --> 21.268732).  Saving model ...
+Epoch 34/100 | Train Loss: 21.33 | Val Loss: 21.28 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 35/100 | Train Loss: 21.33 | Val Loss: 21.30 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 36/100 | Train Loss: 21.32 | Val Loss: 21.28 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 37/100 | Train Loss: 21.32 | Val Loss: 21.28 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 38/100 | Train Loss: 21.32 | Val Loss: 21.29 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 39/100 | Train Loss: 21.32 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 6 out of 10
+Epoch 40/100 | Train Loss: 21.32 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 41/100 | Train Loss: 21.31 | Val Loss: 21.26 | Beta: 1.0000
+Validation loss decreased (21.268732 --> 21.256418).  Saving model ...
+Epoch 42/100 | Train Loss: 21.31 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 43/100 | Train Loss: 21.31 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 44/100 | Train Loss: 21.31 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 45/100 | Train Loss: 21.31 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 46/100 | Train Loss: 21.31 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 47/100 | Train Loss: 21.31 | Val Loss: 21.26 | Beta: 1.0000
+EarlyStopping counter: 6 out of 10
+Epoch 48/100 | Train Loss: 21.30 | Val Loss: 21.26 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 49/100 | Train Loss: 21.30 | Val Loss: 21.26 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 50/100 | Train Loss: 21.30 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 51/100 | Train Loss: 21.30 | Val Loss: 21.27 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
 Early stopping triggered
 Loading best model from Best_VAE.pth
 Generating plots for Latent Dim 32...
 Generating reconstruction plots for Latent Dim 32...
 Reconstruction plots logged.
 Extracting features for distribution plot...
+Saved 24046 latent vectors of dimension 32
 wandb: WARNING Unable to verify login in offline mode.
 wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_180542-54fl372a
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_144004-fv5se2wb
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 2
+wandb: crop_percent crop0
+wandb:  crop_suffix crop0
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_144004-fv5se2wb
+wandb: Find logs at: ./wandb/offline-run-20260105_144004-fv5se2wb/logs
+Running on device: cuda
+Using crop_percent=0.0, beta=2.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.0
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 22.52 | Val Loss: 21.39 | Beta: 0.0000
+Validation loss decreased (inf --> 21.393844).  Saving model ...
+Epoch 2/100 | Train Loss: 21.43 | Val Loss: 21.23 | Beta: 0.2000
+Validation loss decreased (21.393844 --> 21.228517).  Saving model ...
+Epoch 3/100 | Train Loss: 21.36 | Val Loss: 21.23 | Beta: 0.4000
+Epoch 4/100 | Train Loss: 21.40 | Val Loss: 21.27 | Beta: 0.6000
+Epoch 5/100 | Train Loss: 21.45 | Val Loss: 21.30 | Beta: 0.8000
+Epoch 6/100 | Train Loss: 21.50 | Val Loss: 21.33 | Beta: 1.0000
+Epoch 7/100 | Train Loss: 21.54 | Val Loss: 21.36 | Beta: 1.2000
+Epoch 8/100 | Train Loss: 21.59 | Val Loss: 21.41 | Beta: 1.4000
+Epoch 9/100 | Train Loss: 21.64 | Val Loss: 21.43 | Beta: 1.6000
+Epoch 10/100 | Train Loss: 21.68 | Val Loss: 21.49 | Beta: 1.8000
+Epoch 11/100 | Train Loss: 21.72 | Val Loss: 21.50 | Beta: 2.0000
+Validation loss decreased (21.228517 --> 21.501624).  Saving model ...
+Epoch 12/100 | Train Loss: 21.71 | Val Loss: 21.50 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 13/100 | Train Loss: 21.70 | Val Loss: 21.50 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 14/100 | Train Loss: 21.70 | Val Loss: 21.54 | Beta: 2.0000
+EarlyStopping counter: 3 out of 10
+Epoch 15/100 | Train Loss: 21.69 | Val Loss: 21.47 | Beta: 2.0000
+Validation loss decreased (21.501624 --> 21.471566).  Saving model ...
+Epoch 16/100 | Train Loss: 21.68 | Val Loss: 21.48 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 17/100 | Train Loss: 21.68 | Val Loss: 21.49 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 18/100 | Train Loss: 21.67 | Val Loss: 21.53 | Beta: 2.0000
+EarlyStopping counter: 3 out of 10
+Epoch 19/100 | Train Loss: 21.67 | Val Loss: 21.48 | Beta: 2.0000
+EarlyStopping counter: 4 out of 10
+Epoch 20/100 | Train Loss: 21.66 | Val Loss: 21.47 | Beta: 2.0000
+EarlyStopping counter: 5 out of 10
+Epoch 21/100 | Train Loss: 21.66 | Val Loss: 21.48 | Beta: 2.0000
+EarlyStopping counter: 6 out of 10
+Epoch 22/100 | Train Loss: 21.66 | Val Loss: 21.48 | Beta: 2.0000
+EarlyStopping counter: 7 out of 10
+Epoch 23/100 | Train Loss: 21.65 | Val Loss: 21.46 | Beta: 2.0000
+EarlyStopping counter: 8 out of 10
+Epoch 24/100 | Train Loss: 21.65 | Val Loss: 21.47 | Beta: 2.0000
+EarlyStopping counter: 9 out of 10
+Epoch 25/100 | Train Loss: 21.65 | Val Loss: 21.47 | Beta: 2.0000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+Saved 24046 latent vectors of dimension 32
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_153845-rghb8n0x
+wandb: 
+wandb: Run history:
+wandb:       beta ▁▁
+wandb: latent_dim ▁▁
+wandb: 
+wandb: Run summary:
+wandb:         beta 0.1
+wandb: crop_percent crop10
+wandb:  crop_suffix crop10
+wandb:   latent_dim 32
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_153845-rghb8n0x
+wandb: Find logs at: ./wandb/offline-run-20260105_153845-rghb8n0x/logs
+Running on device: cuda
+Using crop_percent=0.1, beta=0.1, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.1
+Data Split: 24046 training samples, 6011 validation samples.
+Epoch 1/100 | Train Loss: 21.22 | Val Loss: 20.07 | Beta: 0.0000
+Validation loss decreased (inf --> 20.067342).  Saving model ...
+Epoch 2/100 | Train Loss: 20.01 | Val Loss: 19.78 | Beta: 0.0100
+Validation loss decreased (20.067342 --> 19.776504).  Saving model ...
+Epoch 3/100 | Train Loss: 19.85 | Val Loss: 19.68 | Beta: 0.0200
+Validation loss decreased (19.776504 --> 19.684647).  Saving model ...
+Epoch 4/100 | Train Loss: 19.79 | Val Loss: 19.66 | Beta: 0.0300
+Validation loss decreased (19.684647 --> 19.659471).  Saving model ...
+Epoch 5/100 | Train Loss: 19.77 | Val Loss: 19.65 | Beta: 0.0400
+Epoch 6/100 | Train Loss: 19.77 | Val Loss: 19.66 | Beta: 0.0500
+Epoch 7/100 | Train Loss: 19.77 | Val Loss: 19.69 | Beta: 0.0600
+Epoch 8/100 | Train Loss: 19.77 | Val Loss: 19.64 | Beta: 0.0700
+Validation loss decreased (19.659471 --> 19.644469).  Saving model ...
+Epoch 9/100 | Train Loss: 19.76 | Val Loss: 19.64 | Beta: 0.0800
+Epoch 10/100 | Train Loss: 19.77 | Val Loss: 19.65 | Beta: 0.0900
+Epoch 11/100 | Train Loss: 19.77 | Val Loss: 19.65 | Beta: 0.1000
+Validation loss decreased (19.644469 --> 19.648952).  Saving model ...
+Epoch 12/100 | Train Loss: 19.76 | Val Loss: 19.65 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 13/100 | Train Loss: 19.76 | Val Loss: 19.64 | Beta: 0.1000
+Validation loss decreased (19.648952 --> 19.635042).  Saving model ...
+Epoch 14/100 | Train Loss: 19.75 | Val Loss: 19.63 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 15/100 | Train Loss: 19.75 | Val Loss: 19.63 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 16/100 | Train Loss: 19.74 | Val Loss: 19.63 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 17/100 | Train Loss: 19.74 | Val Loss: 19.62 | Beta: 0.1000
+Validation loss decreased (19.635042 --> 19.621108).  Saving model ...
+Epoch 18/100 | Train Loss: 19.73 | Val Loss: 19.62 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 19/100 | Train Loss: 19.73 | Val Loss: 19.62 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 20/100 | Train Loss: 19.72 | Val Loss: 19.61 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 21/100 | Train Loss: 19.72 | Val Loss: 19.61 | Beta: 0.1000
+Validation loss decreased (19.621108 --> 19.608954).  Saving model ...
+Epoch 22/100 | Train Loss: 19.72 | Val Loss: 19.61 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 23/100 | Train Loss: 19.71 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 24/100 | Train Loss: 19.71 | Val Loss: 19.61 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 25/100 | Train Loss: 19.71 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 26/100 | Train Loss: 19.71 | Val Loss: 19.60 | Beta: 0.1000
+Validation loss decreased (19.608954 --> 19.598747).  Saving model ...
+Epoch 27/100 | Train Loss: 19.70 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 28/100 | Train Loss: 19.70 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 29/100 | Train Loss: 19.70 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 30/100 | Train Loss: 19.70 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 31/100 | Train Loss: 19.70 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 32/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 6 out of 10
+Epoch 33/100 | Train Loss: 19.70 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 7 out of 10
+Epoch 34/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 8 out of 10
+Epoch 35/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+Validation loss decreased (19.598747 --> 19.587806).  Saving model ...
+Epoch 36/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 1 out of 10
+Epoch 37/100 | Train Loss: 19.69 | Val Loss: 19.60 | Beta: 0.1000
+EarlyStopping counter: 2 out of 10
+Epoch 38/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 3 out of 10
+Epoch 39/100 | Train Loss: 19.68 | Val Loss: 19.58 | Beta: 0.1000
+EarlyStopping counter: 4 out of 10
+Epoch 40/100 | Train Loss: 19.69 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 5 out of 10
+Epoch 41/100 | Train Loss: 19.68 | Val Loss: 19.58 | Beta: 0.1000
+EarlyStopping counter: 6 out of 10
+Epoch 42/100 | Train Loss: 19.68 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 7 out of 10
+Epoch 43/100 | Train Loss: 19.68 | Val Loss: 19.58 | Beta: 0.1000
+EarlyStopping counter: 8 out of 10
+Epoch 44/100 | Train Loss: 19.68 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 9 out of 10
+Epoch 45/100 | Train Loss: 19.68 | Val Loss: 19.59 | Beta: 0.1000
+EarlyStopping counter: 10 out of 10
+Early stopping triggered
+Loading best model from Best_VAE.pth
+Generating plots for Latent Dim 32...
+Generating reconstruction plots for Latent Dim 32...
+Reconstruction plots logged.
+Extracting features for distribution plot...
+Saved 24046 latent vectors of dimension 32
+wandb: WARNING Unable to verify login in offline mode.
+wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
+wandb: Tracking run with wandb version 0.23.0
+wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_172213-0r76ubm7
 wandb: 
 wandb: Run history:
 wandb:       beta ▁▁
@@ -61,141 +462,218 @@ wandb:  crop_suffix crop10
 wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_180542-54fl372a
-wandb: Find logs at: ./wandb/offline-run-20260102_180542-54fl372a/logs
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_172213-0r76ubm7
+wandb: Find logs at: ./wandb/offline-run-20260105_172213-0r76ubm7/logs
 Running on device: cuda
 Using crop_percent=0.1, beta=1.0, epochs=100, latent_dim=32
 Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.1
 Data Split: 24046 training samples, 6011 validation samples.
-Epoch 1/100 | Train Loss: 21.38 | Val Loss: 20.17 | Beta: 0.0000
-Validation loss decreased (inf --> 20.167711).  Saving model ...
-Epoch 2/100 | Train Loss: 20.18 | Val Loss: 19.95 | Beta: 0.1000
-Validation loss decreased (20.167711 --> 19.954181).  Saving model ...
-Epoch 3/100 | Train Loss: 20.07 | Val Loss: 19.93 | Beta: 0.2000
-Validation loss decreased (19.954181 --> 19.927952).  Saving model ...
-Epoch 4/100 | Train Loss: 20.07 | Val Loss: 19.92 | Beta: 0.3000
-EarlyStopping counter: 1 out of 5
-Epoch 5/100 | Train Loss: 20.09 | Val Loss: 19.95 | Beta: 0.4000
-EarlyStopping counter: 2 out of 5
-Epoch 6/100 | Train Loss: 20.13 | Val Loss: 19.97 | Beta: 0.5000
-EarlyStopping counter: 3 out of 5
-Epoch 7/100 | Train Loss: 20.16 | Val Loss: 20.00 | Beta: 0.6000
-EarlyStopping counter: 4 out of 5
-Epoch 8/100 | Train Loss: 20.19 | Val Loss: 20.04 | Beta: 0.7000
-EarlyStopping counter: 5 out of 5
+Epoch 1/100 | Train Loss: 21.96 | Val Loss: 20.43 | Beta: 0.0000
+Validation loss decreased (inf --> 20.425909).  Saving model ...
+Epoch 2/100 | Train Loss: 20.50 | Val Loss: 20.20 | Beta: 0.1000
+Validation loss decreased (20.425909 --> 20.196196).  Saving model ...
+Epoch 3/100 | Train Loss: 20.27 | Val Loss: 20.03 | Beta: 0.2000
+Validation loss decreased (20.196196 --> 20.033660).  Saving model ...
+Epoch 4/100 | Train Loss: 20.18 | Val Loss: 19.98 | Beta: 0.3000
+Validation loss decreased (20.033660 --> 19.982655).  Saving model ...
+Epoch 5/100 | Train Loss: 20.17 | Val Loss: 19.97 | Beta: 0.4000
+Validation loss decreased (19.982655 --> 19.966359).  Saving model ...
+Epoch 6/100 | Train Loss: 20.17 | Val Loss: 19.97 | Beta: 0.5000
+Epoch 7/100 | Train Loss: 20.19 | Val Loss: 20.00 | Beta: 0.6000
+Epoch 8/100 | Train Loss: 20.22 | Val Loss: 20.01 | Beta: 0.7000
+Epoch 9/100 | Train Loss: 20.24 | Val Loss: 20.06 | Beta: 0.8000
+Epoch 10/100 | Train Loss: 20.27 | Val Loss: 20.06 | Beta: 0.9000
+Epoch 11/100 | Train Loss: 20.29 | Val Loss: 20.10 | Beta: 1.0000
+Validation loss decreased (19.966359 --> 20.097453).  Saving model ...
+Epoch 12/100 | Train Loss: 20.29 | Val Loss: 20.08 | Beta: 1.0000
+Validation loss decreased (20.097453 --> 20.084679).  Saving model ...
+Epoch 13/100 | Train Loss: 20.27 | Val Loss: 20.05 | Beta: 1.0000
+Validation loss decreased (20.084679 --> 20.052373).  Saving model ...
+Epoch 14/100 | Train Loss: 20.27 | Val Loss: 20.03 | Beta: 1.0000
+Validation loss decreased (20.052373 --> 20.033542).  Saving model ...
+Epoch 15/100 | Train Loss: 20.26 | Val Loss: 20.05 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 16/100 | Train Loss: 20.25 | Val Loss: 20.04 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 17/100 | Train Loss: 20.25 | Val Loss: 20.08 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 18/100 | Train Loss: 20.24 | Val Loss: 20.03 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 19/100 | Train Loss: 20.24 | Val Loss: 20.03 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 20/100 | Train Loss: 20.23 | Val Loss: 20.02 | Beta: 1.0000
+Validation loss decreased (20.033542 --> 20.021379).  Saving model ...
+Epoch 21/100 | Train Loss: 20.23 | Val Loss: 20.03 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 22/100 | Train Loss: 20.23 | Val Loss: 20.01 | Beta: 1.0000
+Validation loss decreased (20.021379 --> 20.010836).  Saving model ...
+Epoch 23/100 | Train Loss: 20.22 | Val Loss: 20.01 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 24/100 | Train Loss: 20.22 | Val Loss: 20.01 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 25/100 | Train Loss: 20.21 | Val Loss: 20.02 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 26/100 | Train Loss: 20.21 | Val Loss: 20.02 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 27/100 | Train Loss: 20.21 | Val Loss: 20.00 | Beta: 1.0000
+Validation loss decreased (20.010836 --> 19.996479).  Saving model ...
+Epoch 28/100 | Train Loss: 20.20 | Val Loss: 20.00 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 29/100 | Train Loss: 20.20 | Val Loss: 20.01 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 30/100 | Train Loss: 20.20 | Val Loss: 20.00 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 31/100 | Train Loss: 20.20 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 32/100 | Train Loss: 20.19 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 33/100 | Train Loss: 20.19 | Val Loss: 19.98 | Beta: 1.0000
+Validation loss decreased (19.996479 --> 19.983287).  Saving model ...
+Epoch 34/100 | Train Loss: 20.19 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 1 out of 10
+Epoch 35/100 | Train Loss: 20.19 | Val Loss: 19.98 | Beta: 1.0000
+EarlyStopping counter: 2 out of 10
+Epoch 36/100 | Train Loss: 20.18 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 3 out of 10
+Epoch 37/100 | Train Loss: 20.18 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 4 out of 10
+Epoch 38/100 | Train Loss: 20.18 | Val Loss: 19.98 | Beta: 1.0000
+EarlyStopping counter: 5 out of 10
+Epoch 39/100 | Train Loss: 20.18 | Val Loss: 19.99 | Beta: 1.0000
+EarlyStopping counter: 6 out of 10
+Epoch 40/100 | Train Loss: 20.18 | Val Loss: 19.98 | Beta: 1.0000
+EarlyStopping counter: 7 out of 10
+Epoch 41/100 | Train Loss: 20.17 | Val Loss: 19.98 | Beta: 1.0000
+EarlyStopping counter: 8 out of 10
+Epoch 42/100 | Train Loss: 20.17 | Val Loss: 19.97 | Beta: 1.0000
+EarlyStopping counter: 9 out of 10
+Epoch 43/100 | Train Loss: 20.17 | Val Loss: 19.98 | Beta: 1.0000
+EarlyStopping counter: 10 out of 10
 Early stopping triggered
 Loading best model from Best_VAE.pth
 Generating plots for Latent Dim 32...
 Generating reconstruction plots for Latent Dim 32...
 Reconstruction plots logged.
 Extracting features for distribution plot...
+Saved 24046 latent vectors of dimension 32
 wandb: WARNING Unable to verify login in offline mode.
 wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
 wandb: Tracking run with wandb version 0.23.0
 wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_182748-v3xd33xi
+wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_190126-mozhbnt1
 wandb: 
 wandb: Run history:
 wandb:       beta ▁▁
 wandb: latent_dim ▁▁
 wandb: 
 wandb: Run summary:
-wandb:         beta 1
-wandb: crop_percent crop20
-wandb:  crop_suffix crop20
+wandb:         beta 2
+wandb: crop_percent crop10
+wandb:  crop_suffix crop10
 wandb:   latent_dim 32
 wandb: 
 wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_182748-v3xd33xi
-wandb: Find logs at: ./wandb/offline-run-20260102_182748-v3xd33xi/logs
+wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260105_190126-mozhbnt1
+wandb: Find logs at: ./wandb/offline-run-20260105_190126-mozhbnt1/logs
 Running on device: cuda
-Using crop_percent=0.2, beta=1.0, epochs=100, latent_dim=32
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.2
+Using crop_percent=0.1, beta=2.0, epochs=100, latent_dim=32
+Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.1
 Data Split: 24046 training samples, 6011 validation samples.
-Epoch 1/100 | Train Loss: 21.64 | Val Loss: 19.07 | Beta: 0.0000
-Validation loss decreased (inf --> 19.068849).  Saving model ...
-Epoch 2/100 | Train Loss: 19.10 | Val Loss: 18.88 | Beta: 0.1000
-Validation loss decreased (19.068849 --> 18.875278).  Saving model ...
-Epoch 3/100 | Train Loss: 18.99 | Val Loss: 18.83 | Beta: 0.2000
-Validation loss decreased (18.875278 --> 18.832360).  Saving model ...
-Epoch 4/100 | Train Loss: 18.97 | Val Loss: 18.81 | Beta: 0.3000
-Validation loss decreased (18.832360 --> 18.808183).  Saving model ...
-Epoch 5/100 | Train Loss: 18.98 | Val Loss: 18.82 | Beta: 0.4000
-EarlyStopping counter: 1 out of 5
-Epoch 6/100 | Train Loss: 19.00 | Val Loss: 18.85 | Beta: 0.5000
-EarlyStopping counter: 2 out of 5
-Epoch 7/100 | Train Loss: 19.03 | Val Loss: 18.84 | Beta: 0.6000
-EarlyStopping counter: 3 out of 5
-Epoch 8/100 | Train Loss: 19.06 | Val Loss: 18.88 | Beta: 0.7000
-EarlyStopping counter: 4 out of 5
-Epoch 9/100 | Train Loss: 19.08 | Val Loss: 18.87 | Beta: 0.8000
-EarlyStopping counter: 5 out of 5
+Epoch 1/100 | Train Loss: 21.48 | Val Loss: 20.21 | Beta: 0.0000
+Validation loss decreased (inf --> 20.205602).  Saving model ...
+Epoch 2/100 | Train Loss: 20.38 | Val Loss: 20.00 | Beta: 0.2000
+Validation loss decreased (20.205602 --> 19.998781).  Saving model ...
+Epoch 3/100 | Train Loss: 20.26 | Val Loss: 19.96 | Beta: 0.4000
+Validation loss decreased (19.998781 --> 19.960118).  Saving model ...
+Epoch 4/100 | Train Loss: 20.28 | Val Loss: 20.00 | Beta: 0.6000
+Epoch 5/100 | Train Loss: 20.32 | Val Loss: 20.03 | Beta: 0.8000
+Epoch 6/100 | Train Loss: 20.37 | Val Loss: 20.08 | Beta: 1.0000
+Epoch 7/100 | Train Loss: 20.41 | Val Loss: 20.09 | Beta: 1.2000
+Epoch 8/100 | Train Loss: 20.46 | Val Loss: 20.11 | Beta: 1.4000
+Epoch 9/100 | Train Loss: 20.50 | Val Loss: 20.16 | Beta: 1.6000
+Epoch 10/100 | Train Loss: 20.54 | Val Loss: 20.19 | Beta: 1.8000
+Epoch 11/100 | Train Loss: 20.58 | Val Loss: 20.20 | Beta: 2.0000
+Validation loss decreased (19.960118 --> 20.202269).  Saving model ...
+Epoch 12/100 | Train Loss: 20.57 | Val Loss: 20.21 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 13/100 | Train Loss: 20.56 | Val Loss: 20.19 | Beta: 2.0000
+Validation loss decreased (20.202269 --> 20.189355).  Saving model ...
+Epoch 14/100 | Train Loss: 20.56 | Val Loss: 20.21 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 15/100 | Train Loss: 20.55 | Val Loss: 20.18 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 16/100 | Train Loss: 20.54 | Val Loss: 20.19 | Beta: 2.0000
+EarlyStopping counter: 3 out of 10
+Epoch 17/100 | Train Loss: 20.54 | Val Loss: 20.19 | Beta: 2.0000
+EarlyStopping counter: 4 out of 10
+Epoch 18/100 | Train Loss: 20.53 | Val Loss: 20.19 | Beta: 2.0000
+EarlyStopping counter: 5 out of 10
+Epoch 19/100 | Train Loss: 20.53 | Val Loss: 20.20 | Beta: 2.0000
+EarlyStopping counter: 6 out of 10
+Epoch 20/100 | Train Loss: 20.53 | Val Loss: 20.20 | Beta: 2.0000
+EarlyStopping counter: 7 out of 10
+Epoch 21/100 | Train Loss: 20.53 | Val Loss: 20.18 | Beta: 2.0000
+Validation loss decreased (20.189355 --> 20.176358).  Saving model ...
+Epoch 22/100 | Train Loss: 20.52 | Val Loss: 20.18 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 23/100 | Train Loss: 20.51 | Val Loss: 20.19 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 24/100 | Train Loss: 20.51 | Val Loss: 20.16 | Beta: 2.0000
+Validation loss decreased (20.176358 --> 20.163892).  Saving model ...
+Epoch 25/100 | Train Loss: 20.51 | Val Loss: 20.19 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 26/100 | Train Loss: 20.51 | Val Loss: 20.17 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 27/100 | Train Loss: 20.50 | Val Loss: 20.18 | Beta: 2.0000
+EarlyStopping counter: 3 out of 10
+Epoch 28/100 | Train Loss: 20.50 | Val Loss: 20.15 | Beta: 2.0000
+Validation loss decreased (20.163892 --> 20.151521).  Saving model ...
+Epoch 29/100 | Train Loss: 20.50 | Val Loss: 20.16 | Beta: 2.0000
+EarlyStopping counter: 1 out of 10
+Epoch 30/100 | Train Loss: 20.49 | Val Loss: 20.17 | Beta: 2.0000
+EarlyStopping counter: 2 out of 10
+Epoch 31/100 | Train Loss: 20.49 | Val Loss: 20.17 | Beta: 2.0000
+EarlyStopping counter: 3 out of 10
+Epoch 32/100 | Train Loss: 20.49 | Val Loss: 20.15 | Beta: 2.0000
+EarlyStopping counter: 4 out of 10
+Epoch 33/100 | Train Loss: 20.49 | Val Loss: 20.16 | Beta: 2.0000
+EarlyStopping counter: 5 out of 10
+Epoch 34/100 | Train Loss: 20.49 | Val Loss: 20.17 | Beta: 2.0000
+EarlyStopping counter: 6 out of 10
+Epoch 35/100 | Train Loss: 20.49 | Val Loss: 20.16 | Beta: 2.0000
+EarlyStopping counter: 7 out of 10
+Epoch 36/100 | Train Loss: 20.48 | Val Loss: 20.15 | Beta: 2.0000
+EarlyStopping counter: 8 out of 10
+Epoch 37/100 | Train Loss: 20.48 | Val Loss: 20.16 | Beta: 2.0000
+EarlyStopping counter: 9 out of 10
+Epoch 38/100 | Train Loss: 20.48 | Val Loss: 20.16 | Beta: 2.0000
+EarlyStopping counter: 10 out of 10
 Early stopping triggered
 Loading best model from Best_VAE.pth
 Generating plots for Latent Dim 32...
 Generating reconstruction plots for Latent Dim 32...
 Reconstruction plots logged.
 Extracting features for distribution plot...
-wandb: WARNING Unable to verify login in offline mode.
-wandb: WARNING Using a boolean value for 'reinit' is deprecated. Use 'return_previous' or 'finish_previous' instead.
-wandb: Tracking run with wandb version 0.23.0
-wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
-wandb: Run data is saved locally in /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_185211-6w4flo81
-wandb: 
-wandb: Run history:
-wandb:       beta ▁▁
-wandb: latent_dim ▁▁
-wandb: 
-wandb: Run summary:
-wandb:         beta 1
-wandb: crop_percent crop30
-wandb:  crop_suffix crop30
-wandb:   latent_dim 32
-wandb: 
-wandb: You can sync this run to the cloud by running:
-wandb: wandb sync /cosma/home/durham/dc-fras4/code/wandb/offline-run-20260102_185211-6w4flo81
-wandb: Find logs at: ./wandb/offline-run-20260102_185211-6w4flo81/logs
-Running on device: cuda
-Using crop_percent=0.3, beta=1.0, epochs=100, latent_dim=32
-Loading real data from /cosma5/data/durham/dc-fras4/ultrasound/output_frames/for_vae/all_images with crop_percent=0.3
-Data Split: 24046 training samples, 6011 validation samples.
-Epoch 1/100 | Train Loss: 18.36 | Val Loss: 17.43 | Beta: 0.0000
-Validation loss decreased (inf --> 17.433132).  Saving model ...
-Epoch 2/100 | Train Loss: 17.36 | Val Loss: 17.34 | Beta: 0.1000
-Validation loss decreased (17.433132 --> 17.336420).  Saving model ...
-Epoch 3/100 | Train Loss: 17.29 | Val Loss: 17.31 | Beta: 0.2000
-Validation loss decreased (17.336420 --> 17.305472).  Saving model ...
-Epoch 4/100 | Train Loss: 17.28 | Val Loss: 17.30 | Beta: 0.3000
-Validation loss decreased (17.305472 --> 17.295069).  Saving model ...
-Epoch 5/100 | Train Loss: 17.29 | Val Loss: 17.30 | Beta: 0.4000
-EarlyStopping counter: 1 out of 5
-Epoch 6/100 | Train Loss: 17.32 | Val Loss: 17.33 | Beta: 0.5000
-EarlyStopping counter: 2 out of 5
-Epoch 7/100 | Train Loss: 17.35 | Val Loss: 17.35 | Beta: 0.6000
-EarlyStopping counter: 3 out of 5
-Epoch 8/100 | Train Loss: 17.37 | Val Loss: 17.37 | Beta: 0.7000
-EarlyStopping counter: 4 out of 5
-Epoch 9/100 | Train Loss: 17.39 | Val Loss: 17.37 | Beta: 0.8000
-EarlyStopping counter: 5 out of 5
-Early stopping triggered
-Loading best model from Best_VAE.pth
-Generating plots for Latent Dim 32...
-Generating reconstruction plots for Latent Dim 32...
-Reconstruction plots logged.
-Extracting features for distribution plot...
-Starting Offline Sweep for 4 crop settings...
+Saved 24046 latent vectors of dimension 32
+Starting Offline Sweep for 6 runs...
 
---- Run 1/4 ---
-Setting: Crop Top=0.0%
+--- Run 1/6 ---
+Setting: Crop Top=0.0%, Beta=0.1
 
---- Run 2/4 ---
-Setting: Crop Top=10.0%
+--- Run 2/6 ---
+Setting: Crop Top=0.0%, Beta=1
 
---- Run 3/4 ---
-Setting: Crop Top=20.0%
+--- Run 3/6 ---
+Setting: Crop Top=0.0%, Beta=2
 
---- Run 4/4 ---
-Setting: Crop Top=30.0%
+--- Run 4/6 ---
+Setting: Crop Top=10.0%, Beta=0.1
+
+--- Run 5/6 ---
+Setting: Crop Top=10.0%, Beta=1
+
+--- Run 6/6 ---
+Setting: Crop Top=10.0%, Beta=2
 
 All offline runs completed.
 To upload results, run: wandb sync --include-offline wandb/offline-run-*

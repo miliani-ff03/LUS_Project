@@ -1,5 +1,0 @@
-nohup: ignoring input
-wandb: Starting wandb agent 🕵️
-wandb: Network error (ConnectTimeout), entering retry loop.
-wandb: ERROR Find detailed error logs at: /cosma/home/durham/dc-fras4/code/wandb/debug-cli.dc-fras4.log
-Error: HTTPSConnectionPool(host='api.wandb.ai', port=443): Max retries exceeded with url: /graphql (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x1489bde0bc20>, 'Connection to api.wandb.ai timed out. (connect timeout=20)'))

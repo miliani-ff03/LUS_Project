@@ -623,7 +623,7 @@ if __name__ == "__main__":
     suffix = f"crop{int(CROP_PERCENT*100)}"
     full_suffix = f"ld{LATENT_DIM}_crop{int(CROP_PERCENT*100)}_beta{BETA}"
 
-    model_save_name = f"Best_VAE_{suffix}.pth"
+    model_save_name = f"Best_VAE_{full_suffix}.pth"
 
     tracker = train_vae(vae, train_loader, val_loader, epochs=EPOCHS, end_beta=BETA, learning_rate=LEARNING_RATE)
     

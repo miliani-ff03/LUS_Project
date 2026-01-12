@@ -6,7 +6,7 @@ import pandas as pd
 import json
 
 
-CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-05T18_00_39.610+00_00.csv"
+CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-08T11_56_34.162+00_00.csv"
 
 # Path to your metadata CSV
 METADATA_PATH = "/cosma/home/durham/dc-fras4/code/data_preprocessing/data_tables/all_data.csv"

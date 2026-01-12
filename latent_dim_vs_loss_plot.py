@@ -65,10 +65,10 @@ axes[2].set_ylabel("Validation Loss")
 axes[2].grid(True)  
 
 plt.tight_layout()
-plt.savefig("latent_dim_vs_loss_run2.png")
+plt.savefig("latent_dim_vs_loss_run3.png")
 plt.show()
 
 # save numerical results
-np.savez("latent_dim_vs_loss_results_run2.npz", **results)
+np.savez("latent_dim_vs_loss_results_run3.npz", **results)
 
 # to run use nohup python latent_dim_vs_loss_plot.py &> log_2 &

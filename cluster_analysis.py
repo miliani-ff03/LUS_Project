@@ -8,13 +8,13 @@ from plotly.subplots import make_subplots
 # ================= CONFIGURATION =================
 # Path to your downloaded WandB table JSON
 # Update this to the specific JSON file you want to analyze
-CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-04T17_10_36.558+00_00.csv"
+CLUSTER_TABLE_PATH = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-08T11_56_34.162+00_00.csv"
 
 # Path to your metadata CSV
 METADATA_PATH = "/cosma/home/durham/dc-fras4/code/data_preprocessing/data_tables/all_data.csv"
 
 # Output filename for the interactive plot
-OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_1_crop_0_k_3.html"
+OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_1_crop_10_k_4_vers2.html"
 # =================================================
 
 def load_data():
@@ -127,11 +127,17 @@ def main():
         specs=[[{"type": "scatter"}, {"type": "bar"}]],
         column_widths=[0.6, 0.4]
     )
+    # Diverse color palette for clusters
+    diverse_colors = ['#1f77b4',  '#2ca02c', '#d62728', '#9467bd',  '#e377c2', '#bcbd22']
+    cluster_color_map = {str(cluster): diverse_colors[i % len(diverse_colors)] 
+                         for i, cluster in enumerate(sorted(cluster_df['cluster_label'].unique()))}
+    
     scatter = px.scatter(
         cluster_df, 
         x='tsne_x', 
         y='tsne_y', 
         color='cluster_label',
+        color_discrete_map=cluster_color_map,
         
         # What shows up when you hover:
         hover_data={
@@ -140,8 +146,7 @@ def main():
             'cluster_label': True,
             'Score': True,
             'filename': True
-        },
-        template="plotly_dark", # Optional: looks cool, remove if you prefer white background
+        } # Optional: looks cool, remove if you prefer white background
     )
 
     # Customize the layout
@@ -151,30 +156,33 @@ def main():
         # Add bar chart to second subplot
     score_counts = cluster_df.groupby(['Score', 'cluster_label']).size().reset_index(name='Count')
 
+    # Blue color palette for bars
+    blue_colors = ['#08519c', '#3182bd', '#6baed6', '#9ecae1', '#c6dbef', '#deebf7']
     
-    for score in sorted(score_counts['Score'].unique()):
+    for idx, score in enumerate(sorted(score_counts['Score'].unique())):
         score_data = score_counts[score_counts['Score'] == score]
         fig.add_trace(go.Bar(
             x=score_data['cluster_label'],
             y=score_data['Count'],
             name=f'Score {score}',
+            marker=dict(color=blue_colors[idx % len(blue_colors)]),
             hovertemplate='<b>Cluster: %{x}</b><br>Count: %{y}<extra></extra>'
         ), row=1, col=2)
     
     # Update layout
-    fig.update_xaxes(title_text="t-SNE Dimension 1", row=1, col=1)
-    fig.update_yaxes(title_text="t-SNE Dimension 2", row=1, col=1)
-    fig.update_xaxes(title_text="Cluster", row=1, col=2)
-    fig.update_yaxes(title_text="Count", row=1, col=2)
+    fig.update_xaxes(title_text="t-SNE Dimension 1", title_font=dict(size=18), tickfont=dict(size=14), row=1, col=1)
+    fig.update_yaxes(title_text="t-SNE Dimension 2", title_font=dict(size=18), tickfont=dict(size=14), row=1, col=1)
+    fig.update_xaxes(title_text="Cluster", title_font=dict(size=18), tickfont=dict(size=14), row=1, col=2)
+    fig.update_yaxes(title_text="Count", title_font=dict(size=18), tickfont=dict(size=14), row=1, col=2)
 
     fig.update_layout(
         height=600,
         width=1400,
         title_text=f"Cluster Analysis Dashboard ({os.path.splitext(os.path.basename(OUTPUT_HTML))[0].split('_', 1)[-1].replace('_', ' ')})",
-        template="plotly_dark",
-        barmode='group'
+        barmode='group',
+        legend=dict(font=dict(size=16))
     )
-    fig.update_traces(marker=dict(size=8, opacity=0.8), selector=dict(mode='markers'))
+    fig.update_traces(marker=dict(size=6, opacity=0.8), selector=dict(mode='markers'))
     # 4. Save to HTML
     os.makedirs(os.path.dirname(OUTPUT_HTML), exist_ok=True)
     fig.write_html(OUTPUT_HTML)

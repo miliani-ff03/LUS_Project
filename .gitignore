@@ -90,8 +90,13 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Optional: large local data/artifacts (uncomment if desired)
-# data/
-# outputs/
-# models/
-# checkpoints/
+# Model checkpoints (large files)
+*.pth
+models/
+
+# Large result/export files
+*.npz
+*_export_*.csv
+
+# Keep results HTML files local (optional - uncomment if needed)
+# results/*.html

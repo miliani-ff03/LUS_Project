@@ -8,3 +8,5 @@ scikit-learn
 pillow
 wandb
 python-dotenv
+pandas
+plotly

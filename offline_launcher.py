@@ -5,11 +5,11 @@ import sys
 
 # Configuration ranges from your sweep_config.yaml
 LATENT_DIMS = 32
-BETAS = 1
-EPOCHS = 32
+BETAS = 5
+EPOCHS = 60
 # MIN_LR = 0.0001
 # MAX_LR = 0.01
-CROP_SETTINGS = 0.0
+CROP_SETTINGS = 0.1
 # How many total runs do you want to perform?
 # NUM_RUNS =4
 SCRIPT_NAME = "Medical_VAE_Clustering.py"

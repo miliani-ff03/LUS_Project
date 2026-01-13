@@ -30,10 +30,11 @@ os.environ["WANDB_MODE"] = "offline"
 # ==========================================
 parser = argparse.ArgumentParser(description="VAE Training with Crop Sweep")
 
-parser.add_argument("--crop_percent", type=float, default=0.25, help="Percentage to crop from top (0.0 to 1.0)")
-parser.add_argument("--beta", type=float, default=5.0, help="Beta parameter for KL Divergence")
-parser.add_argument("--epochs", type=int, default=10, help="Number of training epochs")
+parser.add_argument("--crop_percent", type=float, default=0.1, help="Percentage to crop from top (0.0 to 1.0)")
+parser.add_argument("--beta", type=float, default=2.0, help="Beta parameter for KL Divergence")
+parser.add_argument("--epochs", type=int, default=20, help="Number of training epochs")
 parser.add_argument("--latent_dim", type=int, default=32, help="Latent dimension size")
+parser.add_argument("--annealing", type=str, default="cyclical", choices=["cyclical", "linear"], help="Type of beta annealing")
 
 if 'ipykernel' in sys.modules or hasattr(sys, 'ps1'):
     # Use default values in notebook
@@ -134,13 +135,30 @@ class KLAnnealer:
     """Linearly anneals beta from start_beta to end_beta over warmup_epochs."""
     def __init__(self, total_epochs, start_beta=0.0, end_beta=1.0):
         self.total_epochs = total_epochs
-        self.warmup_epochs = max(1, total_epochs // 10) 
+        self.warmup_epochs = max(1, total_epochs // 5) 
         self.start_beta = start_beta
         self.end_beta = end_beta
     
     def get_beta(self, epoch):
         if epoch < self.warmup_epochs:
             return self.start_beta + (self.end_beta - self.start_beta) * (epoch / self.warmup_epochs)
+        else:
+            return self.end_beta
+        
+class CyclicalAnnealer:
+    """Cyclically anneals beta between start_beta and end_beta."""
+    def __init__(self, total_epochs, cycles=4, start_beta=0.0, end_beta=1.0):
+        self.total_epochs = total_epochs
+        self.cycles = cycles
+        self.cycle_length = total_epochs // cycles
+        self.start_beta = start_beta
+        self.end_beta = end_beta
+    
+    def get_beta(self, epoch):
+        cycle_epoch = epoch % self.cycle_length
+        half_cycle = self.cycle_length / 2
+        if cycle_epoch < half_cycle:
+            return self.start_beta + (self.end_beta - self.start_beta) * (cycle_epoch / half_cycle)
         else:
             return self.end_beta
         
@@ -294,11 +312,16 @@ def get_dataloader(use_real_data=True, data_path='/cosma5/data/durham/dc-fras4/u
         
     return train_loader, val_loader
 
-def train_vae(model, train_loader, val_loader, epochs, end_beta, learning_rate, save_path="Best_VAE.pth", patience=10):
+def train_vae(model, train_loader, val_loader, epochs, end_beta, learning_rate, save_path="Best_VAE.pth", patience=10, use_cyclical=False):
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     tracker = LossTracker()
-    kl_annealer = KLAnnealer(total_epochs=epochs, start_beta=0.0, end_beta=end_beta)
+
+    if use_cyclical:
+        annealer = CyclicalAnnealer(total_epochs=epochs, cycles = 4, start_beta=0.0, end_beta=end_beta)
+    else:
+        annealer = KLAnnealer(total_epochs=epochs, start_beta=0.0, end_beta=end_beta)
+
     early_stopping = EarlyStopping(patience=patience, verbose=True, path=save_path)
 
     for epoch in range(epochs):
@@ -307,7 +330,7 @@ def train_vae(model, train_loader, val_loader, epochs, end_beta, learning_rate, 
         total_bce = 0
         total_kld = 0
 
-        current_beta = kl_annealer.get_beta(epoch)
+        current_beta = annealer.get_beta(epoch)
 
         for batch_idx, (data, _) in enumerate(train_loader):
             data = data.to(DEVICE)
@@ -341,16 +364,28 @@ def train_vae(model, train_loader, val_loader, epochs, end_beta, learning_rate, 
         print(f"Epoch {epoch+1}/{epochs} | Train Loss: {avg_train_loss:.2f} | Val Loss: {avg_val_loss:.2f} | Beta: {current_beta:.4f}")
         
         # --- EARLY STOPPING CHECK ---
-        if epoch >= kl_annealer.warmup_epochs:
-            early_stopping(avg_val_loss, model)
-        
-            if early_stopping.early_stop:
-                print("Early stopping triggered")
-                break
-
+        if use_cyclical:
+            total_cycles = epochs // annealer.cycle_length
+            current_cycle = epoch // annealer.cycle_length
+            
+            # Only check early stopping on the LAST cycle
+            if current_cycle >= total_cycles - 1:
+                early_stopping(avg_val_loss, model)
+                if early_stopping.early_stop:
+                    print("Early stopping triggered")
+                    break
         else:
-            if avg_val_loss < early_stopping.val_loss_min - early_stopping.delta:
-                early_stopping.save_checkpoint(avg_val_loss, model)
+            # Original linear annealing logic
+            if epoch >= annealer.warmup_epochs:
+                early_stopping(avg_val_loss, model)
+                if early_stopping.early_stop:
+                    print("Early stopping triggered")
+                    break
+            else:
+                if avg_val_loss < early_stopping.val_loss_min - early_stopping.delta:
+                    early_stopping.save_checkpoint(avg_val_loss, model)
+
+        
 
     # Load the best model (saved by EarlyStopping)
     print(f"Loading best model from {save_path}")
@@ -623,9 +658,11 @@ if __name__ == "__main__":
     suffix = f"crop{int(CROP_PERCENT*100)}"
     full_suffix = f"ld{LATENT_DIM}_crop{int(CROP_PERCENT*100)}_beta{BETA}"
 
-    model_save_name = f"Best_VAE_{full_suffix}.pth"
+    annealing_type = args.annealing
+    model_save_name = f"Best_VAE_ld{LATENT_DIM}_crop{int(CROP_PERCENT*100)}_beta{BETA}_{annealing_type}.pth"
+    
 
-    tracker = train_vae(vae, train_loader, val_loader, epochs=EPOCHS, end_beta=BETA, learning_rate=LEARNING_RATE)
+    tracker = train_vae(vae, train_loader, val_loader, epochs=EPOCHS, end_beta=BETA, learning_rate=LEARNING_RATE, save_path=model_save_name, patience=10, use_cyclical=(annealing_type=="cyclical"))
     
     # Save and log
     perform_clustering_and_log(vae, train_loader, LATENT_DIM, BETA, crop_suffix=suffix)

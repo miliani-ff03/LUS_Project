@@ -24,8 +24,8 @@ from utils import load_cluster_data, find_score
 
 # ================= DEFAULT CONFIGURATION =================
 # These can be overridden via command line arguments
-DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-13T18_21_16.715+00_00.csv"
-DEFAULT_OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_2_crop_0_k_4.html"
+DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-20T11_18_50.297+00_00.csv"
+DEFAULT_OUTPUT_HTML = "results/interactive_tsne_ld_23_beta_2_crop_10_k_4.html"
 # =========================================================
 
 

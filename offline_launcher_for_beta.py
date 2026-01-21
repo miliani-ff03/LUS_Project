@@ -4,8 +4,8 @@ import numpy as np
 import sys
 
 # Configuration ranges from your sweep_config.yaml
-LATENT_DIMS = 32
-BETAS = [1,2,5]
+LATENT_DIMS = [27, 23]
+BETAS = [1,5]
 EPOCHS = 60
 # MIN_LR = 0.0001
 # MAX_LR = 0.01
@@ -24,12 +24,14 @@ for i, beta in enumerate(BETAS):
     
     print(f"\n--- Run {i+1}/{len(BETAS)} ---")
     print(f"Setting: Beta = {beta}")
+    print(f"Latent Dim = {LATENT_DIMS[i]}")
 
+    latent_dim = LATENT_DIMS[i]
     # 2. Construct the command
     # matches arguments in train_sweep.py
     cmd = [
         sys.executable, SCRIPT_NAME,
-        "--latent_dim", str(LATENT_DIMS),
+        "--latent_dim", str(latent_dim),
         "--beta", str(beta),
         "--epochs", str(EPOCHS),
         "--crop_percent", str(CROP_SETTINGS)

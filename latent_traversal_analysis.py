@@ -66,35 +66,42 @@ def parse_args():
     )
     return parser.parse_args()
 
+latent_features_path = "/cosma5/data/durham/dc-fras4/ultrasound/vae_results/latent_features"
 
-def load_model_and_latents(beta: float):
-    """Load VAE model and corresponding latent vectors for a given beta."""
-    # beta=0.1 uses a different naming convention
+# open the latent features and image paths
+def load_model_and_latents(beta: float, LATENT_DIM: int, CROP_PERCENT: int):
+    latent_vectors_path = os.path.join(
+        latent_features_path,
+        f"latent_vectors_ld{LATENT_DIM}_crop{CROP_PERCENT}_beta{beta}.npy"
+    )
+    image_paths_path = os.path.join(
+        latent_features_path,
+        f"image_paths_ld{LATENT_DIM}_crop{CROP_PERCENT}_beta{beta}.npy"
+    )
+    
+    # Load latent vectors and image paths
+    X_latent = np.load(latent_vectors_path)
+    image_paths = np.load(image_paths_path)
+
     if beta == 0.1:
         model_path = f"Best_VAE_beta_0.1_crop{CROP_PERCENT}.pth"
     else:
         model_path = f"Best_VAE_ld{LATENT_DIM}_crop{CROP_PERCENT}_beta{beta}_cyclical.pth"
-    latent_path = f"results/latent_features/latent_vectors_ld{LATENT_DIM}_crop{CROP_PERCENT}_beta{beta}.npy"
     
     if not os.path.exists(model_path):
         print(f"  Model not found: {model_path}")
-        return None, None, None
-    if not os.path.exists(latent_path):
-        print(f"  Latents not found: {latent_path}")
         return None, None, None
     
     # Load model
     vae = ConvVAE(latent_dim=LATENT_DIM).to(DEVICE)
     vae.load_state_dict(torch.load(model_path, map_location=DEVICE))
     vae.eval()
-    
-    # Load latent vectors
-    X_latent = np.load(latent_path)
-    
-    # Compute variance for feature ranking
+
     variances = np.var(X_latent, axis=0)
     
     return vae, X_latent, variances
+
+
 
 
 def decode_latent(vae, z: torch.Tensor) -> np.ndarray:
@@ -111,6 +118,7 @@ def generate_traversal_grid(
     base_z: np.ndarray,
     feature_indices: list,
     feature_labels: list,
+    variances: np.ndarray,
     title: str,
     save_path: Path
 ):
@@ -122,6 +130,7 @@ def generate_traversal_grid(
         base_z: Baseline latent vector (numpy array)
         feature_indices: List of latent dimension indices to traverse
         feature_labels: Labels for each row (e.g., "Dim 5 (high var)")
+        variances: Full variance array for all latent dimensions
         title: Plot title
         save_path: Where to save the figure
     """
@@ -145,7 +154,7 @@ def generate_traversal_grid(
         
         for col_idx, val in enumerate(sweep_values):
             modified_z = base_tensor.clone()
-            modified_z[feat_idx] = val
+            modified_z[feat_idx] = base_tensor[feat_idx] + val * np.sqrt(variances[feat_idx])
             
             reconstructed_image = decode_latent(vae, modified_z)
             
@@ -180,7 +189,7 @@ def analyze_beta(beta: float, num_samples: int):
     print(f"Analyzing β = {beta}")
     print(f"{'='*60}")
     
-    vae, X_latent, variances = load_model_and_latents(beta)
+    vae, X_latent, variances = load_model_and_latents(beta, LATENT_DIM, CROP_PERCENT)
     if vae is None:
         return
     
@@ -209,6 +218,7 @@ def analyze_beta(beta: float, num_samples: int):
         vae, mean_latent,
         high_var_indices.tolist(),
         high_var_labels,
+        variances,
         f"Latent Traversal: HIGH Variance Dims (β={beta}, Mean Baseline)",
         OUTPUT_DIR / f"{beta_str}_mean_high_variance.png"
     )
@@ -217,6 +227,7 @@ def analyze_beta(beta: float, num_samples: int):
         vae, mean_latent,
         low_var_indices.tolist(),
         low_var_labels,
+        variances,
         f"Latent Traversal: LOW Variance Dims (β={beta}, Mean Baseline)",
         OUTPUT_DIR / f"{beta_str}_mean_low_variance.png"
     )
@@ -233,6 +244,7 @@ def analyze_beta(beta: float, num_samples: int):
             vae, sample_z,
             high_var_indices.tolist(),
             high_var_labels,
+            variances,
             f"Latent Traversal: HIGH Var Dims (β={beta}, Sample #{sample_idx})",
             OUTPUT_DIR / f"{beta_str}_sample{sample_idx}_high_variance.png"
         )
@@ -246,6 +258,7 @@ def analyze_beta(beta: float, num_samples: int):
         vae, mean_latent,
         all_indices,
         all_labels,
+        variances,
         f"Full Latent Traversal: All {LATENT_DIM} Dims (β={beta}, Mean Baseline)",
         OUTPUT_DIR / f"{beta_str}_mean_all_dimensions.png"
     )

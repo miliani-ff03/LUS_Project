@@ -32,7 +32,7 @@ from utils import load_cluster_data, find_score
 
 
 # ================= DEFAULT CONFIGURATION =================
-DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-08T11_56_34.162+00_00.csv"
+DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-20T11_30_24.355+00_00.csv"
 # =========================================================
 
 

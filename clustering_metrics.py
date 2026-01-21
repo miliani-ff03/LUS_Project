@@ -32,7 +32,7 @@ from utils import load_cluster_data, find_score
 
 
 # ================= DEFAULT CONFIGURATION =================
-DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-20T11_30_24.355+00_00.csv"
+DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20260121_145342-itgqznl8/files/media/table/video_cluster_labels_k4_2_972c7c613c8e85a4f63d.table.json"
 # =========================================================
 
 
@@ -53,8 +53,12 @@ def main():
     # Load data using shared utility
     cluster_df, df_metadata = load_cluster_data(args.cluster_table)
     
-    # Map image paths to scores
-    print("Mapping image paths to scores...")
+    # Detect data level
+    data_level = cluster_df.get('_data_level', 'frame').iloc[0] if '_data_level' in cluster_df.columns else 'frame'
+    print(f"Data level: {data_level.upper()}")
+    
+    # Map identifiers to scores
+    print(f"Mapping {'video IDs' if data_level == 'video' else 'image paths'} to scores...")
     cluster_df['Score'] = cluster_df['image_path'].apply(lambda path: find_score(path, df_metadata))
     
     # Drop rows with NaN scores

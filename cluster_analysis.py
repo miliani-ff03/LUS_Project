@@ -24,8 +24,8 @@ from utils import load_cluster_data, find_score
 
 # ================= DEFAULT CONFIGURATION =================
 # These can be overridden via command line arguments
-DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb_export_2026-01-20T11_18_50.297+00_00.csv"
-DEFAULT_OUTPUT_HTML = "results/interactive_tsne_ld_23_beta_2_crop_10_k_4.html"
+DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20260121_145342-itgqznl8/files/media/table/video_cluster_labels_k4_2_972c7c613c8e85a4f63d.table.json"
+DEFAULT_OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_2_crop_10_k_4_video_level_trans.html"
 # =========================================================
 
 
@@ -51,16 +51,49 @@ def main():
     # 1. Load Data using shared utility
     cluster_df, df_metadata = load_cluster_data(args.cluster_table)
     print(f"Loaded {len(cluster_df)} points from cluster table.")
+    
+    # Detect data level
+    data_level = cluster_df.get('_data_level', 'frame').iloc[0] if '_data_level' in cluster_df.columns else 'frame'
+    print(f"Data level: {data_level.upper()}")
 
-    # 2. Match Scores using shared utility
-    print("Matching scores to images...")
+    # 2. Match Scores and Hospital using shared utility
+    print("Matching scores and hospital to data points...")
     cluster_df['Score'] = cluster_df['image_path'].apply(lambda x: find_score(x, df_metadata))
     cluster_df['Score'] = cluster_df['Score'].astype('Int64')  # Int64 handles NaN values
+    
+    # 3. Match Hospital from metadata
+    def get_hospital(identifier, df_meta):
+        """Extract hospital from video_id (now prefixed with hospital)."""
+        # New format: HOSPITAL_baseVideoId (e.g., JCUH_27_LU_4_RPB)
+        for h in ['JCUH', 'MFT', 'UHW']:
+            if identifier.startswith(f"{h}_"):
+                return h
+        
+        # Fallback: try to match in metadata
+        if 'video_id' in df_meta.columns:
+            vid = identifier.split('_selected_frame')[0] if '_selected_frame' in identifier else identifier
+            match = df_meta[df_meta['video_id'] == vid]
+            if not match.empty and 'Hospital' in df_meta.columns:
+                return match.iloc[0]['Hospital']
+        
+        # Last resort: infer from pattern
+        # Strip any hospital prefix that might not be in our list
+        base_id = identifier.split('_', 1)[-1] if '_' in identifier else identifier
+        if base_id and base_id[0].isdigit():
+            return 'JCUH/MFT'
+        return 'UHW'
+    
+    cluster_df['Hospital'] = cluster_df['video_id'].apply(lambda x: get_hospital(x, df_metadata))
 
-    # Clean up image path for display (just show filename and directory before for hospital)
-    cluster_df['filename'] = cluster_df['image_path'].apply(
-        lambda x: os.path.join(os.path.basename(os.path.dirname(x)), os.path.basename(x))
-    )
+    # Create display identifier based on data level
+    if data_level == 'video':
+        # For video-level data, show video_id with hospital
+        cluster_df['display_id'] = cluster_df['video_id']
+    else:
+        # For frame-level data, show directory/filename
+        cluster_df['display_id'] = cluster_df['image_path'].apply(
+            lambda x: os.path.join(os.path.basename(os.path.dirname(x)), os.path.basename(x))
+        )
     
     # Ensure Cluster is treated as a category (string) for better coloring
     cluster_df['cluster_label'] = cluster_df['cluster_label'].astype(str)
@@ -93,7 +126,8 @@ def main():
             'tsne_y': False,
             'cluster_label': True,
             'Score': True,
-            'filename': True
+            'Hospital': True,
+            'display_id': True
         }
     )
 

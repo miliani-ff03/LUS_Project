@@ -29,11 +29,15 @@ from Medical_VAE_Clustering import ConvVAE, DEVICE
 
 
 # ================= CONFIGURATION =================
-LATENT_DIM = 32
-CROP_PERCENT = 10  # Matches your saved models
+# Model configurations: (beta, latent_dim) pairs
+# Add your trained models here
+MODEL_CONFIGS = [
+    (1.0, 27),
+    (2.0, 23),
+    (5.0, 23),
+]
 
-# Available beta values (based on your saved models and latent features)
-AVAILABLE_BETAS = [1.0, 2.0, 5.0]
+CROP_PERCENT = 10  # Matches your saved models
 
 # Number of random samples to analyze
 NUM_RANDOM_SAMPLES = 5
@@ -56,7 +60,13 @@ def parse_args():
         "--beta", "-b",
         type=float,
         default=None,
-        help="Beta value to analyze. If not specified, analyzes all available betas."
+        help="Beta value to analyze. If not specified, analyzes all configs in MODEL_CONFIGS."
+    )
+    parser.add_argument(
+        "--ld", "--latent-dim",
+        type=int,
+        default=None,
+        help="Latent dimension for the model. Required when using --beta."
     )
     parser.add_argument(
         "--samples", "-s",
@@ -183,13 +193,13 @@ def generate_traversal_grid(
     print(f"  Saved: {save_path}")
 
 
-def analyze_beta(beta: float, num_samples: int):
-    """Run full traversal analysis for a single beta value."""
+def analyze_beta(beta: float, latent_dim: int, num_samples: int):
+    """Run full traversal analysis for a single beta value and latent dimension."""
     print(f"\n{'='*60}")
-    print(f"Analyzing β = {beta}")
+    print(f"Analyzing β = {beta}, latent_dim = {latent_dim}")
     print(f"{'='*60}")
     
-    vae, X_latent, variances = load_model_and_latents(beta, LATENT_DIM, CROP_PERCENT)
+    vae, X_latent, variances = load_model_and_latents(beta, latent_dim, CROP_PERCENT)
     if vae is None:
         return
     
@@ -219,8 +229,8 @@ def analyze_beta(beta: float, num_samples: int):
         high_var_indices.tolist(),
         high_var_labels,
         variances,
-        f"Latent Traversal: HIGH Variance Dims (β={beta}, Mean Baseline)",
-        OUTPUT_DIR / f"{beta_str}_mean_high_variance.png"
+        f"Latent Traversal: HIGH Variance Dims (β={beta}, ld={latent_dim}, Mean Baseline)",
+        OUTPUT_DIR / f"{beta_str}_ld{latent_dim}_mean_high_variance.png"
     )
     
     generate_traversal_grid(
@@ -228,8 +238,8 @@ def analyze_beta(beta: float, num_samples: int):
         low_var_indices.tolist(),
         low_var_labels,
         variances,
-        f"Latent Traversal: LOW Variance Dims (β={beta}, Mean Baseline)",
-        OUTPUT_DIR / f"{beta_str}_mean_low_variance.png"
+        f"Latent Traversal: LOW Variance Dims (β={beta}, ld={latent_dim}, Mean Baseline)",
+        OUTPUT_DIR / f"{beta_str}_ld{latent_dim}_mean_low_variance.png"
     )
     
     # === 2. Random samples ===
@@ -245,13 +255,13 @@ def analyze_beta(beta: float, num_samples: int):
             high_var_indices.tolist(),
             high_var_labels,
             variances,
-            f"Latent Traversal: HIGH Var Dims (β={beta}, Sample #{sample_idx})",
-            OUTPUT_DIR / f"{beta_str}_sample{sample_idx}_high_variance.png"
+            f"Latent Traversal: HIGH Var Dims (β={beta}, ld={latent_dim}, Sample #{sample_idx})",
+            OUTPUT_DIR / f"{beta_str}_ld{latent_dim}_sample{sample_idx}_high_variance.png"
         )
     
     # === 3. All dimensions for mean baseline ===
     print("\n  [3/3] Generating ALL dimensions traversal for mean baseline...")
-    all_indices = list(range(LATENT_DIM))
+    all_indices = list(range(latent_dim))
     all_labels = [f"Dim {i}" for i in all_indices]
     
     generate_traversal_grid(
@@ -259,8 +269,8 @@ def analyze_beta(beta: float, num_samples: int):
         all_indices,
         all_labels,
         variances,
-        f"Full Latent Traversal: All {LATENT_DIM} Dims (β={beta}, Mean Baseline)",
-        OUTPUT_DIR / f"{beta_str}_mean_all_dimensions.png"
+        f"Full Latent Traversal: All {latent_dim} Dims (β={beta}, Mean Baseline)",
+        OUTPUT_DIR / f"{beta_str}_ld{latent_dim}_mean_all_dimensions.png"
     )
     
     print(f"\n  ✓ Completed analysis for β={beta}")
@@ -277,13 +287,17 @@ def main():
     print(f"Random samples per beta: {args.samples}")
     
     if args.beta is not None:
-        # Single beta analysis
-        analyze_beta(args.beta, args.samples)
+        # Single beta analysis - require latent dimension
+        if args.ld is None:
+            print("ERROR: --ld (latent dimension) is required when using --beta")
+            print("Example: python latent_traversal_analysis.py --beta 1.0 --ld 27")
+            return
+        analyze_beta(args.beta, args.ld, args.samples)
     else:
-        # Analyze all available betas
-        print(f"\nAnalyzing all available betas: {AVAILABLE_BETAS}")
-        for beta in AVAILABLE_BETAS:
-            analyze_beta(beta, args.samples)
+        # Analyze all model configs
+        print(f"\nAnalyzing all model configs: {MODEL_CONFIGS}")
+        for beta, latent_dim in MODEL_CONFIGS:
+            analyze_beta(beta, latent_dim, args.samples)
     
     print("\n" + "=" * 60)
     print("ANALYSIS COMPLETE")

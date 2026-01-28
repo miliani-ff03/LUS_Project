@@ -24,7 +24,7 @@ from utils import load_cluster_data, find_score
 
 # ================= DEFAULT CONFIGURATION =================
 # These can be overridden via command line arguments
-DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20260121_145342-itgqznl8/files/media/table/video_cluster_labels_k4_2_972c7c613c8e85a4f63d.table.json"
+DEFAULT_CLUSTER_TABLE = "/cosma/home/durham/dc-fras4/code/wandb/offline-run-20260125_154551-xtpekwtd/files/media/table/video_cluster_labels_k4_2_a189eea3b4d49b28bd8d.table.json"
 DEFAULT_OUTPUT_HTML = "results/interactive_tsne_ld_32_beta_2_crop_10_k_4_video_level_trans.html"
 # =========================================================
 

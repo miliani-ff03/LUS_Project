@@ -26,49 +26,53 @@ os.environ["WANDB_MODE"] = "offline"
 
 # %%
 # ==========================================
-# 1. CONFIGURATION
+# 1. CONFIGURATION (defaults for import)
 # ==========================================
-parser = argparse.ArgumentParser(description="VAE Training with Video-Level Aggregation")
 
-parser.add_argument("--crop_percent", type=float, default=0.1, help="Percentage to crop from top (0.0 to 1.0)")
-parser.add_argument("--beta", type=float, default=2.0, help="Beta parameter for KL Divergence")
-parser.add_argument("--epochs", type=int, default=60, help="Number of training epochs")
-parser.add_argument("--latent_dim", type=int, default=32, help="Latent dimension size")
-parser.add_argument("--annealing", type=str, default="cyclical", choices=["cyclical", "linear"], help="Type of beta annealing")
-parser.add_argument("--aggregation", type=str, default="mean", choices=["mean", "max", "concat", "transformer"], help="Video aggregation method")
-parser.add_argument("--frames_per_video", type=int, default=10, help="Number of frames per video")
-parser.add_argument("--load_model", type=str, default=None, help="Path to pre-trained VAE model (skips training if provided)")
-
-if 'ipykernel' in sys.modules or hasattr(sys, 'ps1'):
-    args = parser.parse_args([])
-else:
-    args = parser.parse_args()
-
-# Image settings
+# Default settings (used when imported as module)
 IMAGE_SIZE = 64
 CHANNELS = 1
-LATENT_DIM = args.latent_dim
-FRAMES_PER_VIDEO = args.frames_per_video
-AGGREGATION_METHOD = args.aggregation
-
-# Training settings
+LATENT_DIM = 32
+FRAMES_PER_VIDEO = 10
+AGGREGATION_METHOD = "mean"
 BATCH_SIZE = 64
 LEARNING_RATE = 1e-3
-EPOCHS = args.epochs
-BETA = args.beta
-CROP_PERCENT = args.crop_percent
+EPOCHS = 60
+BETA = 2.0
+CROP_PERCENT = 0.1
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
+
+def parse_args():
+    """Parse command line arguments (only when run as main script)."""
+    parser = argparse.ArgumentParser(description="VAE Training with Video-Level Aggregation")
+
+    parser.add_argument("--crop_percent", type=float, default=0.1, help="Percentage to crop from top (0.0 to 1.0)")
+    parser.add_argument("--beta", type=float, default=2.0, help="Beta parameter for KL Divergence")
+    parser.add_argument("--epochs", type=int, default=60, help="Number of training epochs")
+    parser.add_argument("--latent_dim", type=int, default=32, help="Latent dimension size")
+    parser.add_argument("--annealing", type=str, default="cyclical", choices=["cyclical", "linear"], help="Type of beta annealing")
+    parser.add_argument("--aggregation", type=str, default="mean", choices=["mean", "max", "concat", "transformer"], help="Video aggregation method")
+    parser.add_argument("--frames_per_video", type=int, default=10, help="Number of frames per video")
+    parser.add_argument("--load_model", type=str, default=None, help="Path to pre-trained VAE model (skips training if provided)")
+    parser.add_argument("--selected_dims", type=int, nargs="+", default=None, help="Specific latent dimensions to use for clustering (e.g., --selected_dims 3 7 12)")
+
+    if 'ipykernel' in sys.modules or hasattr(sys, 'ps1'):
+        return parser.parse_args([])
+    else:
+        return parser.parse_args()
+
 
 # %%
 # ==========================================
 # 2. VAE MODEL ARCHITECTURE (Same as original)
 # ==========================================
 class ConvVAE(nn.Module):
-    def __init__(self, latent_dim):
+    def __init__(self, latent_dim, channels=1):
         super(ConvVAE, self).__init__()
         
         self.encoder = nn.Sequential(
-            nn.Conv2d(CHANNELS, 32, kernel_size=4, stride=2, padding=1),
+            nn.Conv2d(channels, 32, kernel_size=4, stride=2, padding=1),
             nn.ReLU(),
             nn.Conv2d(32, 64, kernel_size=4, stride=2, padding=1),
             nn.ReLU(),
@@ -689,9 +693,13 @@ def extract_video_latent_features(model, dataloader, aggregation_method="mean", 
 # ==========================================
 # 9. VIDEO-LEVEL CLUSTERING AND VISUALIZATION
 # ==========================================
-def perform_video_clustering_and_log(model, dataloader, latent_dim, beta, aggregation_method="mean", crop_suffix="", transformer_model=None):
+def perform_video_clustering_and_log(model, dataloader, latent_dim, beta, aggregation_method="mean", crop_suffix="", transformer_model=None, selected_dims=None):
     """
     Runs video-level feature extraction, KMeans, t-SNE, and logs plots to WandB.
+    
+    Args:
+        selected_dims: Optional list of latent dimension indices to use for clustering.
+                       If None, uses all dimensions. E.g., [3, 7, 12] to cluster only on those dims.
     """
     print(f"Generating video-level clustering plots (aggregation={aggregation_method})...")
     
@@ -702,20 +710,32 @@ def perform_video_clustering_and_log(model, dataloader, latent_dim, beta, aggreg
     
     print(f"Extracted {len(video_embeddings)} video embeddings of shape {video_embeddings.shape}")
     
+    # Filter to selected dimensions if specified
+    if selected_dims is not None:
+        print(f"Using only selected latent dimensions for clustering: {selected_dims}")
+        embeddings_for_clustering = video_embeddings[:, selected_dims]
+        dims_label = f"dims{'-'.join(map(str, selected_dims))}"
+    else:
+        embeddings_for_clustering = video_embeddings
+        dims_label = "all_dims"
+    
+    print(f"Clustering on embeddings of shape {embeddings_for_clustering.shape}")
+    
     for N_CLUSTERS in [2, 3, 4]:
         kmeans = KMeans(n_clusters=N_CLUSTERS, n_init=10, random_state=42)
-        clusters = kmeans.fit_predict(video_embeddings)
+        clusters = kmeans.fit_predict(embeddings_for_clustering)
 
-        # t-SNE Visualization
-        tsne = TSNE(n_components=2, random_state=42, perplexity=min(30, len(video_embeddings) - 1))
-        limit = min(len(video_embeddings), 1000)
-        X_embedded = tsne.fit_transform(video_embeddings[:limit])
+        # t-SNE Visualization (on selected dimensions)
+        tsne = TSNE(n_components=2, random_state=42, perplexity=min(30, len(embeddings_for_clustering) - 1))
+        limit = min(len(embeddings_for_clustering), 1000)
+        X_embedded = tsne.fit_transform(embeddings_for_clustering[:limit])
         clusters_plot = clusters[:limit]
         
         fig = plt.figure(figsize=(10, 8))
         scatter = plt.scatter(X_embedded[:, 0], X_embedded[:, 1], c=clusters_plot, cmap='tab10', alpha=0.6)
         plt.colorbar(scatter, label='Cluster ID')
-        plt.title(f"Video Clustering (LD={latent_dim}, Beta={beta}, Agg={aggregation_method}, K={N_CLUSTERS})")
+        title_suffix = f" [{dims_label}]" if selected_dims else ""
+        plt.title(f"Video Clustering (LD={latent_dim}, Beta={beta}, Agg={aggregation_method}, K={N_CLUSTERS}){title_suffix}")
         plt.xlabel("t-SNE Dim 1")
         plt.ylabel("t-SNE Dim 2")
         plt.tight_layout()
@@ -809,6 +829,15 @@ def log_video_reconstruction(model, dataloader, latent_dim, beta, crop_suffix=""
 # 10. MAIN EXECUTION
 # ==========================================
 if __name__ == "__main__":
+    # Parse arguments and update globals
+    args = parse_args()
+    LATENT_DIM = args.latent_dim
+    FRAMES_PER_VIDEO = args.frames_per_video
+    AGGREGATION_METHOD = args.aggregation
+    EPOCHS = args.epochs
+    BETA = args.beta
+    CROP_PERCENT = args.crop_percent
+    
     load_dotenv()
     WANDB_API_KEY = os.getenv("WANDB_API_KEY")
     if WANDB_API_KEY:
@@ -949,7 +978,8 @@ if __name__ == "__main__":
         vae, train_loader, LATENT_DIM, BETA,
         aggregation_method=AGGREGATION_METHOD,
         crop_suffix=suffix,
-        transformer_model=transformer_aggregator
+        transformer_model=transformer_aggregator,
+        selected_dims=args.selected_dims
     )
     
     log_video_reconstruction(vae, val_loader, LATENT_DIM, BETA, crop_suffix=suffix)

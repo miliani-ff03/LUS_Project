@@ -919,11 +919,16 @@ def main():
         if args.transformer_checkpoint is None:
             raise ValueError("--transformer-checkpoint required when using transformer aggregation")
         
-        print(f"\nLoading transformer aggregator from {args.transformer_checkpoint}...")
+        # Automatically determine number of heads (must divide latent_dim evenly)
+        possible_heads = [8, 4, 2, 1]
+        n_heads = next((h for h in possible_heads if args.latent_dim % h == 0), 1)
+        print(f"\nUsing {n_heads} attention heads for latent_dim={args.latent_dim}")
+        
+        print(f"Loading transformer aggregator from {args.transformer_checkpoint}...")
         transformer_model = TransformerVideoAggregator(
             latent_dim=args.latent_dim,
             n_frames=args.frames_per_video,
-            n_heads=4,
+            n_heads=n_heads,
             n_layers=2,
             dropout=0.1
         ).to(args.device)

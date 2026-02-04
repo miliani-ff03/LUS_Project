@@ -1,48 +1,36 @@
 """
 Centralized configuration for the Medical VAE Clustering project.
 
-BACKWARD COMPATIBILITY: This file now re-exports from shared.config.
-For new code, prefer importing directly:
-    from shared.config import Config, ProjectConfig
-
 Usage:
-    from config import Config
+    from shared.config import Config
     
     # Access paths
     data_path = Config.DATA_DIR / "for_vae" / "all_images"
     metadata = Config.METADATA_PATH
 """
 
-# Re-export from shared module for backward compatibility  
-from shared.config import Config, ProjectConfig
-
-# Original imports kept for backward compatibility with any code that does:
-# from config import Path, os, etc.
 from pathlib import Path
 import os
 from dataclasses import dataclass, field
 from typing import Optional
 
 
-# NOTE: The ProjectConfig class below is kept but no longer used on import.
-# The actual Config instance comes from shared.config
-
 @dataclass
-class _ProjectConfig:
+class ProjectConfig:
     """Project-wide configuration with sensible defaults for COSMA environment."""
     
     # Base directories
-    PROJECT_ROOT: Path = field(default_factory=lambda: Path(__file__).parent)
+    PROJECT_ROOT: Path = field(default_factory=lambda: Path(__file__).parent.parent)
     
     # Data paths (COSMA5 storage)
     DATA_DIR: Path = Path("/cosma5/data/durham/dc-fras4/ultrasound/output_frames")
     VAE_DATA_PATH: Path = DATA_DIR / "for_vae" / "all_images"
     
     # Metadata
-    METADATA_PATH: Path = field(default_factory=lambda: Path(__file__).parent / "data_preprocessing" / "data_tables" / "all_data.csv")
+    METADATA_PATH: Path = field(default_factory=lambda: Path(__file__).parent.parent / "data_preprocessing" / "data_tables" / "all_data.csv")
     
-    # Output directories
-    RESULTS_DIR: Path = field(default_factory=lambda: Path(__file__).parent / "results")
+    # Output directories (level-specific results folders are in frame_level/ and video_level/)
+    RESULTS_DIR: Path = field(default_factory=lambda: Path(__file__).parent.parent / "results")
     
     # Model defaults
     DEFAULT_LATENT_DIM: int = 32

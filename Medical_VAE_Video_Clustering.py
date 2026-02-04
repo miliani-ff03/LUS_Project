@@ -911,10 +911,17 @@ if __name__ == "__main__":
     transformer_aggregator = None
     if AGGREGATION_METHOD == "transformer":
         print(f"\n=== TRAINING TRANSFORMER AGGREGATOR ===")
+        
+        # Automatically determine number of heads (must divide latent_dim evenly)
+        # Prefer larger numbers of heads for better attention, but fallback to smaller values
+        possible_heads = [8, 4, 2, 1]
+        n_heads = next((h for h in possible_heads if LATENT_DIM % h == 0), 1)
+        print(f"Using {n_heads} attention heads for latent_dim={LATENT_DIM}")
+        
         transformer_aggregator = TransformerVideoAggregator(
             latent_dim=LATENT_DIM,
             n_frames=FRAMES_PER_VIDEO,
-            n_heads=4,
+            n_heads=n_heads,
             n_layers=2,
             dropout=0.1
         ).to(DEVICE)

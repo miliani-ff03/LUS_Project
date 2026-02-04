@@ -1,18 +1,12 @@
 """
 Shared utility functions for the Medical VAE Clustering project.
 
-BACKWARD COMPATIBILITY: This file now re-exports from shared.utils.
-For new code, prefer importing directly:
-    from shared.utils import load_cluster_data, find_score
+This module consolidates commonly used functions to avoid code duplication.
 
 Usage:
-    from utils import load_cluster_data, find_score
+    from shared.utils import load_cluster_data, find_score
 """
 
-# Re-export from shared module for backward compatibility
-from shared.utils import load_cluster_data, find_score, get_hospital_from_path
-
-# Original imports kept for backward compatibility
 import os
 import json
 from pathlib import Path
@@ -20,7 +14,7 @@ from typing import Optional, Tuple
 
 import pandas as pd
 
-from config import Config
+from .config import Config
 
 
 def load_cluster_data(

@@ -288,13 +288,15 @@ class TransformerVideoAggregator(nn.Module):
             nn.Linear(latent_dim, latent_dim)
         )
     
-    def forward(self, frame_latents: torch.Tensor) -> torch.Tensor:
+    def forward(self, frame_latents: torch.Tensor, return_attention: bool = False):
         """
         Args:
             frame_latents: Tensor of shape (batch, n_frames, latent_dim)
+            return_attention: If True, also return attention weights
         
         Returns:
             video_embedding: Tensor of shape (batch, latent_dim)
+            attention_weights: (optional) Tensor of shape (batch, n_frames) if return_attention=True
         """
         B = frame_latents.size(0)
         
@@ -314,13 +316,49 @@ class TransformerVideoAggregator(nn.Module):
         # Project output
         video_embedding = self.output_proj(cls_output)
         
+        if return_attention:
+            # Compute attention weights using a separate forward pass
+            attn_weights = self._compute_attention_weights(frame_latents)
+            return video_embedding, attn_weights
+        
         return video_embedding
+    
+    def _compute_attention_weights(self, frame_latents: torch.Tensor) -> torch.Tensor:
+        """
+        Compute attention weights showing how much the CLS token attends to each frame.
+        
+        Uses gradient-based attribution as PyTorch's TransformerEncoder doesn't 
+        directly expose attention weights.
+        """
+        B = frame_latents.size(0)
+        
+        # Clone and enable gradients
+        x = frame_latents.clone().requires_grad_(True)
+        x_pos = x + self.pos_encoding
+        
+        # Prepend CLS token
+        cls_tokens = self.cls_token.expand(B, -1, -1)
+        seq = torch.cat([cls_tokens, x_pos], dim=1)
+        
+        # Forward through transformer
+        out = self.transformer(seq)
+        cls_output = out[:, 0, :]
+        
+        # Compute gradient of CLS output norm w.r.t. input frame latents
+        loss = cls_output.norm(dim=-1).sum()
+        loss.backward(retain_graph=True)
+        
+        # Importance = gradient magnitude per frame
+        importance = x.grad.abs().mean(dim=-1)  # (B, n_frames)
+        
+        # Normalize to sum to 1
+        importance = importance / (importance.sum(dim=-1, keepdim=True) + 1e-8)
+        
+        return importance.detach()
     
     def get_attention_weights(self, frame_latents: torch.Tensor) -> torch.Tensor:
         """Get attention weights to see which frames the model focuses on."""
-        B = frame_latents.size(0)
-        # Placeholder - full implementation would extract from transformer layers
-        return torch.ones(B, self.n_frames) / self.n_frames
+        return self._compute_attention_weights(frame_latents)
 
 
 class GatedAttention(nn.Module):

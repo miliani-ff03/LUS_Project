@@ -28,6 +28,7 @@ import torchvision.transforms as transforms
 from PIL import Image
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import seaborn as sns
+import pandas as pd
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -172,20 +173,28 @@ def train_classifier(model, train_loader, val_loader, epochs=50, learning_rate=1
     return model, history
 
 
-def evaluate_classifier(model, test_loader, device='cuda'):
-    """Evaluate classifier and generate reports."""
+def evaluate_classifier(model, test_loader, device='cuda', save_predictions=True):
+    """Evaluate classifier and generate reports with confidence analysis."""
     
     model.eval()
     all_preds = []
     all_labels = []
+    all_probs = []  # Store softmax probabilities
     
     with torch.no_grad():
         for latents, labels in test_loader:
             latents = latents.to(device)
             outputs = model(latents)
+            probs = torch.softmax(outputs, dim=1)  # Get probabilities
             preds = torch.argmax(outputs, dim=1)
+            
             all_preds.extend(preds.cpu().numpy())
             all_labels.extend(labels.numpy())
+            all_probs.extend(probs.cpu().numpy())
+    
+    all_probs = np.array(all_probs)
+    all_preds = np.array(all_preds)
+    all_labels = np.array(all_labels)
     
     # Classification report
     print("\nClassification Report:")
@@ -206,7 +215,216 @@ def evaluate_classifier(model, test_loader, device='cuda'):
     plt.close()
     print(f"Confusion matrix saved to: {RESULTS_DIR / 'frame_classifier_confusion_matrix.png'}")
     
+    # === CONFIDENCE ANALYSIS ===
+    analyze_confidence(all_probs, all_preds, all_labels, RESULTS_DIR, prefix='frame')
+    
     return accuracy_score(all_labels, all_preds)
+
+
+def analyze_confidence(probs, preds, labels, results_dir, prefix='frame'):
+    """
+    Analyze prediction confidence to identify hard-to-classify samples.
+    
+    Args:
+        probs: (N, 4) array of softmax probabilities
+        preds: (N,) array of predicted labels
+        labels: (N,) array of true labels
+        results_dir: Path to save results
+        prefix: 'frame' or 'video' for filenames
+    """
+    # Get confidence (max probability) for each prediction
+    confidence = np.max(probs, axis=1)
+    
+    # Create per-sample DataFrame
+    df = pd.DataFrame({
+        'true_label': labels,
+        'predicted': preds,
+        'correct': labels == preds,
+        'confidence': confidence,
+        'prob_score_0': probs[:, 0],
+        'prob_score_1': probs[:, 1],
+        'prob_score_2': probs[:, 2],
+        'prob_score_3': probs[:, 3],
+    })
+    
+    # Add entropy (uncertainty measure)
+    entropy = -np.sum(probs * np.log(probs + 1e-10), axis=1)
+    df['entropy'] = entropy
+    
+    # Sort by confidence (lowest first = hardest to classify)
+    df_sorted = df.sort_values('confidence', ascending=True)
+    df_sorted.to_csv(results_dir / f'{prefix}_predictions_with_confidence.csv', index=False)
+    
+    print(f"\n{'='*60}")
+    print("CONFIDENCE ANALYSIS")
+    print(f"{'='*60}")
+    
+    # 1. Overall confidence statistics
+    print(f"\nOverall Confidence Statistics:")
+    print(f"  Mean confidence: {confidence.mean():.4f}")
+    print(f"  Std confidence:  {confidence.std():.4f}")
+    print(f"  Min confidence:  {confidence.min():.4f}")
+    print(f"  Max confidence:  {confidence.max():.4f}")
+    
+    # 2. Confidence by correctness
+    correct_conf = confidence[labels == preds]
+    incorrect_conf = confidence[labels != preds]
+    print(f"\nConfidence by Correctness:")
+    print(f"  Correct predictions:   {correct_conf.mean():.4f} ± {correct_conf.std():.4f}")
+    if len(incorrect_conf) > 0:
+        print(f"  Incorrect predictions: {incorrect_conf.mean():.4f} ± {incorrect_conf.std():.4f}")
+    
+    # 3. Confidence by true label
+    print(f"\nConfidence by True Label:")
+    for score in range(4):
+        mask = labels == score
+        if mask.sum() > 0:
+            score_conf = confidence[mask]
+            print(f"  Score {score}: {score_conf.mean():.4f} ± {score_conf.std():.4f} (n={mask.sum()})")
+    
+    # 4. Identify hardest samples (lowest 10% confidence)
+    threshold = np.percentile(confidence, 10)
+    hard_samples = df[df['confidence'] < threshold]
+    print(f"\nHardest Samples (bottom 10%, confidence < {threshold:.4f}):")
+    print(f"  Count: {len(hard_samples)}")
+    if len(hard_samples) > 0:
+        print(f"  Accuracy on hard samples: {hard_samples['correct'].mean():.4f}")
+        print(f"  True label distribution:")
+        for score in range(4):
+            count = (hard_samples['true_label'] == score).sum()
+            print(f"    Score {score}: {count} ({100*count/len(hard_samples):.1f}%)")
+    
+    # 5. Confusion pair analysis
+    print(f"\nClass Confusion Analysis (when incorrect):")
+    confusion_pairs = analyze_confusion_pairs(probs, preds, labels)
+    
+    # Save confusion pair analysis
+    pd.DataFrame(confusion_pairs).to_csv(
+        results_dir / f'{prefix}_confusion_pairs.csv', index=False
+    )
+    
+    # 6. Plot confidence distributions
+    plot_confidence_analysis(df, results_dir, prefix)
+    
+    print(f"\nPredictions saved to: {results_dir / f'{prefix}_predictions_with_confidence.csv'}")
+    print(f"Confusion pairs saved to: {results_dir / f'{prefix}_confusion_pairs.csv'}")
+    
+    return df
+
+
+def analyze_confusion_pairs(probs, preds, labels):
+    """
+    Analyze which class pairs are most commonly confused.
+    Returns statistics on confusion between each pair of classes.
+    """
+    confusion_data = []
+    
+    for true_class in range(4):
+        for pred_class in range(4):
+            if true_class == pred_class:
+                continue
+            
+            # Find samples where true=true_class and pred=pred_class
+            mask = (labels == true_class) & (preds == pred_class)
+            count = mask.sum()
+            
+            if count > 0:
+                # Average probability assigned to correct class when this confusion occurs
+                avg_true_prob = probs[mask, true_class].mean()
+                avg_pred_prob = probs[mask, pred_class].mean()
+                
+                confusion_data.append({
+                    'true_class': true_class,
+                    'predicted_class': pred_class,
+                    'count': count,
+                    'avg_prob_true_class': avg_true_prob,
+                    'avg_prob_pred_class': avg_pred_prob,
+                    'prob_difference': avg_pred_prob - avg_true_prob
+                })
+    
+    # Sort by count (most common confusions first)
+    confusion_data.sort(key=lambda x: -x['count'])
+    
+    print("  Top confusion pairs (true → predicted):")
+    for item in confusion_data[:5]:
+        print(f"    {item['true_class']} → {item['predicted_class']}: "
+              f"{item['count']} cases, "
+              f"avg prob diff: {item['prob_difference']:.3f}")
+    
+    return confusion_data
+
+
+def plot_confidence_analysis(df, results_dir, prefix):
+    """Generate confidence analysis plots."""
+    
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    
+    # 1. Confidence histogram by correctness
+    ax = axes[0, 0]
+    correct_conf = df[df['correct']]['confidence']
+    incorrect_conf = df[~df['correct']]['confidence']
+    ax.hist(correct_conf, bins=30, alpha=0.7, label=f'Correct (n={len(correct_conf)})', color='green')
+    ax.hist(incorrect_conf, bins=30, alpha=0.7, label=f'Incorrect (n={len(incorrect_conf)})', color='red')
+    ax.set_xlabel('Confidence')
+    ax.set_ylabel('Count')
+    ax.set_title('Confidence Distribution by Correctness')
+    ax.legend()
+    
+    # 2. Confidence by true label (box plot)
+    ax = axes[0, 1]
+    data_by_label = [df[df['true_label'] == i]['confidence'].values for i in range(4)]
+    bp = ax.boxplot(data_by_label, labels=['0', '1', '2', '3'], patch_artist=True)
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+    for patch, color in zip(bp['boxes'], colors):
+        patch.set_facecolor(color)
+        patch.set_alpha(0.7)
+    ax.set_xlabel('True Score')
+    ax.set_ylabel('Confidence')
+    ax.set_title('Confidence Distribution by True Label')
+    
+    # 3. Entropy vs Confidence scatter
+    ax = axes[1, 0]
+    scatter = ax.scatter(df['confidence'], df['entropy'], 
+                         c=df['correct'].map({True: 'green', False: 'red'}),
+                         alpha=0.5, s=10)
+    ax.set_xlabel('Confidence')
+    ax.set_ylabel('Entropy (Uncertainty)')
+    ax.set_title('Confidence vs Entropy')
+    # Custom legend
+    from matplotlib.lines import Line2D
+    legend_elements = [Line2D([0], [0], marker='o', color='w', markerfacecolor='green', markersize=8, label='Correct'),
+                       Line2D([0], [0], marker='o', color='w', markerfacecolor='red', markersize=8, label='Incorrect')]
+    ax.legend(handles=legend_elements)
+    
+    # 4. Accuracy vs confidence threshold
+    ax = axes[1, 1]
+    thresholds = np.linspace(0.3, 0.95, 20)
+    accuracies = []
+    coverages = []
+    for thresh in thresholds:
+        mask = df['confidence'] >= thresh
+        if mask.sum() > 0:
+            acc = df[mask]['correct'].mean()
+            cov = mask.mean()
+            accuracies.append(acc)
+            coverages.append(cov)
+        else:
+            accuracies.append(np.nan)
+            coverages.append(0)
+    
+    ax2 = ax.twinx()
+    l1, = ax.plot(thresholds, accuracies, 'b-', label='Accuracy')
+    l2, = ax2.plot(thresholds, coverages, 'r--', label='Coverage')
+    ax.set_xlabel('Confidence Threshold')
+    ax.set_ylabel('Accuracy', color='blue')
+    ax2.set_ylabel('Coverage (% samples)', color='red')
+    ax.set_title('Accuracy vs Coverage Trade-off')
+    ax.legend(handles=[l1, l2], loc='center right')
+    
+    plt.tight_layout()
+    plt.savefig(results_dir / f'{prefix}_confidence_analysis.png', dpi=150)
+    plt.close()
+    print(f"Confidence plots saved to: {results_dir / f'{prefix}_confidence_analysis.png'}")
 
 
 # ==========================================

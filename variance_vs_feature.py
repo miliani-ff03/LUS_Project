@@ -65,7 +65,22 @@ def plot_variance_vs_feature(variances: np.ndarray, top_k: int = 10):
     
     plt.legend()
     plt.tight_layout()
-    plt.show()      
+    plt.show()    
+
+def plot_cumulative_variance(variances: np.ndarray):
+    # Sort variances in descending order (lowest to highest)
+    sorted_variances = np.sort(variances)[::-1]
+    cumulative_variance = np.cumsum(sorted_variances)
+
+    
+    plt.figure(figsize=(10, 5))
+    plt.plot(cumulative_variance, marker='o', linestyle='-')    
+    plt.xlabel("Number of Features (sorted by variance)")
+    plt.ylabel("Cumulative Variance")
+    plt.title("Cumulative Variance Explained by Latent Features (Highest to Lowest)")
+    plt.grid(alpha=0.3, axis='y')
+    plt.tight_layout()
+    plt.show()
 
 def calculate_effective_dimensionality(variance_explained: np.ndarray) -> dict:
     """Calculate various metrics for effective dimensionality."""
@@ -192,30 +207,16 @@ def compare_betas(betas: list, LATENT_DIM: int, CROP_PERCENT: int, DEVICE: str):
     return results
 
 
+# 
 def main():
     LATENT_DIM = 32
     CROP_PERCENT = 10
-    DEVICE = 'cpu'  # or 'cuda' if GPU is available
-    
-    # Analyze single beta value in detail
-    print("\nSingle β Analysis:")
-    print("-" * 60)
+    DEVICE = 'cpu'
     beta = 5.0
+    
     X_latent, image_paths = load_model_and_latents(beta, LATENT_DIM, CROP_PERCENT, DEVICE)
     variances = compute_variances(X_latent)
-    _, variance_explained, pca = perform_pca_on_latents(X_latent)  # Use all components
-    
-    # Print analysis
-    print_dimensionality_analysis(variance_explained, beta)
-    
-    # Plot variance explained
-    plot_variance_explained(variance_explained, beta)
-    
-    # Compare across different beta values
-    # print("\nMulti-β Comparison:")
-    # print("-" * 60)
-    # betas = [1.0, 2.0, 5.0]
-    # compare_betas(betas, LATENT_DIM, CROP_PERCENT, DEVICE)
+    plot_cumulative_variance(variances)
 
 
 if __name__ == "__main__":

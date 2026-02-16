@@ -37,6 +37,7 @@ from sklearn.manifold import TSNE
 from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
 from dotenv import load_dotenv
+import json
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -392,6 +393,8 @@ def train_supervised_vae(
     early_stopping = EarlyStopping(patience=patience, verbose=True, path=str(save_path))
     
     best_val_acc = 0.0
+    best_val_loss = float('inf')
+    best_epoch = 0
 
     for epoch in range(epochs):
         model.train()
@@ -492,6 +495,9 @@ def train_supervised_vae(
         # Update best accuracy
         if val_acc > best_val_acc:
             best_val_acc = val_acc
+            best_epoch = epoch+1
+        if avg_val_loss < best_val_loss:
+            best_val_loss = avg_val_loss
         
         print(f"Epoch {epoch+1}/{epochs} | "
               f"Loss: {avg_train_loss:.2f} | "
@@ -518,10 +524,23 @@ def train_supervised_vae(
                     break
 
     print(f"\nBest validation accuracy: {best_val_acc:.2%}")
+    print(f"Best validation loss: {best_val_loss:.2f}")
     
     # Load best model
     print(f"Loading best model from {save_path}")
     model.load_state_dict(torch.load(save_path))
+
+    metrics_path = save_path.parent / f"{save_path.stem}_metrics.json"
+
+    with open(metrics_path, 'w') as f:
+        json.dump({
+            "best_epoch": best_epoch,
+            "best_val_accuracy": best_val_acc,
+            "best_val_loss": best_val_loss,
+            "final_train_loss": tracker.history["loss"][-1],
+            "final_val_loss": tracker.history["val_loss"][-1],
+            "final_val_accuracy": tracker.history["val_accuracy"][-1]
+        }, f, indent=2)
 
     return tracker, classifier_head
 

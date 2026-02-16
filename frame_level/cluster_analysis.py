@@ -105,6 +105,16 @@ def load_cluster_data_local(table_path):
     
     print(f"✓ Loaded {len(cluster_df)} rows from {table_path.name}")
     
+    if 'umap_x' in cluster_df.columns and 'umap_y' in cluster_df.columns:
+        cluster_df['tsne_x'] = cluster_df['umap_x']
+        cluster_df['tsne_y'] = cluster_df['umap_y']
+        embedding_type = "UMAP"
+    elif 'tsne_x' not in cluster_df.columns or 'tsne_y' not in cluster_df.columns:
+        raise ValueError("Missing embedding columns: need either (tsne_x, tsne_y) or (umap_x, umap_y)")
+    else:
+        embedding_type = "t-SNE"
+
+    
     # Validate required columns
     required_cols = ['tsne_x', 'tsne_y', 'cluster_label', 'image_path']
     missing_cols = [col for col in required_cols if col not in cluster_df.columns]
@@ -274,10 +284,11 @@ def main():
     fig.update_yaxes(title_text="Count", title_font=dict(size=18), tickfont=dict(size=14), row=1, col=2)
 
     input_name = Path(args.cluster_table).stem
+    embedding_type = "UMAP" if 'umap_x' in cluster_df.columns else "t-SNE"
     fig.update_layout(
         height=600,
         width=1400,
-        title_text=f"Frame-Level Cluster Analysis: {input_name}",
+        title_text=f"Frame-Level Cluster Analysis: {input_name} ({embedding_type} Embedding)",
         barmode='group',
         legend=dict(font=dict(size=16))
     )

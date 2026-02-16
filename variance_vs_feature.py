@@ -209,10 +209,10 @@ def compare_betas(betas: list, LATENT_DIM: int, CROP_PERCENT: int, DEVICE: str):
 
 # 
 def main():
-    LATENT_DIM = 32
+    LATENT_DIM = 23
     CROP_PERCENT = 10
     DEVICE = 'cpu'
-    beta = 5.0
+    beta = 2.0
     
     X_latent, image_paths = load_model_and_latents(beta, LATENT_DIM, CROP_PERCENT, DEVICE)
     variances = compute_variances(X_latent)

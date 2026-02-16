@@ -16,8 +16,8 @@ import umap
 
 
 
-LATENT_FEATURES_PATH = "/cosma/home/durham/dc-fras4/code/frame_level/results/supervised/latent_features/latent_vectors_ld32_crop10_beta2.0_gamma1.0.npy"
-IMAGE_PATHS_PATH = "/cosma/home/durham/dc-fras4/code/frame_level/results/supervised/latent_features/image_paths_ld32_crop10_beta2.0_gamma1.0.npy"
+LATENT_FEATURES_PATH = "/cosma/home/durham/dc-fras4/code/frame_level/results/supervised/latent_features/latent_vectors_ld23_crop10_beta2.0_gamma1.0.npy"
+IMAGE_PATHS_PATH = "/cosma/home/durham/dc-fras4/code/frame_level/results/supervised/latent_features/image_paths_ld23_crop10_beta2.0_gamma1.0.npy"
 
 RESULTS_DIR = Path("/cosma/home/durham/dc-fras4/code/frame_level/results/supervised/clustering_plots")
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -82,7 +82,7 @@ def perform_kmean_clustering_and_log(latent_vectors = latent_vectors, image_path
 
 def perform_hdbscan_clustering_and_log(latent_vectors = latent_vectors, image_paths = image_paths, latent_dim=32, beta=2.0, crop_suffix="crop10"): 
     clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=20,
+        min_cluster_size=10,
         min_samples=5,
         cluster_selection_method='eom',
         allow_single_cluster=True,

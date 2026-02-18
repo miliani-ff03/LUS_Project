@@ -830,7 +830,7 @@ def main():
     
     # Model save path
     crop_suffix = f"crop{int(args.crop_percent*100)}"
-    full_suffix = f"ld{args.latent_dim}_{crop_suffix}_beta{args.beta}_gamma{args.gamma}"
+    full_suffix = f"ld{args.latent_dim}_{crop_suffix}_beta{args.beta}_gamma{args.gamma}_lr{args.learning_rate}"
     model_save_path = CHECKPOINTS_DIR / f"SupervisedVAE_{full_suffix}_{args.annealing}.pth"
     
     # Train

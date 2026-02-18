@@ -5,7 +5,7 @@ Runs a grid search over hyperparameters and logs all metrics,
 plots, and clustering results to WandB for later analysis.
 
 Usage:
-    nohup python offline_launcher_for_sweep.py &> sweep_log.txt &
+    nohup python frame_level/offline_launcher_for_sweep.py &> sweep_log.txt &
 """
 
 import subprocess
@@ -47,9 +47,9 @@ except ImportError:
 # ==========================================
 
 LATENT_DIMS = [10, 20, 30]
-BETAS = [1.0, 2.0, 5.0]
+BETAS = [ 2.0, 5.0]
 GAMMAS = [1.0, 2.0, 5.0, 10.0]
-LEARNING_RATES = [0.00001, 0.0001, 0.001, 0.01, 0.1]
+LEARNING_RATES = [0.00001, 0.0001, 0.001]
 
 # Fixed parameters
 EPOCHS = 60
@@ -63,7 +63,7 @@ MODULE_DIR = Path(__file__).parent
 RESULTS_DIR = MODULE_DIR / "results" / "sweep"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-SCRIPT_NAME = "train_vae_with_classifier.py"
+SCRIPT_NAME = "frame_level/train_vae_with_classifier.py"
 
 
 # ==========================================
@@ -82,15 +82,34 @@ def compute_clustering_metrics(latent_vectors: np.ndarray, true_scores: np.ndarr
     valid_mask = true_scores >= 0
     X_valid = latent_vectors[valid_mask]
     scores_valid = true_scores[valid_mask]
+
+     # Edge case 1: No valid samples
+    if len(X_valid) == 0:
+        print("Warning: No valid samples with scores >= 0. Returning NaN metrics.")
+        return None
+    
+    # Edge case 2: Too few samples for clustering
+    if len(X_valid) < n_clusters:
+        print(f"Warning: Only {len(X_valid)} samples, need at least {n_clusters}. Returning NaN metrics.")
+        return None
+    
     
     # K-Means clustering
     kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
     cluster_labels = kmeans.fit_predict(X_valid)
     
-    # Internal metrics (cluster quality)
-    db_score = davies_bouldin_score(X_valid, cluster_labels)
-    silhouette = silhouette_score(X_valid, cluster_labels)
-    calinski = calinski_harabasz_score(X_valid, cluster_labels)
+    n_unique_clusters = len(np.unique(cluster_labels))
+    
+    # Internal metrics (require at least 2 clusters)
+    if n_unique_clusters < 2:
+        print(f"Warning: Only {n_unique_clusters} cluster found. Latent space collapsed. Setting metrics to NaN.")
+        db_score = float('nan')
+        silhouette = float('nan')
+        calinski = float('nan')
+    else:
+        db_score = davies_bouldin_score(X_valid, cluster_labels)
+        silhouette = silhouette_score(X_valid, cluster_labels)
+        calinski = calinski_harabasz_score(X_valid, cluster_labels)
     
     # External metrics (agreement with true scores)
     ari_score = adjusted_rand_score(scores_valid, cluster_labels)
@@ -102,7 +121,7 @@ def compute_clustering_metrics(latent_vectors: np.ndarray, true_scores: np.ndarr
     cluster_to_score = {col: row for row, col in zip(row_ind, col_ind)}
     
     # Map cluster labels to predicted scores
-    predicted_scores = np.array([cluster_to_score[c] for c in cluster_labels])
+    predicted_scores = np.array([cluster_to_score.get(c, -1) for c in cluster_labels])
     
     # Compute accuracy after Hungarian matching
     hungarian_accuracy = np.mean(predicted_scores == scores_valid.astype(int))
@@ -112,12 +131,16 @@ def compute_clustering_metrics(latent_vectors: np.ndarray, true_scores: np.ndarr
     for score in range(n_clusters):
         mask = scores_valid.astype(int) == score
         if mask.sum() > 0:
-            per_class_acc[f'score_{score}_acc'] = np.mean(predicted_scores[mask] == score)
+            per_class_acc[f'score_{score}_acc'] = float(np.mean(predicted_scores[mask] == score))
 
     
     # t-SNE for visualization
     print("Computing t-SNE...")
     max_samples = 3000
+
+     # Edge case 3: Too few samples for t-SNE perplexity
+    perplexity = min(30, max(5, len(X_valid) // 3 - 1))
+    
     if len(X_valid) > max_samples:
         idx = np.random.choice(len(X_valid), max_samples, replace=False)
         X_tsne = X_valid[idx]
@@ -129,9 +152,18 @@ def compute_clustering_metrics(latent_vectors: np.ndarray, true_scores: np.ndarr
         scores_tsne = scores_valid
         idx = np.arange(len(X_valid))
     
-    tsne = TSNE(n_components=2, random_state=42, perplexity=30)
-    X_embedded = tsne.fit_transform(X_tsne)
-    
+    if np.allclose(X_tsne, X_tsne[0]):
+        print("Warning: All latent vectors are identical. Using dummy t-SNE coordinates.")
+        X_embedded = np.random.randn(len(X_tsne), 2) * 0.01
+    else:
+        try:
+            tsne = TSNE(n_components=2, random_state=42, perplexity=perplexity)
+            X_embedded = tsne.fit_transform(X_tsne)
+        except Exception as e:
+            print(f"Warning: t-SNE failed ({e}). Using PCA fallback.")
+            from sklearn.decomposition import PCA
+            pca = PCA(n_components=2, random_state=42)
+            X_embedded = pca.fit_transform(X_tsne)
     return {
         'davies_bouldin': db_score,
         'silhouette': silhouette,
@@ -265,7 +297,7 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
                 "n_clusters": N_CLUSTERS
             },
             dir=str(run_dir),
-            reinit=True
+            settings=wandb.Settings(init_timeout=300)
         )
     
     # Run the training script
@@ -294,7 +326,7 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
         return {"status": "failed", "error": str(e)}
     
     # Load saved latent features
-    latent_suffix = f"ld{latent_dim}_crop{int(CROP_PERCENT*100)}_beta{beta}_gamma{gamma}"
+    latent_suffix = f"ld{latent_dim}_crop{int(CROP_PERCENT*100)}_beta{beta}_gamma{gamma}_lr{learning_rate}"
     latent_dir = MODULE_DIR / "results" / "supervised" / "latent_features"
     
     try:
@@ -309,8 +341,8 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
         return {"status": "failed", "error": f"Missing latent features: {e}"}
     
     # Load best metrics from training
-    model_name = f"SupervisedVAE_ld{latent_dim}_crop{int(CROP_PERCENT*100)}_beta{beta}_gamma{gamma}_{ANNEALING}"
-    metrics_file = MODULE_DIR / "checkpoints" / f"best_metrics_{model_name}.json"
+    model_name = f"SupervisedVAE_ld{latent_dim}_crop{int(CROP_PERCENT*100)}_beta{beta}_gamma{gamma}_lr{learning_rate}_{ANNEALING}"
+    metrics_file = MODULE_DIR / "checkpoints" / f"{model_name}_metrics.json"
     
     best_val_acc = None
     best_val_loss = None
@@ -328,26 +360,45 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
     print("\nComputing clustering metrics...")
     cluster_results = compute_clustering_metrics(latent_vectors, scores, N_CLUSTERS)
     
+    # Handle None return from clustering (degenerate cases)
     if cluster_results is None:
-        if HAS_WANDB:
-            wandb.finish(exit_code=1)
-        return {"status": "failed", "error": "Clustering failed"}
-    
-    # Generate clustering plots
-    print("Generating clustering plots...")
-    tsne_path, heatmap_path = log_clustering_plots(cluster_results, run_dir, suffix)
-    
-    # Create cluster table
-    cluster_df = create_cluster_table(
-        image_paths, latent_vectors, scores, 
-        cluster_results, cluster_results['tsne_indices']
-    )
-    cluster_table_path = run_dir / f"cluster_table_{suffix}.csv"
-    cluster_df.to_csv(cluster_table_path, index=False)
-    
-    # Also save as JSON for compatibility
-    cluster_json_path = run_dir / f"cluster_table_{suffix}.json"
-    cluster_df.to_json(cluster_json_path, orient='records')
+        print("Clustering returned None, creating dummy results")
+        cluster_results = {
+            'davies_bouldin': float('nan'),
+            'silhouette': float('nan'),
+            'calinski_harabasz': float('nan'),
+            'adjusted_rand_index': float('nan'),
+            'hungarian_accuracy': float('nan'),
+            'cluster_to_score_mapping': {},
+            'per_class_accuracy': {},
+            'cluster_labels': np.array([]),
+            'predicted_scores': np.array([]),
+            'tsne_coords': np.array([]).reshape(0, 2),
+            'tsne_cluster_labels': np.array([]),
+            'tsne_scores': np.array([]),
+            'tsne_indices': np.array([]),
+            'kmeans_centers': np.array([])
+        }
+        # Skip plotting if clustering failed
+        tsne_path = None
+        heatmap_path = None
+        cluster_table_path = None
+    else:
+        # Generate clustering plots
+        print("Generating clustering plots...")
+        tsne_path, heatmap_path = log_clustering_plots(cluster_results, run_dir, suffix)
+        
+        # Create cluster table
+        cluster_df = create_cluster_table(
+            image_paths, latent_vectors, scores, 
+            cluster_results, cluster_results['tsne_indices']
+        )
+        cluster_table_path = run_dir / f"cluster_table_{suffix}.csv"
+        cluster_df.to_csv(cluster_table_path, index=False)
+        
+        # Also save as JSON for compatibility
+        cluster_json_path = run_dir / f"cluster_table_{suffix}.json"
+        cluster_df.to_json(cluster_json_path, orient='records')
     
     # Extract best metrics from training (parse from stdout or load from saved files)
     # Load the loss tracker if saved, otherwise estimate from final values
@@ -376,11 +427,11 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
         for k, v in cluster_results['per_class_accuracy'].items():
             wandb.log({f"clustering/{k}": v})
         
-        # Log images
-        wandb.log({
-            "plots/tsne_clustering": wandb.Image(str(tsne_path)),
-            "plots/cluster_score_heatmap": wandb.Image(str(heatmap_path)),
-        })
+        # Log images (only if they exist)
+        if tsne_path and Path(tsne_path).exists():
+            wandb.log({"plots/tsne_clustering": wandb.Image(str(tsne_path))})
+        if heatmap_path and Path(heatmap_path).exists():
+            wandb.log({"plots/cluster_score_heatmap": wandb.Image(str(heatmap_path))})
         
         # Log any existing plots from the training script
         for plot_name in ["confusion_matrix", "tsne_by_score", "reconstruction", "loss_curves"]:
@@ -388,21 +439,37 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
             if plot_path.exists():
                 wandb.log({f"plots/{plot_name}": wandb.Image(str(plot_path))})
         
-        # Log cluster table as wandb Table
-        cluster_table = wandb.Table(dataframe=cluster_df)
-        wandb.log({"cluster_table": cluster_table})
-        
-        # Save artifacts
-        artifact = wandb.Artifact(
-            name=f"run_results_{suffix}",
-            type="results"
-        )
-        artifact.add_file(str(cluster_table_path))
-        artifact.add_file(str(tsne_path))
-        artifact.add_file(str(heatmap_path))
-        wandb.log_artifact(artifact)
+        # Log cluster table as wandb Table (only if clustering succeeded)
+        if cluster_table_path and len(cluster_results.get('tsne_indices', [])) > 0:
+            cluster_table = wandb.Table(dataframe=cluster_df)
+            wandb.log({"cluster_table": cluster_table})
+            
+            # Save artifacts
+            artifact = wandb.Artifact(
+                name=f"run_results_{suffix}",
+                type="results"
+            )
+            artifact.add_file(str(cluster_table_path))
+            if tsne_path:
+                artifact.add_file(str(tsne_path))
+            if heatmap_path:
+                artifact.add_file(str(heatmap_path))
+            wandb.log_artifact(artifact)
         
         wandb.finish()
+    
+    # Helper function to sanitize NaN/Inf for JSON
+    def sanitize_for_json(obj):
+        """Convert NaN/Inf to None for JSON compatibility"""
+        if isinstance(obj, float):
+            if np.isnan(obj) or np.isinf(obj):
+                return None
+            return obj
+        elif isinstance(obj, dict):
+            return {k: sanitize_for_json(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [sanitize_for_json(v) for v in obj]
+        return obj
     
     # Compile results
     run_results = {
@@ -413,7 +480,7 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
             "gamma": gamma,
             "learning_rate": learning_rate
         },
-        "metrics": {
+        "metrics": sanitize_for_json({
             "davies_bouldin": cluster_results['davies_bouldin'],
             "silhouette": cluster_results['silhouette'],
             "calinski_harabasz": cluster_results['calinski_harabasz'],
@@ -422,12 +489,12 @@ def run_single_experiment(latent_dim: int, beta: float, gamma: float,
             "best_val_accuracy": best_val_acc,
             "best_val_loss": best_val_loss,
             **cluster_results['per_class_accuracy']
-        },
-        "cluster_to_score_mapping": cluster_results['cluster_to_score_mapping'],
+        }),
+        "cluster_to_score_mapping": {int(k): int(v) for k, v in cluster_results['cluster_to_score_mapping'].items()} if cluster_results['cluster_to_score_mapping'] else {},
         "paths": {
-            "cluster_table": str(cluster_table_path),
-            "tsne_plot": str(tsne_path),
-            "heatmap_plot": str(heatmap_path)
+            "cluster_table": str(cluster_table_path) if cluster_table_path else None,
+            "tsne_plot": str(tsne_path) if tsne_path else None,
+            "heatmap_plot": str(heatmap_path) if heatmap_path else None
         }
     }
     
@@ -496,24 +563,36 @@ def main():
         summary_df.to_csv(RESULTS_DIR / "sweep_metrics_summary.csv", index=False)
 
         print("\nTop 5 by Validation Accuracy:")
-        print(summary_df.nlargest(5, 'best_val_accuracy')[
-            ['latent_dim', 'beta', 'gamma', 'learning_rate', 'best_val_accuracy', 'best_val_loss', 'adjusted_rand_index']
-        ].to_string(index=False))
+        if 'best_val_accuracy' in summary_df.columns and summary_df['best_val_accuracy'].notna().any():
+            print(summary_df.nlargest(5, 'best_val_accuracy')[
+                ['latent_dim', 'beta', 'gamma', 'learning_rate', 'best_val_accuracy', 'best_val_loss', 'adjusted_rand_index']
+            ].to_string(index=False))
+        else:
+            print("  No valid accuracy metrics available")
         
         print("\nTop 5 by Validation Loss (lower is better):")
-        print(summary_df.nsmallest(5, 'best_val_loss')[
-            ['latent_dim', 'beta', 'gamma', 'learning_rate', 'best_val_loss', 'best_val_accuracy', 'adjusted_rand_index']
-        ].to_string(index=False))
+        if 'best_val_loss' in summary_df.columns and summary_df['best_val_loss'].notna().any():
+            print(summary_df.nsmallest(5, 'best_val_loss')[
+                ['latent_dim', 'beta', 'gamma', 'learning_rate', 'best_val_loss', 'best_val_accuracy', 'adjusted_rand_index']
+            ].to_string(index=False))
+        else:
+            print("  No valid loss metrics available")
         
         print("\nTop 5 by Adjusted Rand Index:")
-        print(summary_df.nlargest(5, 'adjusted_rand_index')[
-            ['latent_dim', 'beta', 'gamma', 'learning_rate', 'adjusted_rand_index', 'davies_bouldin']
-        ].to_string(index=False))
+        if 'adjusted_rand_index' in summary_df.columns and summary_df['adjusted_rand_index'].notna().any():
+            print(summary_df.nlargest(5, 'adjusted_rand_index')[
+                ['latent_dim', 'beta', 'gamma', 'learning_rate', 'adjusted_rand_index', 'davies_bouldin']
+            ].to_string(index=False))
+        else:
+            print("  No valid ARI metrics available")
         
         print("\nTop 5 by Davies-Bouldin (lower is better):")
-        print(summary_df.nsmallest(5, 'davies_bouldin')[
-            ['latent_dim', 'beta', 'gamma', 'learning_rate', 'davies_bouldin', 'adjusted_rand_index']
-        ].to_string(index=False))
+        if 'davies_bouldin' in summary_df.columns and summary_df['davies_bouldin'].notna().any():
+            print(summary_df.nsmallest(5, 'davies_bouldin')[
+                ['latent_dim', 'beta', 'gamma', 'learning_rate', 'davies_bouldin', 'adjusted_rand_index']
+            ].to_string(index=False))
+        else:
+            print("  No valid Davies-Bouldin metrics available")
     
     failed = sum(1 for r in all_results if r["status"] == "failed")
     print(f"\nCompleted: {total_runs - failed}/{total_runs} runs")
